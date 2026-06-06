@@ -12,7 +12,7 @@ const RANK_COLORS = {
     god: "#FF00FF",
 };
 
-export default function Result({ history, survivors, fallen, godId, onRestart }) {
+export default function Result({ history, survivors, fallen, godId, onRestart, onRetry }) {
 
     // Conta quantos easter eggs foram encontrados
     const easterEggsFound = history.filter(r => r.easterEggTriggered).length;
@@ -107,10 +107,15 @@ export default function Result({ history, survivors, fallen, godId, onRestart })
                 )}
             </div>
 
-            {/* Botão de recomeçar */}
-            <button style={styles.button} onClick={onRestart}>
-                Nova Travessia
-            </button>
+            {/* Botões finais */}
+            <div style={styles.buttonRow}>
+                <button style={styles.buttonSecondary} onClick={onRetry}>
+                    Tentar Novamente
+                </button>
+                <button style={styles.button} onClick={onRestart}>
+                    Nova Travessia
+                </button>
+            </div>
 
         </div>
     );
@@ -262,12 +267,31 @@ const styles = {
         margin: "4px",
     },
 
+    buttonRow: {
+        display: "flex",
+        gap: "16px",
+        justifyContent: "center",
+        flexWrap: "wrap",
+    },
+
     button: {
         padding: "14px 40px",
         fontSize: "1.1rem",
         backgroundColor: "#FFD700",
         color: "#000",
         border: "none",
+        borderRadius: "8px",
+        cursor: "pointer",
+        fontFamily: "Georgia, serif",
+        fontWeight: "bold",
+    },
+
+    buttonSecondary: {
+        padding: "14px 40px",
+        fontSize: "1.1rem",
+        backgroundColor: "transparent",
+        color: "#FFD700",
+        border: "2px solid #FFD700",
         borderRadius: "8px",
         cursor: "pointer",
         fontFamily: "Georgia, serif",

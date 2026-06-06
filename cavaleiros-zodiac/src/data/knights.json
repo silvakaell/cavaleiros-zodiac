@@ -16,7 +16,7 @@
 		},
 		{
 			"id": "shiryu",
-			"name": "Shiryu de Dragão",
+			"name": "Shiryu do Dragão",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Dragon",
@@ -30,7 +30,7 @@
 		},
 		{
 			"id": "hyoga",
-			"name": "Hyoga de Cisne",
+			"name": "Hyoga do Cisne",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Cygnus",
@@ -58,7 +58,7 @@
 		},
 		{
 			"id": "ikki",
-			"name": "Ikki de Fênix",
+			"name": "Ikki da Fênix",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Phoenix",
@@ -72,7 +72,7 @@
 		},
 		{
 			"id": "jabu",
-			"name": "Jabu de Unicórnio",
+			"name": "Jabu do Unicórnio",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Unicorn",
@@ -86,7 +86,7 @@
 		},
 		{
 			"id": "ichi",
-			"name": "Ichi de Hidra",
+			"name": "Ichi da Hidra",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Hydra",
@@ -96,11 +96,11 @@
 			"cosmos": 52,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze da Hidra. Usa suas garras para derrotar os inimigos."
+			"lore": "Cavaleiro de Bronze da Hidra."
 		},
 		{
 			"id": "nachi",
-			"name": "Nachi de Lobo",
+			"name": "Nachi do Lobo",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Wolf",
@@ -114,7 +114,7 @@
 		},
 		{
 			"id": "ban",
-			"name": "Ban de Leão Menor",
+			"name": "Ban do Leãozinho",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Leo Minor",
@@ -124,11 +124,11 @@
 			"cosmos": 54,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze de Leão Menor."
+			"lore": "Cavaleiro de Bronze do Leãozinho."
 		},
 		{
 			"id": "geki",
-			"name": "Geki de Urso",
+			"name": "Geki do Urso",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Great Bear",
@@ -138,11 +138,11 @@
 			"cosmos": 50,
 			"type": "defense",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze do Urso, um dos mais fortes fisicamente dentre os coadjuvantes."
+			"lore": "Cavaleiro de Bronze do Urso, o mais forte fisicamente entre os coadjuvantes."
 		},
 		{
 			"id": "misty",
-			"name": "Misty de Lagarto",
+			"name": "Misty do Lagarto",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Lizard",
@@ -152,21 +152,21 @@
 			"cosmos": 70,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Considerado o mais belo dos Cavaleiros de Prata, seu poder é assustador."
+			"lore": "Considerado o mais belo dos Cavaleiros de Prata."
 		},
 		{
 			"id": "moses",
-			"name": "Moses de Baleia",
+			"name": "Moses da Água-Viva",
 			"series": "classic",
 			"rank": "silver",
-			"constellation": "Whale",
+			"constellation": "Jellyfish",
 			"power": 65,
 			"defense": 70,
 			"speed": 60,
 			"cosmos": 65,
 			"type": "defense",
 			"affinities": [ "pisces" ],
-			"lore": "Cavaleiro de Prata da constelação da Baleia."
+			"lore": "Cavaleiro de Prata da Água-Viva."
 		},
 		{
 			"id": "asterion",
@@ -194,11 +194,11 @@
 			"cosmos": 68,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Uma das Amazonas de Prata femininas da saga clássica, usa seu poder com fúria e tenacidade."
+			"lore": "Uma das poucas Cavaleiras de Prata femininas da saga clássica."
 		},
 		{
 			"id": "babel",
-			"name": "Babel de Centauro",
+			"name": "Babel do Centauro",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Centaurus",
@@ -212,7 +212,7 @@
 		},
 		{
 			"id": "capella",
-			"name": "Capella de Auriga",
+			"name": "Capella do Auriga",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Auriga",
@@ -236,7 +236,7 @@
 			"cosmos": 95,
 			"type": "support",
 			"affinities": [ "aries" ],
-			"lore": "O único cavaleiro de Ouro capaz de reparar Armaduras Divinas. Aliado secreto dos Bronzes."
+			"lore": "O único Gold capaz de reparar Armaduras Divinas. Aliado secreto dos Bronzes."
 		},
 		{
 			"id": "aldebaran",
@@ -264,7 +264,7 @@
 			"cosmos": 100,
 			"type": "offense",
 			"affinities": [ "gemini" ],
-			"lore": "O mais poderoso dos Cavaleiros de Ouro. Usurpou o Santuário com sua personalidade maligna."
+			"lore": "O mais poderoso dos Cavaleiros de Ouro. Usurpou o papado com sua personalidade maligna."
 		},
 		{
 			"id": "kanon",
@@ -278,7 +278,7 @@
 			"cosmos": 97,
 			"type": "offense",
 			"affinities": [ "gemini", "pisces" ],
-			"lore": "Irmão gêmeo de Saga, considerado o manipulador de deuses."
+			"lore": "Irmão gêmeo de Saga. Manipulou Poseidon e depois encontrou a redenção."
 		},
 		{
 			"id": "deathmask",
@@ -292,7 +292,7 @@
 			"cosmos": 88,
 			"type": "offense",
 			"affinities": [ "cancer" ],
-			"lore": "O mais cruel dos cavaleiros de Ouro. Envia as almas de suas vítimas ao reino dos mortos."
+			"lore": "Envia as almas de suas vítimas ao reino dos mortos."
 		},
 		{
 			"id": "aiolia",
@@ -306,7 +306,7 @@
 			"cosmos": 96,
 			"type": "offense",
 			"affinities": [ "leo", "sagittarius" ],
-			"lore": "Irmão de Aiolos. Um dos cavaleiros de Ouro mais leais a Atena."
+			"lore": "Irmão de Aiolos. Um dos Gold mais leais a Atena."
 		},
 		{
 			"id": "shaka",
@@ -348,7 +348,7 @@
 			"cosmos": 94,
 			"type": "offense",
 			"affinities": [ "scorpio" ],
-			"lore": "Suas agulhas escarlates injetam veneno mortal em 15 pontos vitais."
+			"lore": "Seu Scarlet Needles injeta veneno mortal em 15 pontos vitais."
 		},
 		{
 			"id": "aiolos",
@@ -390,7 +390,7 @@
 			"cosmos": 95,
 			"type": "offense",
 			"affinities": [ "aquarius" ],
-			"lore": "Mestre de Hyoga. Acreditava na frieza absoluta."
+			"lore": "Mestre de Hyoga. Criou o Absolute Zero. Acreditava na frieza absoluta."
 		},
 		{
 			"id": "aphrodite",
@@ -432,7 +432,7 @@
 			"cosmos": 95,
 			"type": "offense",
 			"affinities": [ "leo" ],
-			"lore": "Criança prodígio com velocidade sobre-humana. Cavaleiro de Leão do século XVIII."
+			"lore": "Criança prodígio com velocidade sobre-humana. Gold de Leão do século XVIII."
 		},
 		{
 			"id": "degel",
@@ -446,7 +446,7 @@
 			"cosmos": 94,
 			"type": "balance",
 			"affinities": [ "aquarius" ],
-			"lore": "O mais inteligente dos cavaleiros de Ouro do Lost Canvas. Pesquisador do Cosmo."
+			"lore": "O mais inteligente dos Gold do Lost Canvas. Pesquisador do Cosmo."
 		},
 		{
 			"id": "manigoldo",
@@ -474,7 +474,7 @@
 			"cosmos": 99,
 			"type": "support",
 			"affinities": [ "virgo" ],
-			"lore": "Cego desde o nascimento. Possui o Cosmo mais elevado entre os cavaleiros de Ouro do Lost Canvas."
+			"lore": "Cego desde o nascimento. Possui o Cosmo mais elevado entre os Gold do Lost Canvas."
 		},
 		{
 			"id": "sisyphus",
@@ -516,7 +516,7 @@
 			"cosmos": 92,
 			"type": "offense",
 			"affinities": [ "capricorn" ],
-			"lore": "Guerreiro de honra absoluta. Cavaleiro de Ouro' de Capricórnio do século XVIII."
+			"lore": "Guerreiro de honra absoluta. Gold de Capricórnio do século XVIII."
 		},
 		{
 			"id": "kardia",
@@ -590,7 +590,7 @@
 		},
 		{
 			"id": "haruto",
-			"name": "Haruto de Lobo",
+			"name": "Haruto do Lobo",
 			"series": "omega",
 			"rank": "bronze",
 			"constellation": "Wolf",
@@ -614,7 +614,441 @@
 			"cosmos": 72,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Amazona de Bronze da Ursa Menor em Omega."
+			"lore": "Cavaleira de Bronze da Ursa Menor em Omega."
+		},
+		{
+			"id": "black_pegasus",
+			"name": "Pegasus Negro",
+			"series": "black_saints",
+			"rank": "black",
+			"constellation": "Dark Pegasus",
+			"power": 62,
+			"defense": 55,
+			"speed": 68,
+			"cosmos": 58,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Contraparte sombria de Seiya. Lidera os Cavaleiros Negros de Pégaso sob as ordens de Ikki."
+		},
+		{
+			"id": "black_dragon",
+			"name": "Dragão Negro",
+			"series": "black_saints",
+			"rank": "black",
+			"constellation": "Dark Dragon",
+			"power": 60,
+			"defense": 72,
+			"speed": 58,
+			"cosmos": 56,
+			"type": "defense",
+			"affinities": [],
+			"lore": "Contraparte sombria de Shiryu. Usa uma versão corrompida do Escudo do Dragão."
+		},
+		{
+			"id": "black_cygnus",
+			"name": "Cisne Negro",
+			"series": "black_saints",
+			"rank": "black",
+			"constellation": "Dark Cygnus",
+			"power": 58,
+			"defense": 60,
+			"speed": 65,
+			"cosmos": 55,
+			"type": "balance",
+			"affinities": [],
+			"lore": "Contraparte sombria de Hyoga. Usa ataques de gelo corrompidos pelo lado das trevas."
+		},
+		{
+			"id": "black_andromeda",
+			"name": "Andrômeda Negro",
+			"series": "black_saints",
+			"rank": "black",
+			"constellation": "Dark Andromeda",
+			"power": 56,
+			"defense": 62,
+			"speed": 60,
+			"cosmos": 58,
+			"type": "support",
+			"affinities": [],
+			"lore": "Contraparte sombria de Shun. Usa correntes negras como arma."
+		},
+		{
+			"id": "black_phoenix",
+			"name": "Fênix Negro",
+			"series": "black_saints",
+			"rank": "black",
+			"constellation": "Dark Phoenix",
+			"power": 70,
+			"defense": 65,
+			"speed": 72,
+			"cosmos": 68,
+			"type": "offense",
+			"affinities": [],
+			"lore": "O mais poderoso dos Cavaleiros Negros remanescentes após a partida de Ikki."
+		},
+		{
+			"id": "siegfried",
+			"name": "Siegfried de Dubhe",
+			"series": "asgard",
+			"rank": "god_warrior",
+			"constellation": "Dubhe Alpha",
+			"power": 96,
+			"defense": 90,
+			"speed": 88,
+			"cosmos": 94,
+			"type": "offense",
+			"affinities": [],
+			"lore": "O mais poderoso dos Guerreiros Deuses de Asgard. Usa o Rhine Salvation e a lendária Espada de Odin. Rival digno dos Cavaleiros de Ouro."
+		},
+		{
+			"id": "hagen",
+			"name": "Hagen de Merak",
+			"series": "asgard",
+			"rank": "god_warrior",
+			"constellation": "Merak Beta",
+			"power": 82,
+			"defense": 78,
+			"speed": 80,
+			"cosmos": 80,
+			"type": "offense",
+			"affinities": [ "aquarius" ],
+			"lore": "Guerreiro Deus de Merak Beta. Usa ataques baseados em fogo — rival natural de Hyoga."
+		},
+		{
+			"id": "thor_asgard",
+			"name": "Thor de Alioth",
+			"series": "asgard",
+			"rank": "god_warrior",
+			"constellation": "Alioth Epsilon",
+			"power": 88,
+			"defense": 92,
+			"speed": 55,
+			"cosmos": 82,
+			"type": "defense",
+			"affinities": [],
+			"lore": "Guerreiro Deus de Alioth Epsilon. Força física monstruosa — uma das maiores de toda a saga. Lento, mas quase indestrutível."
+		},
+		{
+			"id": "alberich",
+			"name": "Alberich de Megrez",
+			"series": "asgard",
+			"rank": "god_warrior",
+			"constellation": "Megrez Delta",
+			"power": 80,
+			"defense": 75,
+			"speed": 78,
+			"cosmos": 78,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Guerreiro Deus de Megrez Delta. Usa forças da natureza como arma. Traidor que busca o poder de Odin para si mesmo."
+		},
+		{
+			"id": "mime",
+			"name": "Mime de Benetnasch",
+			"series": "asgard",
+			"rank": "god_warrior",
+			"constellation": "Benetnasch Eta",
+			"power": 78,
+			"defense": 70,
+			"speed": 82,
+			"cosmos": 85,
+			"type": "support",
+			"affinities": [],
+			"lore": "Guerreiro Deus de Benetnasch Eta. Usa sua harpa como arma — os sons se tornam golpes devastadores. Teve um passado trágico com Ikki."
+		},
+		{
+			"id": "fafner",
+			"name": "Fafner de Mizar",
+			"series": "asgard",
+			"rank": "god_warrior",
+			"constellation": "Mizar Zeta",
+			"power": 76,
+			"defense": 74,
+			"speed": 76,
+			"cosmos": 76,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Guerreiro Deus de Mizar Zeta. Usa correntes e poderes das trevas como arma principal."
+		},
+		{
+			"id": "syd",
+			"name": "Syd de Alcor",
+			"series": "asgard",
+			"rank": "god_warrior",
+			"constellation": "Alcor",
+			"power": 80,
+			"defense": 76,
+			"speed": 78,
+			"cosmos": 78,
+			"type": "balance",
+			"affinities": [],
+			"lore": "Guerreiro Deus de Alcor. Tem uma identidade dupla que esconde até dos aliados."
+		},
+		{
+			"id": "krishna",
+			"name": "Chrysaor Krishna",
+			"series": "poseidon",
+			"rank": "marina",
+			"constellation": "Chrysaor",
+			"power": 92,
+			"defense": 88,
+			"speed": 86,
+			"cosmos": 90,
+			"type": "offense",
+			"affinities": [],
+			"lore": "O mais obstinado dos Generais Marinhos. Sua Espada de Chrysaor pode cortar qualquer coisa — rivalizou com Shiryu em intensidade."
+		},
+		{
+			"id": "isaak",
+			"name": "Isaak de Kraken",
+			"series": "poseidon",
+			"rank": "marina",
+			"constellation": "Kraken",
+			"power": 86,
+			"defense": 84,
+			"speed": 80,
+			"cosmos": 85,
+			"type": "offense",
+			"affinities": [ "aquarius" ],
+			"lore": "Amigo de infância de Hyoga. Traído pelo destino, tornou-se General Marinho. Seu confronto com Hyoga é um dos mais emotivos da saga."
+		},
+		{
+			"id": "sorrento",
+			"name": "Sorrento de Sirene",
+			"series": "poseidon",
+			"rank": "marina",
+			"constellation": "Siren",
+			"power": 82,
+			"defense": 76,
+			"speed": 80,
+			"cosmos": 84,
+			"type": "offense",
+			"affinities": [ "pisces" ],
+			"lore": "General Marinho de Sirene. Usa sons como arma — sua flauta pode destruir o sistema nervoso dos inimigos. Enfrentou Shun."
+		},
+		{
+			"id": "baian",
+			"name": "Baian de Cavalo-Marinho",
+			"series": "poseidon",
+			"rank": "marina",
+			"constellation": "Seahorse",
+			"power": 79,
+			"defense": 80,
+			"speed": 74,
+			"cosmos": 78,
+			"type": "defense",
+			"affinities": [],
+			"lore": "General Marinho do Cavalo-Marinho. Usa ataques aquáticos de longo alcance."
+		},
+		{
+			"id": "kasa",
+			"name": "Lymnades Kasa",
+			"series": "poseidon",
+			"rank": "marina",
+			"constellation": "Lymnades",
+			"power": 74,
+			"defense": 70,
+			"speed": 76,
+			"cosmos": 80,
+			"type": "support",
+			"affinities": [],
+			"lore": "General Marinho das Lymnades. Pode assumir a aparência de qualquer pessoa — um dos poderes mais traiçoeiros da saga."
+		},
+		{
+			"id": "scylla_io",
+			"name": "Io de Scylla",
+			"series": "poseidon",
+			"rank": "marina",
+			"constellation": "Scylla",
+			"power": 78,
+			"defense": 74,
+			"speed": 72,
+			"cosmos": 76,
+			"type": "offense",
+			"affinities": [],
+			"lore": "General Marinho de Scylla. Pode invocar múltiplas cabeças de monstro para atacar simultaneamente."
+		},
+		{
+			"id": "thetis",
+			"name": "Thetis de Sereia",
+			"series": "poseidon",
+			"rank": "marina",
+			"constellation": "Mermaid",
+			"power": 75,
+			"defense": 68,
+			"speed": 78,
+			"cosmos": 76,
+			"type": "offense",
+			"affinities": [ "aquarius", "pisces" ],
+			"lore": "General Marinha da Sereia. Devota de Poseidon. Usa o poder das correntes marinhas em combate."
+		},
+		{
+			"id": "odin_loki",
+			"name": "Loki de Odin",
+			"series": "movie_odin",
+			"rank": "odin_warrior",
+			"constellation": "Loki",
+			"power": 88,
+			"defense": 80,
+			"speed": 85,
+			"cosmos": 86,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Representante das forças de Odin no mundo mortal. Usa o poder do trovão nórdico e manipula o destino dos guerreiros."
+		},
+		{
+			"id": "odin_bud",
+			"name": "Bud de Alcor",
+			"series": "movie_odin",
+			"rank": "odin_warrior",
+			"constellation": "Alcor",
+			"power": 82,
+			"defense": 78,
+			"speed": 80,
+			"cosmos": 80,
+			"type": "balance",
+			"affinities": [],
+			"lore": "Irmão de Syd. Guerreiro leal a Odin que guarda os segredos do Reino do Norte."
+		},
+		{
+			"id": "odin_gunnar",
+			"name": "Gunnar da Valhala",
+			"series": "movie_odin",
+			"rank": "odin_warrior",
+			"constellation": "Valhalla",
+			"power": 78,
+			"defense": 76,
+			"speed": 76,
+			"cosmos": 76,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Guerreiro da Valhala que serve diretamente aos desígnios de Odin."
+		},
+		{
+			"id": "phaeton",
+			"name": "Phaeton de Titã",
+			"series": "movie_abel",
+			"rank": "corona",
+			"constellation": "Titan",
+			"power": 90,
+			"defense": 85,
+			"speed": 82,
+			"cosmos": 88,
+			"type": "offense",
+			"affinities": [ "leo", "sagittarius" ],
+			"lore": "O mais poderoso dos Cavaleiros da Coroa de Abel. Usa o calor solar como arma e serve o deus-sol com devoção absoluta."
+		},
+		{
+			"id": "corona_hyperion",
+			"name": "Hyperion de Hélio",
+			"series": "movie_abel",
+			"rank": "corona",
+			"constellation": "Helios",
+			"power": 84,
+			"defense": 78,
+			"speed": 85,
+			"cosmos": 82,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Cavaleiro da Coroa que canaliza o poder do sol primordial. Um dos guerreiros de elite de Abel."
+		},
+		{
+			"id": "corona_marte",
+			"name": "Marte do Cosmos Solar",
+			"series": "movie_abel",
+			"rank": "corona",
+			"constellation": "Sol",
+			"power": 80,
+			"defense": 75,
+			"speed": 80,
+			"cosmos": 80,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Cavaleiro da Coroa de Abel. Usa a energia solar concentrada para devastar oponentes."
+		},
+		{
+			"id": "fallen_lucifer",
+			"name": "Anjo Caído de Lúcifer",
+			"series": "movie_lucifer",
+			"rank": "fallen",
+			"constellation": "Fallen Star",
+			"power": 94,
+			"defense": 88,
+			"speed": 88,
+			"cosmos": 92,
+			"type": "offense",
+			"affinities": [],
+			"lore": "O mais poderoso servo de Lúcifer. Carrega o poder de um anjo que renegou o paraíso — sua força supera a maioria dos Cavaleiros de Ouro."
+		},
+		{
+			"id": "fallen_seraph",
+			"name": "Serafim das Trevas",
+			"series": "movie_lucifer",
+			"rank": "fallen",
+			"constellation": "Dark Seraph",
+			"power": 86,
+			"defense": 82,
+			"speed": 85,
+			"cosmos": 85,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Anjo caído que serve Lúcifer. Usa asas negras como arma e corrompeu seu Cosmo com energia das trevas."
+		},
+		{
+			"id": "fallen_cherub",
+			"name": "Querubim do Abismo",
+			"series": "movie_lucifer",
+			"rank": "fallen",
+			"constellation": "Abyss",
+			"power": 80,
+			"defense": 80,
+			"speed": 82,
+			"cosmos": 80,
+			"type": "balance",
+			"affinities": [],
+			"lore": "Um dos anjos caídos de Lúcifer. Usa o poder do vazio entre os mundos para desorientar os adversários."
+		},
+		{
+			"id": "thebe",
+			"name": "Thebe do Paraíso",
+			"series": "movie_apolo",
+			"rank": "heaven",
+			"constellation": "Heaven Thebe",
+			"power": 92,
+			"defense": 86,
+			"speed": 88,
+			"cosmos": 90,
+			"type": "offense",
+			"affinities": [ "leo" ],
+			"lore": "Um dos Cavaleiros do Paraíso de Apolo. Usa o poder da luz celestial — um dos guerreiros mais temidos do Capítulo do Céu."
+		},
+		{
+			"id": "heaven_io",
+			"name": "Io do Paraíso",
+			"series": "movie_apolo",
+			"rank": "heaven",
+			"constellation": "Heaven Io",
+			"power": 86,
+			"defense": 82,
+			"speed": 84,
+			"cosmos": 86,
+			"type": "balance",
+			"affinities": [],
+			"lore": "Cavaleiro do Paraíso de Apolo. Usa a energia pura do éter celestial para atacar e defender."
+		},
+		{
+			"id": "heaven_ganymede",
+			"name": "Ganimedes do Olimpo",
+			"series": "movie_apolo",
+			"rank": "heaven",
+			"constellation": "Olympus",
+			"power": 84,
+			"defense": 80,
+			"speed": 86,
+			"cosmos": 84,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Cavaleiro do Paraíso. Serve diretamente a Apolo e usa os raios do Olimpo como arma."
 		}
 	]
 }

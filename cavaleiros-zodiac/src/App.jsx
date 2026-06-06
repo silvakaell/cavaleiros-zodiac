@@ -1,7 +1,8 @@
 // App.jsx
-// Fluxo completo: god_select → knight_select → run → result → (reinicia)
+// Fluxo: title → god_select → knight_select → run → result → (reinicia)
 
 import { useState } from "react";
+import TitleScreen from "./screens/TitleScreen";
 import GodSelect from "./screens/GodSelect";
 import KnightSelect from "./screens/KnightSelect";
 import Run from "./screens/Run";
@@ -9,10 +10,14 @@ import Result from "./screens/Result";
 
 export default function App() {
 
-    const [screen, setScreen] = useState("god_select");
+    const [screen, setScreen] = useState("title");
     const [selectedGod, setSelectedGod] = useState(null);
     const [selectedTeam, setSelectedTeam] = useState([]);
     const [runData, setRunData] = useState(null);
+
+    function handleStart() {
+        setScreen("god_select");
+    }
 
     function handleGodSelect(godId) {
         setSelectedGod(godId);
@@ -29,16 +34,26 @@ export default function App() {
         setScreen("result");
     }
 
-    // Reinicia tudo do zero
     function handleRestart() {
-        setScreen("god_select");
+        setScreen("title");
         setSelectedGod(null);
         setSelectedTeam([]);
         setRunData(null);
     }
 
+    // Mantém o mesmo deus e vai direto para a seleção de cavaleiros
+    function handleRetry() {
+        setSelectedTeam([]);
+        setRunData(null);
+        setScreen("knight_select");
+    }
+
     return (
         <div>
+            {screen === "title" && (
+                <TitleScreen onStart={handleStart} />
+            )}
+
             {screen === "god_select" && (
                 <GodSelect onSelect={handleGodSelect} />
             )}
@@ -58,6 +73,7 @@ export default function App() {
                     fallen={runData.fallen}
                     godId={selectedGod}
                     onRestart={handleRestart}
+                    onRetry={handleRetry}
                 />
             )}
         </div>

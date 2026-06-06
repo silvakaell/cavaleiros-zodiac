@@ -1,145 +1,153 @@
 // KnightSelect.jsx
-// Tela de seleção de cavaleiros.
-// Recebe um pool aleatório e o jogador escolhe 5 para a run.
+// Seleção de cavaleiros em rodadas: o jogador escolhe 1 por vez.
+// A cada escolha, um novo pool aleatório aparece. Total: 5 rodadas.
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import knightsData from "../data/knights.json";
+import { calcOverall, overallColor } from "../game/utils";
 
-// Quantos cavaleiros aparecem no pool para escolha
-const POOL_SIZE = 12;
-
-// Quantos o jogador precisa escolher
 const TEAM_SIZE = 5;
+const POOL_SIZE = 4; // opções por rodada
 
-// Embaralha um array e retorna os primeiros N itens
-function getRandomPool(knights, size) {
-    const shuffled = [...knights].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, size);
-}
+const EXCLUDED_RANKS = ["gold"];
 
-// Cor por rank
 const RANK_COLORS = {
     bronze: "#CD7F32",
     silver: "#C0C0C0",
     gold: "#FFD700",
-    god: "#FF00FF",
+    black: "#9B59B6",
+    god_warrior: "#4FC3F7",
+    marina: "#00BCD4",
+    ghost: "#78909C",
+    odin_warrior: "#B0BEC5",
+    corona: "#FF7043",
+    fallen: "#E53935",
+    heaven: "#FFF176",
 };
+
+// Gera um pool aleatório excluindo cavaleiros já escolhidos
+function generatePool(allKnights, alreadyPicked) {
+    const pickedIds = alreadyPicked.map(k => k.id);
+    const eligible = allKnights.filter(k =>
+        !EXCLUDED_RANKS.includes(k.rank) && !pickedIds.includes(k.id)
+    );
+    const shuffled = [...eligible].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, POOL_SIZE);
+}
 
 export default function KnightSelect({ godId, onConfirm }) {
 
-    // Pool de cavaleiros disponíveis para escolha
-    const [pool, setPool] = useState([]);
+    const allKnights = knightsData.knights;
 
-    // Time montado pelo jogador (máximo 5)
+    // Time montado até agora
     const [team, setTeam] = useState([]);
 
-    // Gera o pool uma vez quando a tela carrega
-    useEffect(() => {
-        const randomPool = getRandomPool(knightsData.knights, POOL_SIZE);
-        setPool(randomPool);
-    }, []);
+    // Pool atual de opções
+    const [pool, setPool] = useState(() => generatePool(allKnights, []));
 
-    // Adiciona ou remove um cavaleiro do time ao clicar
-    function toggleKnight(knight) {
-        const isInTeam = team.some(k => k.id === knight.id);
+    const pickCount = team.length; // quantas escolhas já foram feitas
+    const isComplete = pickCount === TEAM_SIZE;
 
-        if (isInTeam) {
-            // Remove do time
-            setTeam(team.filter(k => k.id !== knight.id));
-        } else {
-            // Adiciona só se ainda não chegou no limite
-            if (team.length < TEAM_SIZE) {
-                setTeam([...team, knight]);
-            }
+    // Quando o jogador clica num cavaleiro
+    function handlePick(knight) {
+        const newTeam = [...team, knight];
+        setTeam(newTeam);
+
+        if (newTeam.length < TEAM_SIZE) {
+            // Gera novo pool excluindo quem já foi escolhido
+            setPool(generatePool(allKnights, newTeam));
         }
     }
 
-    const teamFull = team.length === TEAM_SIZE;
+    // Quando o time está completo e o jogador confirma
+    function handleConfirm() {
+        onConfirm(team);
+    }
 
     return (
         <div style={styles.container}>
 
             <h1 style={styles.title}>Monte seu Time</h1>
-            <p style={styles.subtitle}>
-                Escolha {TEAM_SIZE} cavaleiros para a travessia das 12 casas.
-                &nbsp;({team.length}/{TEAM_SIZE} selecionados)
-            </p>
 
-            {/* Pool de cavaleiros disponíveis */}
-            <div style={styles.grid}>
-                {pool.map((knight) => {
-                    const isSelected = team.some(k => k.id === knight.id);
-                    const isDisabled = !isSelected && teamFull;
+            {/* Progresso: qual rodada está */}
+            {!isComplete && (
+                <p style={styles.subtitle}>
+                    Escolha {pickCount + 1}ª de {TEAM_SIZE} — selecione 1 cavaleiro
+                </p>
+            )}
 
-                    return (
-                        <div
-                            key={knight.id}
-                            onClick={() => !isDisabled && toggleKnight(knight)}
-                            style={{
-                                ...styles.card,
-                                borderColor: isSelected
-                                    ? RANK_COLORS[knight.rank]
-                                    : "#333",
-                                opacity: isDisabled ? 0.4 : 1,
-                                cursor: isDisabled ? "not-allowed" : "pointer",
-                                boxShadow: isSelected
-                                    ? `0 0 12px ${RANK_COLORS[knight.rank]}`
-                                    : "none",
-                            }}
-                        >
-                            {/* Nome e rank */}
-                            <p style={{ ...styles.knightName, color: RANK_COLORS[knight.rank] }}>
-                                {knight.name}
-                            </p>
-                            <p style={styles.series}>{knight.series.replace("_", " ")}</p>
-
-                            {/* Stats */}
-                            <div style={styles.stats}>
-                                <span>⚔ {knight.power}</span>
-                                <span>🛡 {knight.defense}</span>
-                                <span>💨 {knight.speed}</span>
-                                <span>✨ {knight.cosmos}</span>
-                            </div>
-
-                            {/* Lore */}
-                            <p style={styles.lore}>{knight.lore}</p>
-                        </div>
-                    );
-                })}
-            </div>
-
-            {/* Time montado */}
+            {/* Time escolhido até agora */}
             {team.length > 0 && (
                 <div style={styles.teamBar}>
-                    <p style={styles.teamLabel}>Seu time:</p>
-                    <div style={styles.teamList}>
-                        {team.map(k => (
-                            <span
-                                key={k.id}
-                                style={{ ...styles.teamChip, borderColor: RANK_COLORS[k.rank] }}
-                            >
-                                {k.name}
-                            </span>
-                        ))}
-                    </div>
+                    {team.map((k, i) => (
+                        <span
+                            key={k.id}
+                            style={{ ...styles.teamChip, borderColor: RANK_COLORS[k.rank] || "#aaa" }}
+                        >
+                            {i + 1}. {k.name}
+                        </span>
+                    ))}
+                    {/* Slots vazios */}
+                    {Array.from({ length: TEAM_SIZE - team.length }).map((_, i) => (
+                        <span key={i} style={styles.emptyChip}>
+                            {team.length + i + 1}. ???
+                        </span>
+                    ))}
                 </div>
             )}
 
-            {/* Botão de confirmação — só aparece com 5 escolhidos */}
-            {teamFull && (
-                <button style={styles.button} onClick={() => onConfirm(team)}>
-                    Iniciar Travessia
-                </button>
+            {/* Pool atual — só aparece se o time ainda não está completo */}
+            {!isComplete && (
+                <div style={styles.grid}>
+                    {pool.map((knight) => {
+                        const rankColor = RANK_COLORS[knight.rank] || "#aaa";
+                        return (
+                            <div
+                                key={knight.id}
+                                onClick={() => handlePick(knight)}
+                                style={{ ...styles.card, borderColor: "#333" }}
+                                onMouseEnter={e => e.currentTarget.style.borderColor = rankColor}
+                                onMouseLeave={e => e.currentTarget.style.borderColor = "#333"}
+                            >
+                                <div style={styles.nameRow}>
+                                    <p style={{ ...styles.knightName, color: rankColor }}>
+                                        {knight.name}
+                                    </p>
+                                    <span style={{ ...styles.overall, color: overallColor(calcOverall(knight)) }}>
+                                        {calcOverall(knight)} OVR
+                                    </span>
+                                </div>
+                                <p style={styles.series}>
+                                    {knight.series.replace(/_/g, " ")} · {knight.rank}
+                                </p>
+                                <div style={styles.stats}>
+                                    <span>⚔ {knight.power}</span>
+                                    <span>🛡 {knight.defense}</span>
+                                    <span>💨 {knight.speed}</span>
+                                    <span>✨ {knight.cosmos}</span>
+                                </div>
+                                <p style={styles.lore}>{knight.lore}</p>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
+
+            {/* Tela de confirmação quando o time está completo */}
+            {isComplete && (
+                <div style={styles.confirmBox}>
+                    <p style={styles.confirmText}>Time formado. Prontos para a travessia?</p>
+                    <button style={styles.button} onClick={handleConfirm}>
+                        Iniciar Travessia
+                    </button>
+                </div>
             )}
 
         </div>
     );
 }
 
-// ─── ESTILOS ──────────────────────────────────────────────────────────────────
-
 const styles = {
-
     container: {
         minHeight: "100vh",
         backgroundColor: "#0a0a0a",
@@ -148,18 +156,38 @@ const styles = {
         fontFamily: "Georgia, serif",
         textAlign: "center",
     },
-
     title: {
         fontSize: "2.2rem",
         color: "#FFD700",
         marginBottom: "8px",
     },
-
     subtitle: {
         color: "#aaa",
-        marginBottom: "32px",
+        marginBottom: "24px",
+        fontSize: "1rem",
     },
-
+    teamBar: {
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "10px",
+        justifyContent: "center",
+        maxWidth: "800px",
+        margin: "0 auto 32px",
+    },
+    teamChip: {
+        border: "1px solid",
+        borderRadius: "20px",
+        padding: "5px 16px",
+        fontSize: "0.85rem",
+        color: "#eee",
+    },
+    emptyChip: {
+        border: "1px solid #333",
+        borderRadius: "20px",
+        padding: "5px 16px",
+        fontSize: "0.85rem",
+        color: "#444",
+    },
     grid: {
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
@@ -167,29 +195,35 @@ const styles = {
         maxWidth: "1100px",
         margin: "0 auto",
     },
-
     card: {
         backgroundColor: "#111",
         border: "2px solid #333",
         borderRadius: "10px",
-        padding: "16px",
+        padding: "20px",
         textAlign: "left",
-        transition: "all 0.2s",
+        cursor: "pointer",
+        transition: "border-color 0.15s",
     },
-
+    nameRow: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: "2px",
+    },
     knightName: {
         fontSize: "1rem",
         fontWeight: "bold",
-        marginBottom: "2px",
     },
-
+    overall: {
+        fontSize: "0.85rem",
+        fontWeight: "bold",
+    },
     series: {
         fontSize: "0.75rem",
         color: "#777",
         marginBottom: "10px",
         textTransform: "capitalize",
     },
-
     stats: {
         display: "flex",
         gap: "10px",
@@ -198,44 +232,21 @@ const styles = {
         marginBottom: "10px",
         flexWrap: "wrap",
     },
-
     lore: {
         fontSize: "0.78rem",
         color: "#888",
         lineHeight: "1.4",
     },
-
-    teamBar: {
-        marginTop: "32px",
-        padding: "16px",
-        backgroundColor: "#111",
-        borderRadius: "10px",
-        maxWidth: "800px",
-        margin: "32px auto 0",
+    confirmBox: {
+        marginTop: "40px",
     },
-
-    teamLabel: {
-        color: "#FFD700",
-        marginBottom: "10px",
+    confirmText: {
+        color: "#aaa",
+        marginBottom: "20px",
+        fontSize: "1.1rem",
+        fontStyle: "italic",
     },
-
-    teamList: {
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "10px",
-        justifyContent: "center",
-    },
-
-    teamChip: {
-        border: "1px solid",
-        borderRadius: "20px",
-        padding: "4px 14px",
-        fontSize: "0.85rem",
-        color: "#eee",
-    },
-
     button: {
-        marginTop: "32px",
         padding: "14px 40px",
         fontSize: "1.1rem",
         backgroundColor: "#FFD700",
@@ -246,5 +257,4 @@ const styles = {
         fontFamily: "Georgia, serif",
         fontWeight: "bold",
     },
-
 };
