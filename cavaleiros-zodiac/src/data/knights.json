@@ -16,7 +16,7 @@
 		},
 		{
 			"id": "shiryu",
-			"name": "Shiryu do Dragão",
+			"name": "Shiryu de Dragão",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Dragon",
@@ -30,7 +30,7 @@
 		},
 		{
 			"id": "hyoga",
-			"name": "Hyoga do Cisne",
+			"name": "Hyoga de Cisne",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Cygnus",
@@ -58,7 +58,7 @@
 		},
 		{
 			"id": "ikki",
-			"name": "Ikki da Fênix",
+			"name": "Ikki de Fênix",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Phoenix",
@@ -72,7 +72,7 @@
 		},
 		{
 			"id": "jabu",
-			"name": "Jabu do Unicórnio",
+			"name": "Jabu de Unicórnio",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Unicorn",
@@ -86,7 +86,7 @@
 		},
 		{
 			"id": "ichi",
-			"name": "Ichi da Hidra",
+			"name": "Ichi de Hidra",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Hydra",
@@ -100,7 +100,7 @@
 		},
 		{
 			"id": "nachi",
-			"name": "Nachi do Lobo",
+			"name": "Nachi de Lobo",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Wolf",
@@ -128,7 +128,7 @@
 		},
 		{
 			"id": "geki",
-			"name": "Geki do Urso",
+			"name": "Geki de Urso",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Great Bear",
@@ -142,7 +142,7 @@
 		},
 		{
 			"id": "misty",
-			"name": "Misty do Lagarto",
+			"name": "Misty de Lagarto",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Lizard",
@@ -198,7 +198,7 @@
 		},
 		{
 			"id": "babel",
-			"name": "Babel do Centauro",
+			"name": "Babel de Centauro",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Centaurus",
@@ -212,7 +212,7 @@
 		},
 		{
 			"id": "capella",
-			"name": "Capella do Auriga",
+			"name": "Capella de Auriga",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Auriga",
@@ -590,7 +590,7 @@
 		},
 		{
 			"id": "haruto",
-			"name": "Haruto do Lobo",
+			"name": "Haruto de Lobo",
 			"series": "omega",
 			"rank": "bronze",
 			"constellation": "Wolf",
@@ -614,7 +614,7 @@
 			"cosmos": 72,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Cavaleira de Bronze da Ursa Menor em Omega."
+			"lore": "Amazona de Bronze da Ursa Menor em Omega."
 		}
 	]
 }
