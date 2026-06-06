@@ -146,39 +146,20 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
     const runOver = aliveTeam.length === 0;
 
     function handleResolve() {
-        let currentTeam = [...aliveTeam];
-        const newFallen = [];
-        let finalOutcome = null;
-
-        while (true) {
-            const outcome = resolveHouse(currentTeam, currentHouse, godBonus);
-
-            if (outcome.passed) {
-                finalOutcome = { ...outcome, newFallenInHouse: newFallen };
-                break;
-            }
-
-            if (outcome.fallenKnight) {
-                newFallen.push(outcome.fallenKnight);
-                currentTeam = currentTeam.filter(k => k.id !== outcome.fallenKnight.id);
-            }
-
-            if (currentTeam.length === 0) {
-                finalOutcome = { ...outcome, newFallenInHouse: newFallen };
-                break;
-            }
+        const outcome = resolveHouse(aliveTeam, currentHouse, godBonus);
+        if (!outcome.passed && outcome.fallenKnight) {
+            setAliveTeam(prev => prev.filter(k => k.id !== outcome.fallenKnight.id));
+            setFallen(prev => [...prev, outcome.fallenKnight]);
         }
-
-        setAliveTeam(prev => prev.filter(k => !newFallen.some(f => f.id === k.id)));
-        setFallen(prev => [...prev, ...newFallen]);
-        setResult(finalOutcome);
-        setHistory(prev => [...prev, finalOutcome]);
+        setResult(outcome);
     }
 
     function handleNext() {
-        if (isLastHouse || runOver) {
-            onFinish(history, aliveTeam, fallen);
+        const h = [...history, result];
+        if (isLastHouse || aliveTeam.length === 0) {
+            onFinish(h, aliveTeam, fallen);
         } else {
+            setHistory(h);
             setHouseIndex(prev => prev + 1);
             setResult(null);
         }
@@ -331,9 +312,9 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
                                                 </div>
                                             )}
 
-                                            {result.newFallenInHouse && result.newFallenInHouse.length > 0 && (
+                                            {!result.passed && result.fallenKnight && (
                                                 <div style={{ color: "#9a3030", fontSize: "14px", marginTop: "8px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
-                                                    💀 {result.newFallenInHouse.map(k => k.name).join(", ")} {result.newFallenInHouse.length === 1 ? "caiu" : "caíram"} nesta casa.
+                                                    💀 {result.fallenKnight.name} caiu nesta batalha.
                                                 </div>
                                             )}
 
@@ -426,7 +407,11 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
                                             );
                                         })()}
 
-                                        {runOver ? (
+                                        {result.passed ? (
+                                            <button style={S.btn} onClick={handleNext}>
+                                                {isLastHouse ? "Ver resultado final" : "Próxima casa →"}
+                                            </button>
+                                        ) : aliveTeam.length === 0 ? (
                                             <>
                                                 <div style={{ color: "#7a2020", fontSize: "15px", marginBottom: "12px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
                                                     Todos os cavaleiros caíram.
@@ -436,8 +421,8 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
                                                 </button>
                                             </>
                                         ) : (
-                                            <button style={S.btn} onClick={handleNext}>
-                                                {isLastHouse ? "Ver resultado final" : "Próxima casa →"}
+                                            <button style={{ ...S.btn, background: "#1a3a5a", color: "#7ab8d4" }} onClick={handleResolve}>
+                                                ↺ Lutar de novo
                                             </button>
                                         )}
                                     </>
