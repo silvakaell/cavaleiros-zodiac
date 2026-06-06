@@ -13,6 +13,8 @@ export default function App() {
     const [screen, setScreen] = useState("title");
     const [selectedGod, setSelectedGod] = useState(null);
     const [selectedTeam, setSelectedTeam] = useState([]);
+    const [runLayout, setRunLayout] = useState(null);
+    const [runTeamSize, setRunTeamSize] = useState(null);
     const [runData, setRunData] = useState(null);
 
     function handleStart() {
@@ -24,8 +26,10 @@ export default function App() {
         setScreen("knight_select");
     }
 
-    function handleTeamConfirm(team) {
+    function handleTeamConfirm(team, layout, teamSize) {
         setSelectedTeam(team);
+        setRunLayout(layout);
+        setRunTeamSize(teamSize);
         setScreen("run");
     }
 
@@ -63,7 +67,7 @@ export default function App() {
             )}
 
             {screen === "run" && (
-                <Run team={selectedTeam} godId={selectedGod} onFinish={handleRunFinish} />
+                <Run team={selectedTeam} godId={selectedGod} layout={runLayout} teamSize={runTeamSize} onFinish={handleRunFinish} />
             )}
 
             {screen === "result" && (
