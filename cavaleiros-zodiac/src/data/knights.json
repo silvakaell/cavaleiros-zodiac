@@ -96,7 +96,7 @@
 			"cosmos": 52,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze da Hidra."
+			"lore": "Cavaleiro de Bronze da Hidra. Usa suas garras para derrotar os inimigos."
 		},
 		{
 			"id": "nachi",
@@ -114,7 +114,7 @@
 		},
 		{
 			"id": "ban",
-			"name": "Ban do Leãozinho",
+			"name": "Ban de Leão Menor",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Leo Minor",
@@ -124,7 +124,7 @@
 			"cosmos": 54,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze do Leãozinho."
+			"lore": "Cavaleiro de Bronze de Leão Menor."
 		},
 		{
 			"id": "geki",
@@ -138,7 +138,7 @@
 			"cosmos": 50,
 			"type": "defense",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze do Urso, o mais forte fisicamente entre os coadjuvantes."
+			"lore": "Cavaleiro de Bronze do Urso, um dos mais fortes fisicamente dentre os coadjuvantes."
 		},
 		{
 			"id": "misty",
@@ -152,21 +152,21 @@
 			"cosmos": 70,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Considerado o mais belo dos Cavaleiros de Prata."
+			"lore": "Considerado o mais belo dos Cavaleiros de Prata, seu poder é assustador."
 		},
 		{
 			"id": "moses",
-			"name": "Moses da Água-Viva",
+			"name": "Moses de Baleia",
 			"series": "classic",
 			"rank": "silver",
-			"constellation": "Jellyfish",
+			"constellation": "Whale",
 			"power": 65,
 			"defense": 70,
 			"speed": 60,
 			"cosmos": 65,
 			"type": "defense",
 			"affinities": [ "pisces" ],
-			"lore": "Cavaleiro de Prata da Água-Viva."
+			"lore": "Cavaleiro de Prata da constelação da Baleia."
 		},
 		{
 			"id": "asterion",
@@ -194,7 +194,7 @@
 			"cosmos": 68,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Uma das poucas Cavaleiras de Prata femininas da saga clássica."
+			"lore": "Uma das Amazonas de Prata femininas da saga clássica, usa seu poder com fúria e tenacidade."
 		},
 		{
 			"id": "babel",
@@ -236,7 +236,7 @@
 			"cosmos": 95,
 			"type": "support",
 			"affinities": [ "aries" ],
-			"lore": "O único Gold capaz de reparar Armaduras Divinas. Aliado secreto dos Bronzes."
+			"lore": "O único cavaleiro de Ouro capaz de reparar Armaduras Divinas. Aliado secreto dos Bronzes."
 		},
 		{
 			"id": "aldebaran",
@@ -264,7 +264,7 @@
 			"cosmos": 100,
 			"type": "offense",
 			"affinities": [ "gemini" ],
-			"lore": "O mais poderoso dos Cavaleiros de Ouro. Usurpou o papado com sua personalidade maligna."
+			"lore": "O mais poderoso dos Cavaleiros de Ouro. Usurpou o Santuário com sua personalidade maligna."
 		},
 		{
 			"id": "kanon",
@@ -278,7 +278,7 @@
 			"cosmos": 97,
 			"type": "offense",
 			"affinities": [ "gemini", "pisces" ],
-			"lore": "Irmão gêmeo de Saga. Manipulou Poseidon e depois encontrou a redenção."
+			"lore": "Irmão gêmeo de Saga, considerado o manipulador de deuses."
 		},
 		{
 			"id": "deathmask",
@@ -292,7 +292,7 @@
 			"cosmos": 88,
 			"type": "offense",
 			"affinities": [ "cancer" ],
-			"lore": "Envia as almas de suas vítimas ao reino dos mortos."
+			"lore": "O mais cruel dos cavaleiros de Ouro. Envia as almas de suas vítimas ao reino dos mortos."
 		},
 		{
 			"id": "aiolia",
@@ -306,7 +306,7 @@
 			"cosmos": 96,
 			"type": "offense",
 			"affinities": [ "leo", "sagittarius" ],
-			"lore": "Irmão de Aiolos. Um dos Gold mais leais a Atena."
+			"lore": "Irmão de Aiolos. Um dos cavaleiros de Ouro mais leais a Atena."
 		},
 		{
 			"id": "shaka",
@@ -348,7 +348,7 @@
 			"cosmos": 94,
 			"type": "offense",
 			"affinities": [ "scorpio" ],
-			"lore": "Seu Scarlet Needles injeta veneno mortal em 15 pontos vitais."
+			"lore": "Suas agulhas escarlates injetam veneno mortal em 15 pontos vitais."
 		},
 		{
 			"id": "aiolos",
@@ -390,7 +390,7 @@
 			"cosmos": 95,
 			"type": "offense",
 			"affinities": [ "aquarius" ],
-			"lore": "Mestre de Hyoga. Criou o Absolute Zero. Acreditava na frieza absoluta."
+			"lore": "Mestre de Hyoga. Acreditava na frieza absoluta."
 		},
 		{
 			"id": "aphrodite",
@@ -432,7 +432,7 @@
 			"cosmos": 95,
 			"type": "offense",
 			"affinities": [ "leo" ],
-			"lore": "Criança prodígio com velocidade sobre-humana. Gold de Leão do século XVIII."
+			"lore": "Criança prodígio com velocidade sobre-humana. Cavaleiro de Leão do século XVIII."
 		},
 		{
 			"id": "degel",
@@ -446,7 +446,7 @@
 			"cosmos": 94,
 			"type": "balance",
 			"affinities": [ "aquarius" ],
-			"lore": "O mais inteligente dos Gold do Lost Canvas. Pesquisador do Cosmo."
+			"lore": "O mais inteligente dos cavaleiros de Ouro do Lost Canvas. Pesquisador do Cosmo."
 		},
 		{
 			"id": "manigoldo",
@@ -474,7 +474,7 @@
 			"cosmos": 99,
 			"type": "support",
 			"affinities": [ "virgo" ],
-			"lore": "Cego desde o nascimento. Possui o Cosmo mais elevado entre os Gold do Lost Canvas."
+			"lore": "Cego desde o nascimento. Possui o Cosmo mais elevado entre os cavaleiros de Ouro do Lost Canvas."
 		},
 		{
 			"id": "sisyphus",
@@ -516,7 +516,7 @@
 			"cosmos": 92,
 			"type": "offense",
 			"affinities": [ "capricorn" ],
-			"lore": "Guerreiro de honra absoluta. Gold de Capricórnio do século XVIII."
+			"lore": "Guerreiro de honra absoluta. Cavaleiro de Ouro' de Capricórnio do século XVIII."
 		},
 		{
 			"id": "kardia",

@@ -44,9 +44,9 @@
       },
       "easterEgg": {
         "condition": "team_contains",
-        "knights": [ "hyoga" ],
+        "knights": [ "seiya" ],
         "effect": "bonus_chance",
-        "message": "Hyoga congela o ar ao redor de Aldebaran. Mesmo sem vencer, abre uma passagem.",
+        "message": "Seiya quebra o chifre dourado de Aldebaran, que decide deixar os cavaleiros passarem.",
         "bonusChance": 0.20
       }
     },
@@ -186,7 +186,7 @@
       "speed": 92,
       "cosmos": 94,
       "basePassChance": 0.48,
-      "description": "Milo usa o Scarlet Needles para acumular veneno. Cavaleiros de defesa alta resistem melhor.",
+      "description": "Milo usa as agulhas escarlates para acumular veneno. Cavaleiros de defesa alta resistem melhor.",
       "affinityBonus": {
         "knights": [ "hyoga", "shiryu", "kardia" ],
         "bonus": 0.20,
@@ -215,13 +215,13 @@
       "affinityBonus": {
         "knights": [ "seiya", "aiolia", "sisyphus" ],
         "bonus": 0.25,
-        "reason": "Seiya carrega o Cosmo de Aiolos. Aiolia é seu irmão. Sisyphus herdou o manto no século XVIII."
+        "reason": "Seiya carrega o Cosmo de Aiolos. Aiolia é seu irmão."
       },
       "easterEgg": {
         "condition": "team_contains_all",
         "knights": [ "seiya", "shiryu", "hyoga", "shun", "ikki" ],
         "effect": "revive",
-        "message": "Os cinco Bronzes na Casa de Sagitário. Aiolos sorri do além. 'Vocês chegaram até aqui.' Um cavaleiro ressuscita.",
+        "message": "Os cinco Bronzes na Casa de Sagitário. Aiolos sorri do além. 'Aos jovens cavaleiros que aqui chegarem, confio Athena a vocês.' Um cavaleiro ressuscita.",
         "bonusChance": 0.40
       }
     },
@@ -246,7 +246,7 @@
         "condition": "team_contains",
         "knights": [ "shiryu" ],
         "effect": "bonus_chance",
-        "message": "Shura olha para a armadura do Dragão. Sente o peso daquele duelo. Baixa a Excalibur por um instante.",
+        "message": "Shura olha para a armadura do Dragão. Sente o peso daquele duelo. Baixa a Excalibur por um instante e Shiryu vence o duelo.",
         "bonusChance": 0.30
       }
     },
@@ -261,7 +261,7 @@
       "speed": 86,
       "cosmos": 95,
       "basePassChance": 0.45,
-      "description": "O Absolute Zero de Camus congela até o Cosmo. Cavaleiros com fogo interno resistem.",
+      "description": "O Zero Absoluto de Camus congela até o Cosmo. Cavaleiros com fogo interno resistem.",
       "affinityBonus": {
         "knights": [ "hyoga", "degel" ],
         "bonus": 0.30,
