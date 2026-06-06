@@ -146,13 +146,33 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
     const runOver = aliveTeam.length === 0;
 
     function handleResolve() {
-        const outcome = resolveHouse(aliveTeam, currentHouse, godBonus);
-        if (!outcome.passed && outcome.fallenKnight) {
-            setAliveTeam(prev => prev.filter(k => k.id !== outcome.fallenKnight.id));
-            setFallen(prev => [...prev, outcome.fallenKnight]);
+        let currentTeam = [...aliveTeam];
+        const newFallen = [];
+        let finalOutcome = null;
+
+        while (true) {
+            const outcome = resolveHouse(currentTeam, currentHouse, godBonus);
+
+            if (outcome.passed) {
+                finalOutcome = { ...outcome, newFallenInHouse: newFallen };
+                break;
+            }
+
+            if (outcome.fallenKnight) {
+                newFallen.push(outcome.fallenKnight);
+                currentTeam = currentTeam.filter(k => k.id !== outcome.fallenKnight.id);
+            }
+
+            if (currentTeam.length === 0) {
+                finalOutcome = { ...outcome, newFallenInHouse: newFallen };
+                break;
+            }
         }
-        setResult(outcome);
-        setHistory(prev => [...prev, outcome]);
+
+        setAliveTeam(prev => prev.filter(k => !newFallen.some(f => f.id === k.id)));
+        setFallen(prev => [...prev, ...newFallen]);
+        setResult(finalOutcome);
+        setHistory(prev => [...prev, finalOutcome]);
     }
 
     function handleNext() {
@@ -280,8 +300,8 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
                                 {!result ? (
                                     /* ─ Estado: aguardando batalha ─ */
                                     <>
-                                        <div style={S.guardianLine}>
-                                            Guardião: <span style={{ color: "#9ab" }}>{currentHouse.guardian}</span>
+                                        <div style={S.guardianName}>
+                                            {currentHouse.guardian.split(" de ")[0].split(" do ")[0]}
                                         </div>
                                         <div style={S.houseDesc}>{currentHouse.description}</div>
                                         {!runOver && (
@@ -311,9 +331,9 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
                                                 </div>
                                             )}
 
-                                            {!result.passed && result.fallenKnight && (
+                                            {result.newFallenInHouse && result.newFallenInHouse.length > 0 && (
                                                 <div style={{ color: "#9a3030", fontSize: "14px", marginTop: "8px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
-                                                    💀 {result.fallenKnight.name} caiu nesta casa.
+                                                    💀 {result.newFallenInHouse.map(k => k.name).join(", ")} {result.newFallenInHouse.length === 1 ? "caiu" : "caíram"} nesta casa.
                                                 </div>
                                             )}
 
@@ -587,6 +607,15 @@ const S = {
         flexShrink: 0,
     },
     // ─────────────────────────────────────────────────────────
+    guardianName: {
+        color: "#c0d8f0",
+        fontSize: "28px",
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
+        fontWeight: "600",
+        letterSpacing: "1px",
+        marginBottom: "10px",
+        textAlign: "center",
+    },
     guardianLine: {
         color: "#7ab8d4",
         fontSize: "17px",
