@@ -35,10 +35,10 @@
       "defense": 98,
       "speed": 60,
       "cosmos": 88,
-      "basePassChance": 0.55,
+      "basePassChance": 0.45,
       "description": "Aldebaran é quase impenetrável na defesa. A força bruta é o caminho, ou a astúcia.",
       "affinityBonus": {
-        "knights": [ "shiryu", "aldebaran" ],
+        "knights": [ "shiryu", "aldebaran", "thor_asgard" ],
         "bonus": 0.15,
         "reason": "Aldebaran respeita guerreiros de defesa sólida como a dele."
       },
@@ -215,7 +215,7 @@
       "affinityBonus": {
         "knights": [ "seiya", "aiolia", "sisyphus" ],
         "bonus": 0.25,
-        "reason": "Seiya carrega o Cosmo de Aiolos. Aiolia é seu irmão."
+        "reason": "Seiya carrega o Cosmo de Aiolos. O futuro de Atena está em suas mãos."
       },
       "easterEgg": {
         "condition": "team_contains_all",

@@ -186,7 +186,7 @@ export default function GodSelect({ onSelect }) {
             {/* ── Header ── */}
             <div style={S.header}>
                 <p style={S.sup}>Cavaleiros do Zodíaco — A Travessia</p>
-                <h1 style={S.title}>Escolha seu Deus</h1>
+                <h1 style={S.title}>Escolha sua benção sagrada</h1>
                 <p style={S.sub}>Cada deus muda as regras da travessia. Escolha com sabedoria.</p>
             </div>
 
@@ -295,7 +295,7 @@ export default function GodSelect({ onSelect }) {
             <footer style={S.footer}>
                 <span style={S.footerText}>Criado por @kamonbr</span>
                 <span style={S.footerText}>A Travessia — fã-game não oficial</span>
-                <span style={S.footerText}>Cavaleiros do Zodíaco © Masami Kurumada · 2025</span>
+                <span style={S.footerText}>Cavaleiros do Zodíaco © Masami Kurumada · 2026</span>
             </footer>
         </div>
     );

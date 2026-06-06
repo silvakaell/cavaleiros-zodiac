@@ -26,7 +26,7 @@
 			"cosmos": 80,
 			"type": "defense",
 			"affinities": [ "libra", "capricorn" ],
-			"lore": "Discípulo de Dohko. Diposto aos mais extremos sacrifícios por Atena."
+			"lore": "Discípulo do Mestre Ancião. Diposto aos mais extremos sacrifícios por Atena."
 		},
 		{
 			"id": "hyoga",
@@ -68,7 +68,7 @@
 			"cosmos": 92,
 			"type": "offense",
 			"affinities": [ "virgo", "gemini" ],
-			"lore": "O mais poderoso dos Bronzes. Sua batalha contra Shaka de Virgem é lendária. Ressuscita da morte."
+			"lore": "O mais poderoso dos cavaleiros de Bronze. Sua batalha contra Shaka de Virgem é lendária. Ressuscita da morte."
 		},
 		{
 			"id": "jabu",
