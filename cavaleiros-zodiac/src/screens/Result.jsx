@@ -58,7 +58,7 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
                         <span>{score.survivors} &nbsp;→&nbsp; {score.survivorPoints} pts</span>
                     </div>
                     <div style={styles.breakdownItem}>
-                        <span style={styles.breakdownLabel}>Easter eggs</span>
+                        <span style={styles.breakdownLabel}>Eventos especiais</span>
                         <span>{score.easterEggsFound} &nbsp;→&nbsp; {score.eggPoints} pts</span>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
                         </span>
                         <span style={styles.historyHouse}>Casa {i + 1}</span>
                         <span style={styles.historyChance}>{r.passChance}%</span>
-                        {r.easterEggTriggered && <span style={styles.eggBadge}>✨ easter egg</span>}
+                        {r.easterEggTriggered && <span style={styles.eggBadge}>✨ evento especial</span>}
                         {!r.passed && r.fallenKnight && (
                             <span style={styles.fallenName}>💀 {r.fallenKnight.name}</span>
                         )}

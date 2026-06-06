@@ -10,7 +10,7 @@ export default function TitleScreen({ onStart }) {
                 <p style={styles.subtitle}>Cavaleiros do Zodíaco</p>
                 <h1 style={styles.title}>A TRAVESSIA</h1>
                 <p style={styles.tagline}>
-                    Doze casas. Cinco guerreiros. Um destino.
+                    Doze casas. Cinco cavaleiros. Um destino.
                 </p>
             </div>
 
@@ -19,8 +19,8 @@ export default function TitleScreen({ onStart }) {
                 <h2 style={styles.sectionTitle}>O Desafio</h2>
                 <p style={styles.text}>
                     O Santuário está em perigo. Atena precisa que seus cavaleiros atravessem
-                    as 12 Casas do Zodíaco e cheguem ao Papa antes que seja tarde demais.
-                    Mas os guardiões não vão ceder sem luta.
+                    as 12 Casas do Zodíaco e cheguem ao Grande Mestre antes que seja tarde demais.
+                    Mas os cavaleiros de Ouro não vão ceder sem luta.
                 </p>
                 <p style={styles.text}>
                     Escolha seu deus protetor, monte um time de 5 cavaleiros de qualquer série
@@ -36,15 +36,15 @@ export default function TitleScreen({ onStart }) {
                     <div style={styles.rule}>
                         <span style={styles.ruleIcon}>⚔</span>
                         <p style={styles.ruleText}>
-                            Em cada casa, seu time enfrenta o guardião. A chance de passar depende
-                            dos stats dos seus cavaleiros, das afinidades de lore e do deus escolhido.
+                            Em cada casa, seu time enfrenta o cavaleiro de Ouro. A chance de passar depende
+                            dos stats dos seus cavaleiros, das afinidades e do deus escolhido.
                         </p>
                     </div>
 
                     <div style={styles.rule}>
                         <span style={styles.ruleIcon}>💀</span>
                         <p style={styles.ruleText}>
-                            Se a casa não for superada, um cavaleiro cai. A run termina
+                            Se a casa não for superada, um cavaleiro cai. A travessia termina
                             quando todos os cinco forem derrotados.
                         </p>
                     </div>
@@ -52,8 +52,8 @@ export default function TitleScreen({ onStart }) {
                     <div style={styles.rule}>
                         <span style={styles.ruleIcon}>✨</span>
                         <p style={styles.ruleText}>
-                            Certos times ativam eventos especiais baseados no lore da saga.
-                            Descubra as combinações certas para ganhar vantagens — e revives.
+                            Certos times ativam eventos especiais baseados na história da saga.
+                            Descubra as combinações certas para ganhar vantagens — e até reviver cavaleiros caídos.
                         </p>
                     </div>
 
