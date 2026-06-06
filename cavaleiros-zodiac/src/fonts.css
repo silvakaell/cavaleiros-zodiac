@@ -1,0 +1,11 @@
+/* fonts.css
+   Importe este arquivo no seu index.html ou main.jsx:
+   <link rel="stylesheet" href="/fonts.css">
+   ou: import './fonts.css'
+
+   Fontes usadas no projeto A Travessia:
+   - Cinzel        → títulos principais (h1, nomes de telas)
+   - Cormorant Garamond → todo o restante (corpo, labels, botões)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap');

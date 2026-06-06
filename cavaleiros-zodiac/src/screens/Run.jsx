@@ -230,78 +230,95 @@ export default function Run({ team, godId, layout, teamSize, onFinish }) {
                         </div>
                     </div>
 
-                    {/* Direita: info da casa / resultado */}
+                    {/* Direita: casa — enquadramento estilo templo grego */}
                     <div style={S.rightPanel}>
+                        <div style={S.templeFrame}>
 
-                        {!result ? (
-                            /* ─ Estado: aguardando batalha ─ */
-                            <>
-                                <div style={S.houseName}>{currentHouse.name}</div>
-                                <div style={S.guardianLine}>
-                                    Guardião: <span style={{ color: "#9ab" }}>{currentHouse.guardian}</span>
+                            {/* ── Entablamento com nome da casa ── */}
+                            <div style={S.entablature}>
+                                <div style={S.dentils} />
+                                <div style={S.pediment}>
+                                    <span style={S.capOrnL}>◆</span>
+                                    <span style={S.houseName}>{currentHouse.name}</span>
+                                    <span style={S.capOrnR}>◆</span>
                                 </div>
-                                <div style={S.houseDesc}>{currentHouse.description}</div>
-                                {!runOver && (
-                                    <button style={S.btn} onClick={handleResolve}>
-                                        Enfrentar {currentHouse.guardian}
-                                    </button>
-                                )}
-                            </>
-                        ) : (
-                            /* ─ Estado: resultado da batalha ─ */
-                            <>
-                                <div style={{
-                                    ...S.resultBlock,
-                                    borderColor: result.passed ? "#3a8040" : "#7a2020",
-                                }}>
-                                    <div style={{ color: result.passed ? "#4aaa50" : "#cc3030", fontSize: "14px", fontWeight: "500", marginBottom: "6px" }}>
-                                        {result.passed ? "✓ Passagem garantida!" : "✗ Barreira não rompida!"}
-                                    </div>
+                                <div style={S.dentils} />
+                            </div>
 
-                                    {result.easterEggTriggered && (
-                                        <div style={S.easterEgg}>✨ {result.easterEggMessage}</div>
-                                    )}
-
-                                    {!result.easterEggTriggered && (
-                                        <div style={S.narrative}>
-                                            {getBattleDescription(result.passed, result.passChance)}
-                                        </div>
-                                    )}
-
-                                    {!result.passed && result.fallenKnight && (
-                                        <div style={{ color: "#9a3030", fontSize: "12px", marginTop: "6px" }}>
-                                            {result.fallenKnight.name} caiu nesta casa.
-                                        </div>
-                                    )}
-
-                                    {result.reviveGranted && (
-                                        <div style={{ color: "#4aaa50", fontSize: "12px", marginTop: "6px" }}>
-                                            ✨ Um cavaleiro caído foi revivido!
-                                        </div>
-                                    )}
-
-                                    <div style={S.rollInfo}>
-                                        {result.passChance}% · rolagem {result.roll}
-                                    </div>
-                                </div>
-
-                                {runOver ? (
+                            {/* ── Corpo da casa ── */}
+                            <div style={S.templeBody}>
+                                {!result ? (
+                                    /* ─ Estado: aguardando batalha ─ */
                                     <>
-                                        <div style={{ color: "#7a2020", fontSize: "12px", marginBottom: "10px" }}>
-                                            Todos os cavaleiros caíram.
+                                        <div style={S.guardianLine}>
+                                            Guardião: <span style={{ color: "#9ab" }}>{currentHouse.guardian}</span>
                                         </div>
-                                        <button style={{ ...S.btn, background: "#7a2020", color: "#fff" }} onClick={handleNext}>
-                                            Ver resultado final
-                                        </button>
+                                        <div style={S.houseDesc}>{currentHouse.description}</div>
+                                        {!runOver && (
+                                            <button style={S.btn} onClick={handleResolve}>
+                                                Enfrentar {currentHouse.guardian}
+                                            </button>
+                                        )}
                                     </>
                                 ) : (
-                                    <button style={S.btn} onClick={handleNext}>
-                                        {isLastHouse ? "Ver resultado final" : "Próxima casa →"}
-                                    </button>
-                                )}
-                            </>
-                        )}
+                                    /* ─ Estado: resultado da batalha ─ */
+                                    <>
+                                        <div style={{
+                                            ...S.resultBlock,
+                                            borderColor: result.passed ? "#3a8040" : "#7a2020",
+                                        }}>
+                                            <div style={{ color: result.passed ? "#4aaa50" : "#cc3030", fontSize: "14px", fontWeight: "500", marginBottom: "6px" }}>
+                                                {result.passed ? "✓ Passagem garantida!" : "✗ Barreira não rompida!"}
+                                            </div>
 
+                                            {result.easterEggTriggered && (
+                                                <div style={S.easterEgg}>✨ {result.easterEggMessage}</div>
+                                            )}
+
+                                            {!result.easterEggTriggered && (
+                                                <div style={S.narrative}>
+                                                    {getBattleDescription(result.passed, result.passChance)}
+                                                </div>
+                                            )}
+
+                                            {!result.passed && result.fallenKnight && (
+                                                <div style={{ color: "#9a3030", fontSize: "12px", marginTop: "6px" }}>
+                                                    {result.fallenKnight.name} caiu nesta casa.
+                                                </div>
+                                            )}
+
+                                            {result.reviveGranted && (
+                                                <div style={{ color: "#4aaa50", fontSize: "12px", marginTop: "6px" }}>
+                                                    ✨ Um cavaleiro caído foi revivido!
+                                                </div>
+                                            )}
+
+                                            <div style={S.rollInfo}>
+                                                {result.passChance}% · rolagem {result.roll}
+                                            </div>
+                                        </div>
+
+                                        {runOver ? (
+                                            <>
+                                                <div style={{ color: "#7a2020", fontSize: "12px", marginBottom: "10px" }}>
+                                                    Todos os cavaleiros caíram.
+                                                </div>
+                                                <button style={{ ...S.btn, background: "#7a2020", color: "#fff" }} onClick={handleNext}>
+                                                    Ver resultado final
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <button style={S.btn} onClick={handleNext}>
+                                                {isLastHouse ? "Ver resultado final" : "Próxima casa →"}
+                                            </button>
+                                        )}
+                                    </>
+                                )}
+                            </div>
+
+                            {/* ── Base / estilóbato ── */}
+                            <div style={S.templeBase} />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -316,7 +333,7 @@ const S = {
         maxWidth: "1100px",
         margin: "0 auto",
         minHeight: "100vh",
-        fontFamily: "Georgia, serif",
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
         color: "#c0d8f0",
         display: "flex",
         flexDirection: "column",
@@ -325,12 +342,12 @@ const S = {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "10px 18px",
+        padding: "12px 18px",
         borderBottom: "1px solid #1a2a3a",
         flexShrink: 0,
     },
-    topbarLeft: { color: "#c8a800", fontSize: "13px", letterSpacing: "1px" },
-    topbarRight: { color: "#33445a", fontSize: "12px" },
+    topbarLeft: { color: "#c8a800", fontSize: "17px", letterSpacing: "2px", fontFamily: "'Cinzel', serif" },
+    topbarRight: { color: "#33445a", fontSize: "15px" },
     bottom: {
         display: "flex",
         flex: 1,
@@ -355,59 +372,107 @@ const S = {
         marginBottom: "6px",
     },
     labelSmall: {
-        fontSize: "11px",
+        fontSize: "13px",
         color: "#2a5a7a",
-        letterSpacing: "1px",
+        letterSpacing: "2px",
         textTransform: "uppercase",
+        fontFamily: "'Cinzel', serif",
     },
-    godName: { fontSize: "11px", color: "#FFD700" },
+    godName: { fontSize: "13px", color: "#FFD700" },
     teamLabel: {
-        fontSize: "11px",
+        fontSize: "13px",
         color: "#2a5a7a",
-        letterSpacing: "1px",
+        letterSpacing: "2px",
         textAlign: "center",
         marginBottom: "6px",
         textTransform: "uppercase",
+        fontFamily: "'Cinzel', serif",
     },
     knightName: {
-        fontSize: "11px",
-        padding: "3px 0",
+        fontSize: "14px",
+        padding: "4px 0",
         borderBottom: "1px solid #0e1e2e",
         letterSpacing: ".5px",
     },
     rightPanel: {
         flex: 1,
         minWidth: "220px",
-        padding: "16px 18px",
         boxSizing: "border-box",
+        display: "flex",
+        flexDirection: "column",
     },
+
+    // ── Templo grego ──────────────────────────────────────────
+    templeFrame: {
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        border: "1px solid #3a2800",
+        boxShadow: "0 0 0 3px #060400, inset 0 0 30px rgba(200,168,0,0.04)",
+        background: "linear-gradient(180deg, #0e0a00 0%, #050b14 18%, #050b14 100%)",
+    },
+    entablature: {
+        borderBottom: "1px solid #3a2800",
+        background: "linear-gradient(180deg, #1a1200 0%, #0e0900 100%)",
+        padding: "6px 16px 0",
+        flexShrink: 0,
+    },
+    dentils: {
+        height: "5px",
+        backgroundImage: "repeating-linear-gradient(90deg, #4a3000 0px, #4a3000 5px, transparent 5px, transparent 13px)",
+        margin: "3px 0",
+        opacity: 0.7,
+    },
+    pediment: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "14px",
+        padding: "5px 0",
+    },
+    capOrnL: { color: "#5a3e00", fontSize: "9px" },
+    capOrnR: { color: "#5a3e00", fontSize: "9px" },
     houseName: {
         color: "#c8a800",
-        fontSize: "15px",
-        fontWeight: "500",
-        marginBottom: "3px",
+        fontSize: "20px",
+        fontWeight: "700",
+        fontFamily: "'Cinzel', serif",
+        letterSpacing: "2px",
+        textAlign: "center",
     },
+    templeBody: {
+        padding: "14px 18px",
+        flex: 1,
+    },
+    templeBase: {
+        height: "5px",
+        backgroundImage: "repeating-linear-gradient(90deg, #3a2800 0px, #3a2800 5px, transparent 5px, transparent 13px)",
+        opacity: 0.4,
+        flexShrink: 0,
+    },
+    // ─────────────────────────────────────────────────────────
     guardianLine: {
         color: "#33445a",
-        fontSize: "12px",
+        fontSize: "15px",
         marginBottom: "8px",
     },
     houseDesc: {
         color: "#33445a",
-        fontSize: "12px",
-        lineHeight: "1.6",
+        fontSize: "15px",
+        lineHeight: "1.7",
         marginBottom: "16px",
     },
     btn: {
         background: "#c8a800",
         color: "#000",
         border: "none",
-        padding: "9px 22px",
+        padding: "11px 28px",
         borderRadius: "6px",
-        fontFamily: "Georgia, serif",
-        fontSize: "13px",
+        fontFamily: "'Cinzel', serif",
+        fontSize: "14px",
         cursor: "pointer",
-        fontWeight: "bold",
+        fontWeight: "700",
+        letterSpacing: "2px",
         display: "block",
         margin: "12px auto 0",
         width: "fit-content",
@@ -419,20 +484,20 @@ const S = {
     },
     narrative: {
         color: "#5a7a8a",
-        fontSize: "12px",
+        fontSize: "15px",
         fontStyle: "italic",
-        lineHeight: "1.6",
+        lineHeight: "1.7",
     },
     easterEgg: {
         color: "#FFD700",
-        fontSize: "12px",
+        fontSize: "15px",
         fontStyle: "italic",
-        lineHeight: "1.6",
+        lineHeight: "1.7",
         marginBottom: "6px",
     },
     rollInfo: {
         color: "#1e3040",
-        fontSize: "11px",
+        fontSize: "13px",
         marginTop: "8px",
     },
 };

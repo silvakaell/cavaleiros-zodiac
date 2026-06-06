@@ -186,7 +186,7 @@ export default function GodSelect({ onSelect }) {
             {/* ── Header ── */}
             <div style={S.header}>
                 <p style={S.sup}>Cavaleiros do Zodíaco — A Travessia</p>
-                <h1 style={S.title}>Escolha sua benção sagrada</h1>
+                <h1 style={S.title}>Escolha seu Deus</h1>
                 <p style={S.sub}>Cada deus muda as regras da travessia. Escolha com sabedoria.</p>
             </div>
 
@@ -295,7 +295,7 @@ export default function GodSelect({ onSelect }) {
             <footer style={S.footer}>
                 <span style={S.footerText}>Criado por @kamonbr</span>
                 <span style={S.footerText}>A Travessia — fã-game não oficial</span>
-                <span style={S.footerText}>Cavaleiros do Zodíaco © Masami Kurumada · 2026</span>
+                <span style={S.footerText}>Cavaleiros do Zodíaco © Masami Kurumada · 2025</span>
             </footer>
         </div>
     );
@@ -307,31 +307,33 @@ const S = {
     outer: {
         background: "#06091a",
         minHeight: "100vh",
-        fontFamily: "Georgia, serif",
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
         color: "#c0d8f0",
         display: "flex",
         flexDirection: "column",
     },
     header: {
         textAlign: "center",
-        padding: "18px 20px 10px",
+        padding: "22px 20px 12px",
         flexShrink: 0,
     },
     sup: {
-        fontSize: "10px",
-        letterSpacing: "4px",
+        fontSize: "13px",
+        letterSpacing: "5px",
         color: "#1e2e3e",
         textTransform: "uppercase",
+        fontFamily: "'Cinzel', serif",
     },
     title: {
-        fontSize: "clamp(1.6rem, 3.5vw, 2.2rem)",
+        fontSize: "clamp(2rem, 4vw, 3rem)",
         color: "#c8a800",
-        letterSpacing: "6px",
-        fontWeight: "normal",
-        margin: "4px 0",
+        letterSpacing: "8px",
+        fontWeight: "700",
+        margin: "6px 0",
+        fontFamily: "'Cinzel', serif",
     },
     sub: {
-        fontSize: "11px",
+        fontSize: "17px",
         color: "#1e3040",
         fontStyle: "italic",
     },
@@ -361,38 +363,38 @@ const S = {
     },
     hint: {
         color: "#0e2030",
-        fontSize: "11px",
+        fontSize: "15px",
         fontStyle: "italic",
         lineHeight: 1.8,
     },
     godName: {
-        fontSize: "13px",
+        fontSize: "17px",
         letterSpacing: "0.5px",
-        marginBottom: "5px",
+        marginBottom: "6px",
     },
     desc: {
-        fontSize: "10px",
+        fontSize: "14px",
         color: "#2a4a5a",
         lineHeight: 1.7,
-        marginBottom: "7px",
+        marginBottom: "8px",
     },
     rows: {
-        fontSize: "10px",
-        lineHeight: 1.9,
-        marginBottom: "10px",
+        fontSize: "13px",
+        lineHeight: 2,
+        marginBottom: "12px",
     },
     pro: { color: "#1a5530", textAlign: "left" },
     con: { color: "#5a1818", textAlign: "left" },
     btn: {
         color: "#000",
         border: "none",
-        padding: "7px 18px",
+        padding: "9px 22px",
         borderRadius: "4px",
-        fontFamily: "Georgia, serif",
-        fontSize: "11px",
-        fontWeight: "bold",
+        fontFamily: "'Cinzel', serif",
+        fontSize: "13px",
+        fontWeight: "700",
         cursor: "pointer",
-        letterSpacing: "1px",
+        letterSpacing: "2px",
     },
     node: {
         position: "absolute",
@@ -423,12 +425,13 @@ const S = {
         borderRadius: "50%",
     },
     label: {
-        fontSize: "9px",
+        fontSize: "11px",
         whiteSpace: "nowrap",
         textAlign: "center",
         lineHeight: 1.3,
         transition: "color 0.25s",
-        maxWidth: "70px",
+        maxWidth: "80px",
+        fontFamily: "'Cormorant Garamond', serif",
     },
     footer: {
         borderTop: "1px solid #0a1520",
