@@ -336,8 +336,8 @@ const S = {
         fontFamily: "'Cinzel', serif",
     },
     sub: {
-        fontSize: "17px",
-        color: "#1e3040",
+        fontSize: "20px",
+        color: "#7ab8d4",
         fontStyle: "italic",
     },
     area: {
@@ -365,8 +365,8 @@ const S = {
         zIndex: 5,
     },
     hint: {
-        color: "#0e2030",
-        fontSize: "15px",
+        color: "#7ab8d4",
+        fontSize: "17px",
         fontStyle: "italic",
         lineHeight: 1.8,
     },
@@ -376,18 +376,18 @@ const S = {
         marginBottom: "6px",
     },
     desc: {
-        fontSize: "14px",
-        color: "#2a4a5a",
+        fontSize: "16px",
+        color: "#7ab8d4",
         lineHeight: 1.7,
         marginBottom: "8px",
     },
     rows: {
-        fontSize: "13px",
+        fontSize: "15px",
         lineHeight: 2,
         marginBottom: "12px",
     },
-    pro: { color: "#1a5530", textAlign: "left" },
-    con: { color: "#5a1818", textAlign: "left" },
+    pro: { color: "#3a9a60", textAlign: "left" },
+    con: { color: "#c04040", textAlign: "left" },
     btn: {
         color: "#000",
         border: "none",

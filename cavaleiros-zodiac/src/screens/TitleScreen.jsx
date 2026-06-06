@@ -200,8 +200,8 @@ const S = {
         fontFamily: "'Cinzel', serif",
     },
     tagline: {
-        fontSize: "18px",
-        color: "#33445a",
+        fontSize: "21px",
+        color: "#7ab8d4",
         fontStyle: "italic",
     },
     mapWrap: {
@@ -224,8 +224,8 @@ const S = {
         fontSize: "16px",
     },
     ruleText: {
-        fontSize: "15px",
-        color: "#2a4a5a",
+        fontSize: "17px",
+        color: "#7ab8d4",
         lineHeight: 1.7,
         margin: 0,
     },

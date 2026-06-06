@@ -455,7 +455,7 @@ const S = {
         flexShrink: 0,
     },
     topbarLeft: { color: "#c8a800", fontSize: "17px", letterSpacing: "2px", fontFamily: "'Cinzel', serif" },
-    topbarRight: { color: "#33445a", fontSize: "15px" },
+    topbarRight: { color: "#7ab8d4", fontSize: "17px" },
     bottom: {
         display: "flex",
         flex: 1,
@@ -588,14 +588,14 @@ const S = {
     },
     // ─────────────────────────────────────────────────────────
     guardianLine: {
-        color: "#33445a",
-        fontSize: "15px",
+        color: "#7ab8d4",
+        fontSize: "17px",
         marginBottom: "8px",
         fontFamily: "'Cormorant Garamond', Georgia, serif",
     },
     houseDesc: {
-        color: "#33445a",
-        fontSize: "15px",
+        color: "#7ab8d4",
+        fontSize: "17px",
         lineHeight: "1.7",
         marginBottom: "16px",
         fontFamily: "'Cormorant Garamond', Georgia, serif",
@@ -621,8 +621,8 @@ const S = {
         marginBottom: "12px",
     },
     narrative: {
-        color: "#5a7a8a",
-        fontSize: "15px",
+        color: "#8ab8cc",
+        fontSize: "17px",
         fontStyle: "italic",
         lineHeight: "1.7",
         fontFamily: "'Cormorant Garamond', Georgia, serif",
@@ -636,9 +636,9 @@ const S = {
         fontFamily: "'Cormorant Garamond', Georgia, serif",
     },
     rollInfo: {
-        color: "#1e3040",
+        color: "#7ab8d4",
         fontFamily: "'Cormorant Garamond', Georgia, serif",
-        fontSize: "13px",
+        fontSize: "15px",
         marginTop: "8px",
     },
 };

@@ -364,14 +364,14 @@ const S = {
         fontFamily: "'Cinzel', serif",
     },
     message: {
-        fontSize: "19px",
-        color: "#2a4a6a",
+        fontSize: "22px",
+        color: "#7ab8d4",
         fontStyle: "italic",
         marginBottom: "6px",
     },
     godLabel: {
-        fontSize: "16px",
-        color: "#33445a",
+        fontSize: "18px",
+        color: "#7ab8d4",
     },
     visual: {
         display: "flex",
@@ -413,9 +413,9 @@ const S = {
         justifyContent: "center",
     },
     scoreLbl: {
-        fontSize: "12px",
+        fontSize: "14px",
         letterSpacing: "2px",
-        color: "#2a4a6a",
+        color: "#7ab8d4",
         textTransform: "uppercase",
     },
     scoreNum: {
@@ -434,16 +434,16 @@ const S = {
     bRow: {
         display: "flex",
         justifyContent: "space-between",
-        fontSize: "13px",
-        color: "#2a4050",
+        fontSize: "15px",
+        color: "#7ab8d4",
         borderBottom: "1px solid #0e1a26",
         padding: "9px 0",
     },
     bLabel: {
-        color: "#1e3040",
+        color: "#7ab8d4",
     },
     bVal: {
-        color: "#4a7090",
+        color: "#7ab8d4",
     },
     hist: {
         padding: "14px 20px",
@@ -463,14 +463,14 @@ const S = {
         flexWrap: "wrap",
     },
     hName: {
-        color: "#4a6a80",
+        color: "#7ab8d4",
         minWidth: "80px",
         fontStyle: "italic",
-        fontSize: "15px",
+        fontSize: "17px",
     },
     hChance: {
-        color: "#2a3a4a",
-        fontSize: "13px",
+        color: "#7ab8d4",
+        fontSize: "15px",
     },
     eggTag: {
         color: "#c8a800",
