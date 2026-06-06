@@ -6,6 +6,7 @@ import { useState } from "react";
 import housesData from "../data/houses.json";
 import { resolveHouse } from "../game/battleEngine";
 import { getGodPassBonus } from "../game/godBonuses";
+import { getBattleDescription } from "../game/battleDescriptions";
 
 const RANK_COLORS = {
     bronze: "#CD7F32",
@@ -111,6 +112,13 @@ export default function Run({ team, godId, onFinish }) {
                     <p style={{ fontSize: "1.5rem", marginBottom: "8px" }}>
                         {result.passed ? "✅ Passagem garantida!" : "❌ Barreira não rompida!"}
                     </p>
+
+                    {/* Descrição narrativa — só aparece se não houve easter egg */}
+                    {!result.easterEggTriggered && (
+                        <p style={styles.battleDesc}>
+                            {getBattleDescription(result.passed, result.passChance)}
+                        </p>
+                    )}
 
                     {/* Cavaleiro que caiu */}
                     {!result.passed && result.fallenKnight && (
@@ -261,6 +269,14 @@ const styles = {
         fontStyle: "italic",
         marginBottom: "16px",
         lineHeight: "1.5",
+    },
+
+    battleDesc: {
+        color: "#ccc",
+        fontSize: "0.95rem",
+        fontStyle: "italic",
+        lineHeight: "1.6",
+        margin: "12px 0",
     },
 
     rollInfo: {

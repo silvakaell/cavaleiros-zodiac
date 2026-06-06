@@ -6,7 +6,7 @@ export const GODS = [
 
     {
         id: "athena",
-        name: "Atena",
+        name: "Báculo de Atena",
         description: "A deusa protetora. Modo equilibrado, ideal para aprender o jogo.",
         advantage: "Pool de cavaleiros equilibrado. Todos os easter eggs de lore estão ativos.",
         disadvantage: "Nenhuma desvantagem — é o modo padrão.",
@@ -24,7 +24,7 @@ export const GODS = [
 
     {
         id: "hades",
-        name: "Hades",
+        name: "Espada de Hades",
         description: "O deus dos mortos. Acesso a Espectros, mas os guardiões ficam mais agressivos.",
         advantage: "Espectros disponíveis no pool (poder alto). Cada cavaleiro que cai vira 'espectro' e pode ser usado nas últimas 3 casas.",
         disadvantage: "Chance base de todas as casas reduzida em 10%.",
@@ -42,7 +42,7 @@ export const GODS = [
 
     {
         id: "poseidon",
-        name: "Poseidon",
+        name: "Tridente de Poseidon",
         description: "O deus dos mares. Generais Marinhos no pool, mas casas de água são mortais.",
         advantage: "Generais Marinhos disponíveis no pool. Bônus de +15% nas casas de Aquário e Peixes.",
         disadvantage: "Casas de Aquário e Peixes têm chance base reduzida em 20% se o time não tiver cavaleiros de afinidade aquática.",
@@ -63,7 +63,7 @@ export const GODS = [
 
     {
         id: "mars",
-        name: "Ares/Marte",
+        name: "Fúria de Marte",
         description: "O deus da guerra de Omega. Caos e poder bruto — a nova geração domina.",
         advantage: "Cavaleiros de Omega têm stats aumentados em 20%. Pool tem maior concentração de Omega.",
         disadvantage: "Cavaleiros clássicos perdem 15% de eficácia. Easter eggs de lore clássico não funcionam.",
@@ -85,7 +85,7 @@ export const GODS = [
 
     {
         id: "chronos",
-        name: "Chronos",
+        name: "O espírito de Chronos",
         description: "O deus do tempo de Next Dimension. Manipule o destino — mas o desgaste é real.",
         advantage: "Pode re-rolar o pool de cavaleiros 1 vez antes de montar o time. Pode repetir uma casa que falhou (1 vez por run).",
         disadvantage: "Cada cavaleiro perde 10 de cosmos por casa passada (desgaste temporal).",
@@ -105,7 +105,7 @@ export const GODS = [
 
     {
         id: "artemis",
-        name: "Ártemis",
+        name: "Onda de Ártemis",
         description: "A deusa da lua de Saintia Sho. Só as Cavaleiras de Atena podem brilhar aqui.",
         advantage: "Cavaleiras femininas têm stats aumentados em 30%. Pool prioriza personagens femininas.",
         disadvantage: "Cavaleiros de Ouro masculinos não aparecem no pool.",
@@ -126,7 +126,7 @@ export const GODS = [
 
     {
         id: "apollo",
-        name: "Apolo",
+        name: "O calor de Apolo",
         description: "O deus do sol. Cavaleiros de Ouro são abundantes, mas os Bronzes somem.",
         advantage: "Pool tem alta concentração de Cavaleiros de Ouro. Stats de Gold aumentados em 15%.",
         disadvantage: "Cavaleiros de Bronze são raríssimos no pool (máximo 1 por run).",
