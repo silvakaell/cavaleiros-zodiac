@@ -16,7 +16,7 @@
 		},
 		{
 			"id": "shiryu",
-			"name": "Shiryu do Dragão",
+			"name": "Shiryu de Dragão",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Dragon",
@@ -26,11 +26,11 @@
 			"cosmos": 80,
 			"type": "defense",
 			"affinities": [ "libra", "capricorn" ],
-			"lore": "Discípulo de Dohko. Enfrentou Shura de Capricórnio em um dos duelos mais épicos da saga."
+			"lore": "Discípulo de Dohko. Diposto aos mais extremos sacrifícios por Atena."
 		},
 		{
 			"id": "hyoga",
-			"name": "Hyoga do Cisne",
+			"name": "Hyoga de Cisne",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Cygnus",
@@ -40,7 +40,7 @@
 			"cosmos": 82,
 			"type": "balance",
 			"affinities": [ "aquarius" ],
-			"lore": "Discípulo de Camus de Aquário. O vínculo mestre-discípulo é um dos mais trágicos da saga."
+			"lore": "Discípulo de Camus de Aquário. O vínculo mestre-discípulo é um dos mais fortes da saga."
 		},
 		{
 			"id": "shun",
@@ -54,11 +54,11 @@
 			"cosmos": 88,
 			"type": "support",
 			"affinities": [ "virgo", "pisces" ],
-			"lore": "O mais gentil dos Bronzes. Sua corrente nebulosa possui propriedades divinas únicas."
+			"lore": "O mais gentil dos cavaleiros de Bronze. Sua corrente nebulosa possui propriedades divinas únicas."
 		},
 		{
 			"id": "ikki",
-			"name": "Ikki da Fênix",
+			"name": "Ikki de Fênix",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Phoenix",
@@ -72,7 +72,7 @@
 		},
 		{
 			"id": "jabu",
-			"name": "Jabu do Unicórnio",
+			"name": "Jabu de Unicórnio",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Unicorn",
@@ -96,7 +96,7 @@
 			"cosmos": 52,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze da Hidra."
+			"lore": "Cavaleiro de Bronze da Hidra. Usa suas garras para vencer."
 		},
 		{
 			"id": "nachi",
@@ -114,7 +114,7 @@
 		},
 		{
 			"id": "ban",
-			"name": "Ban do Leãozinho",
+			"name": "Ban do Leão Menor.",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Leo Minor",
@@ -128,7 +128,7 @@
 		},
 		{
 			"id": "geki",
-			"name": "Geki do Urso",
+			"name": "Geki de Urso",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Great Bear",
@@ -138,11 +138,11 @@
 			"cosmos": 50,
 			"type": "defense",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze do Urso, o mais forte fisicamente entre os coadjuvantes."
+			"lore": "Cavaleiro de Bronze do Urso, o mais forte fisicamente entre os cavaleiros de Bronze."
 		},
 		{
 			"id": "misty",
-			"name": "Misty do Lagarto",
+			"name": "Misty de Lagarto",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Lizard",
@@ -152,25 +152,25 @@
 			"cosmos": 70,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Considerado o mais belo dos Cavaleiros de Prata."
+			"lore": "Considerado o mais belo e cruel dos Cavaleiros de Prata."
 		},
 		{
 			"id": "moses",
-			"name": "Moses da Água-Viva",
+			"name": "Moses de Baleia",
 			"series": "classic",
 			"rank": "silver",
-			"constellation": "Jellyfish",
+			"constellation": "Whale",
 			"power": 65,
 			"defense": 70,
 			"speed": 60,
 			"cosmos": 65,
 			"type": "defense",
 			"affinities": [ "pisces" ],
-			"lore": "Cavaleiro de Prata da Água-Viva."
+			"lore": "Cavaleiro de Prata da Baleia."
 		},
 		{
 			"id": "asterion",
-			"name": "Asterion do Cão Maior",
+			"name": "Asterion de Cão Maior",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Canis Major",
@@ -194,11 +194,11 @@
 			"cosmos": 68,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Uma das poucas Cavaleiras de Prata femininas da saga clássica."
+			"lore": "Uma das Amazonas de Prata mais fortes da saga clássica."
 		},
 		{
 			"id": "babel",
-			"name": "Babel do Centauro",
+			"name": "Babel de Centauro",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Centaurus",
@@ -208,11 +208,11 @@
 			"cosmos": 66,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro de Prata do Centauro."
+			"lore": "Cavaleiro de Prata do Centauro. Usa o fogo."
 		},
 		{
 			"id": "capella",
-			"name": "Capella do Auriga",
+			"name": "Capella de Auriga",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Auriga",
@@ -236,7 +236,7 @@
 			"cosmos": 95,
 			"type": "support",
 			"affinities": [ "aries" ],
-			"lore": "O único Gold capaz de reparar Armaduras Divinas. Aliado secreto dos Bronzes."
+			"lore": "O único Dourado capaz de reparar Armaduras Divinas. Aliado secreto do cavaleiros de Bronze."
 		},
 		{
 			"id": "aldebaran",
@@ -264,7 +264,7 @@
 			"cosmos": 100,
 			"type": "offense",
 			"affinities": [ "gemini" ],
-			"lore": "O mais poderoso dos Cavaleiros de Ouro. Usurpou o papado com sua personalidade maligna."
+			"lore": "O mais poderoso dos Cavaleiros de Ouro. Usurpou o Santuário com sua personalidade maligna."
 		},
 		{
 			"id": "kanon",
@@ -390,7 +390,7 @@
 			"cosmos": 95,
 			"type": "offense",
 			"affinities": [ "aquarius" ],
-			"lore": "Mestre de Hyoga. Criou o Absolute Zero. Acreditava na frieza absoluta."
+			"lore": "Mestre de Hyoga. Um dos poucos a dominar o zero absoluto. Acreditava na frieza absoluta."
 		},
 		{
 			"id": "aphrodite",
@@ -432,7 +432,7 @@
 			"cosmos": 95,
 			"type": "offense",
 			"affinities": [ "leo" ],
-			"lore": "Criança prodígio com velocidade sobre-humana. Gold de Leão do século XVIII."
+			"lore": "Criança prodígio com velocidade sobre-humana. Dourado de Leão do século XVIII."
 		},
 		{
 			"id": "degel",
@@ -446,7 +446,7 @@
 			"cosmos": 94,
 			"type": "balance",
 			"affinities": [ "aquarius" ],
-			"lore": "O mais inteligente dos Gold do Lost Canvas. Pesquisador do Cosmo."
+			"lore": "O mais inteligente dos Dourados do Lost Canvas. Pesquisador do Cosmo."
 		},
 		{
 			"id": "manigoldo",
@@ -548,7 +548,7 @@
 		},
 		{
 			"id": "ryuho",
-			"name": "Ryuho do Dragão",
+			"name": "Ryuho de Dragão",
 			"series": "omega",
 			"rank": "bronze",
 			"constellation": "Dragon",
@@ -590,7 +590,7 @@
 		},
 		{
 			"id": "haruto",
-			"name": "Haruto do Lobo",
+			"name": "Haruto de Lobo",
 			"series": "omega",
 			"rank": "bronze",
 			"constellation": "Wolf",
@@ -698,7 +698,7 @@
 			"cosmos": 94,
 			"type": "offense",
 			"affinities": [],
-			"lore": "O mais poderoso dos Guerreiros Deuses de Asgard. Usa o Rhine Salvation e a lendária Espada de Odin. Rival digno dos Cavaleiros de Ouro."
+			"lore": "O mais poderoso dos Guerreiros Deuses de Asgard.  Rival digno dos Cavaleiros de Ouro."
 		},
 		{
 			"id": "hagen",
@@ -754,11 +754,11 @@
 			"cosmos": 85,
 			"type": "support",
 			"affinities": [],
-			"lore": "Guerreiro Deus de Benetnasch Eta. Usa sua harpa como arma — os sons se tornam golpes devastadores. Teve um passado trágico com Ikki."
+			"lore": "Guerreiro Deus de Benetnasch Eta. Usa sua harpa como arma — os sons se tornam golpes devastadores. Teve um passado trágico."
 		},
 		{
-			"id": "fafner",
-			"name": "Fafner de Mizar",
+			"id": "Shido",
+			"name": "Shido de Mizar",
 			"series": "asgard",
 			"rank": "god_warrior",
 			"constellation": "Mizar Zeta",
@@ -768,11 +768,11 @@
 			"cosmos": 76,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Guerreiro Deus de Mizar Zeta. Usa correntes e poderes das trevas como arma principal."
+			"lore": "Guerreiro Deus de Mizar Zeta. Usa garras e poderes das trevas como arma principal. Tem uma identidade dupla que esconde até dos aliados"
 		},
 		{
-			"id": "syd",
-			"name": "Syd de Alcor",
+			"id": "bado",
+			"name": "Bado de Alcor",
 			"series": "asgard",
 			"rank": "god_warrior",
 			"constellation": "Alcor",
@@ -782,11 +782,11 @@
 			"cosmos": 78,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Guerreiro Deus de Alcor. Tem uma identidade dupla que esconde até dos aliados."
+			"lore": "Guerreiro Deus de Alcor. Irmão de Shido."
 		},
 		{
 			"id": "krishna",
-			"name": "Chrysaor Krishna",
+			"name": "Krishna de Chrysaor",
 			"series": "poseidon",
 			"rank": "marina",
 			"constellation": "Chrysaor",
@@ -842,7 +842,7 @@
 		},
 		{
 			"id": "kasa",
-			"name": "Lymnades Kasa",
+			"name": "Kasa de Lymnades",
 			"series": "poseidon",
 			"rank": "marina",
 			"constellation": "Lymnades",
@@ -895,20 +895,6 @@
 			"type": "offense",
 			"affinities": [],
 			"lore": "Representante das forças de Odin no mundo mortal. Usa o poder do trovão nórdico e manipula o destino dos guerreiros."
-		},
-		{
-			"id": "odin_bud",
-			"name": "Bud de Alcor",
-			"series": "movie_odin",
-			"rank": "odin_warrior",
-			"constellation": "Alcor",
-			"power": 82,
-			"defense": 78,
-			"speed": 80,
-			"cosmos": 80,
-			"type": "balance",
-			"affinities": [],
-			"lore": "Irmão de Syd. Guerreiro leal a Odin que guarda os segredos do Reino do Norte."
 		},
 		{
 			"id": "odin_gunnar",

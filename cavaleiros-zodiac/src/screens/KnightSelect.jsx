@@ -7,7 +7,7 @@ import knightsData from "../data/knights.json";
 import { calcOverall, overallColor } from "../game/utils";
 
 const TEAM_SIZE = 5;
-const POOL_SIZE = 4; // opções por rodada
+const POOL_SIZE = 8; // opções por rodada
 
 const EXCLUDED_RANKS = ["gold"];
 
