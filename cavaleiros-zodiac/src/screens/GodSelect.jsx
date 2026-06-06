@@ -283,7 +283,7 @@ export default function GodSelect({ onSelect }) {
                                 <div style={{ ...S.sat, bottom: -6, right: 0, width: 2, height: 2, background: g.color, opacity: 0.30 }} />
                                 <div style={{ ...S.sat, top: 1, right: -8, width: 2, height: 2, background: g.color, opacity: 0.28 }} />
                             </div>
-                            <span style={{ ...S.label, color: active ? g.color : "#1a3040" }}>
+                            <span style={{ ...S.label, color: active ? g.color : "#4a7090" }}>
                                 {g.short}
                             </span>
                         </div>
@@ -322,6 +322,8 @@ const S = {
         letterSpacing: "5px",
         color: "#1e2e3e",
         textTransform: "uppercase",
+        display: "block",
+        marginBottom: "22px",
         fontFamily: "'Cinzel', serif",
     },
     title: {
@@ -329,7 +331,8 @@ const S = {
         color: "#c8a800",
         letterSpacing: "8px",
         fontWeight: "700",
-        margin: "6px 0",
+        lineHeight: "1.1",
+        margin: "0 0 6px",
         fontFamily: "'Cinzel', serif",
     },
     sub: {
@@ -425,13 +428,14 @@ const S = {
         borderRadius: "50%",
     },
     label: {
-        fontSize: "11px",
+        fontSize: "18px",
         whiteSpace: "nowrap",
         textAlign: "center",
         lineHeight: 1.3,
         transition: "color 0.25s",
-        maxWidth: "80px",
+        maxWidth: "100px",
         fontFamily: "'Cormorant Garamond', serif",
+        letterSpacing: "0.5px",
     },
     footer: {
         borderTop: "1px solid #0a1520",

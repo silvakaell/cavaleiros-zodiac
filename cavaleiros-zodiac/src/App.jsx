@@ -52,6 +52,16 @@ export default function App() {
         setScreen("knight_select");
     }
 
+    // Volta ao menu principal resetando tudo
+    function handleMenu() {
+        setScreen("title");
+        setSelectedGod(null);
+        setSelectedTeam([]);
+        setRunLayout(null);
+        setRunTeamSize(null);
+        setRunData(null);
+    }
+
     return (
         <div>
             {screen === "title" && (
@@ -67,7 +77,14 @@ export default function App() {
             )}
 
             {screen === "run" && (
-                <Run team={selectedTeam} godId={selectedGod} layout={runLayout} teamSize={runTeamSize} onFinish={handleRunFinish} />
+                <Run
+                    team={selectedTeam}
+                    godId={selectedGod}
+                    layout={runLayout}
+                    teamSize={runTeamSize}
+                    onFinish={handleRunFinish}
+                    onMenu={handleMenu}
+                />
             )}
 
             {screen === "result" && (

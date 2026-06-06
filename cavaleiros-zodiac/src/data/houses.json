@@ -12,18 +12,34 @@
       "cosmos": 95,
       "basePassChance": 0.65,
       "description": "A primeira casa. Mu raramente ataca com força total — ele testa os visitantes.",
-      "affinityBonus": {
-        "knights": [ "seiya", "shiryu", "hyoga", "shun", "ikki" ],
-        "bonus": 0.20,
-        "reason": "Mu já reparou as armaduras desses cavaleiros e reconhece seu Cosmo."
-      },
-      "easterEgg": {
-        "condition": "team_contains_all",
-        "knights": [ "seiya", "shiryu", "hyoga", "shun", "ikki" ],
-        "effect": "revive",
-        "message": "Mu sorri ao ver os cinco Bronzes reunidos. 'Desta vez, deixem-me ajudá-los de verdade.' Um cavaleiro caído é restaurado.",
-        "bonusChance": 0.30
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "seiya", "shiryu", "hyoga", "shun", "ikki" ],
+          "bonus": 0.20,
+          "reason": "Mu reparou as armaduras desses cavaleiros e reconhece seu Cosmo."
+        },
+        {
+          "knights": [ "kiki" ],
+          "bonus": 0.15,
+          "reason": "Kiki cresceu ao lado de Mu e conhece cada pedra desta casa."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains_all",
+          "knights": [ "seiya", "shiryu", "hyoga", "shun", "ikki" ],
+          "effect": "revive",
+          "message": "Mu sorri ao ver os cinco Bronzes reunidos. 'Desta vez, deixem-me ajudá-los de verdade.' Um cavaleiro caído é restaurado.",
+          "bonusChance": 0.30
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "kiki" ],
+          "effect": "bonus_chance",
+          "message": "Kiki passa pela casa do mestre sem dificuldade. 'Sensei me ensinou cada segredo daqui.'",
+          "bonusChance": 0.20
+        }
+      ]
     },
     {
       "id": "taurus",
@@ -37,18 +53,34 @@
       "cosmos": 88,
       "basePassChance": 0.45,
       "description": "Aldebaran é quase impenetrável na defesa. A força bruta é o caminho, ou a astúcia.",
-      "affinityBonus": {
-        "knights": [ "shiryu", "aldebaran", "thor_asgard" ],
-        "bonus": 0.15,
-        "reason": "Aldebaran respeita guerreiros de defesa sólida como a dele."
-      },
-      "easterEgg": {
-        "condition": "team_contains",
-        "knights": [ "seiya" ],
-        "effect": "bonus_chance",
-        "message": "Seiya quebra o chifre dourado de Aldebaran, que decide deixar os cavaleiros passarem.",
-        "bonusChance": 0.20
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "shiryu", "thor_asgard" ],
+          "bonus": 0.15,
+          "reason": "Aldebaran respeita guerreiros de defesa sólida como a dele."
+        },
+        {
+          "knights": [ "hasgard" ],
+          "bonus": 0.18,
+          "reason": "Hasgard de Touro do século XVIII — Aldebaran sente o eco do predecessor."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains",
+          "knights": [ "seiya" ],
+          "effect": "bonus_chance",
+          "message": "Seiya quebra o chifre dourado de Aldebaran, que decide deixar os cavaleiros passarem.",
+          "bonusChance": 0.20
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "shiryu" ],
+          "effect": "bonus_chance",
+          "message": "Aldebaran reconhece em Shiryu a mesma teimosia defensiva. 'Você me lembra de mim mesmo.' Recua um passo.",
+          "bonusChance": 0.15
+        }
+      ]
     },
     {
       "id": "gemini",
@@ -62,18 +94,34 @@
       "cosmos": 100,
       "basePassChance": 0.40,
       "description": "A casa mais perigosa do início. O labirinto dimensional de Saga captura até os mais fortes.",
-      "affinityBonus": {
-        "knights": [ "ikki", "shun" ],
-        "bonus": 0.18,
-        "reason": "Ikki quebrou o labirinto de Saga. Shun conhece seus segredos."
-      },
-      "easterEgg": {
-        "condition": "team_contains",
-        "knights": [ "tenma" ],
-        "effect": "bonus_chance",
-        "message": "Tenma sente o peso de Alone nesta casa. O elo entre os séculos ressoa e o labirinto vacila.",
-        "bonusChance": 0.25
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "ikki", "shun" ],
+          "bonus": 0.18,
+          "reason": "Ikki quebrou o labirinto de Saga. Shun conhece seus segredos."
+        },
+        {
+          "knights": [ "kanon" ],
+          "bonus": 0.30,
+          "reason": "Kanon é o irmão gêmeo de Saga — o labirinto não funciona contra seu próprio sangue."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains",
+          "knights": [ "kanon" ],
+          "effect": "bonus_chance",
+          "message": "Saga se paralisa. 'Kanon...' A dualidade da casa de Gêmeos vira arma contra o próprio guardião.",
+          "bonusChance": 0.40
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "tenma" ],
+          "effect": "bonus_chance",
+          "message": "Tenma sente o peso de Alone nesta casa. O elo entre os séculos ressoa e o labirinto vacila.",
+          "bonusChance": 0.25
+        }
+      ]
     },
     {
       "id": "cancer",
@@ -87,19 +135,34 @@
       "cosmos": 88,
       "basePassChance": 0.55,
       "description": "Deathmask pode enviar almas ao reino dos mortos. Cavaleiros com Cosmo mais puro resistem melhor.",
-      "affinityBonus": {
-        "knights": [ "shun", "mu", "asmita", "manigoldo" ],
-        "bonus": 0.20,
-        "reason": "Cosmo puro ou domínio sobre almas confunde Deathmask."
-      }
-      ,
-      "easterEgg": {
-        "condition": "team_contains",
-        "knights": [ "manigoldo" ],
-        "effect": "bonus_chance",
-        "message": "Manigoldo e Deathmask compartilham o mesmo domínio. Um duelo de almas — e Manigoldo abre passagem.",
-        "bonusChance": 0.30
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "shun", "mu", "asmita", "manigoldo" ],
+          "bonus": 0.20,
+          "reason": "Cosmo puro ou domínio sobre almas confunde Deathmask."
+        },
+        {
+          "knights": [ "ikki" ],
+          "bonus": 0.15,
+          "reason": "A Fênix morreu e renasceu mais vezes do que qualquer outro — Deathmask sabe que não há como prendê-lo."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains",
+          "knights": [ "manigoldo" ],
+          "effect": "bonus_chance",
+          "message": "Manigoldo e Deathmask compartilham o mesmo domínio. Um duelo de almas — e Manigoldo abre passagem.",
+          "bonusChance": 0.30
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "ikki" ],
+          "effect": "bonus_chance",
+          "message": "Deathmask tenta arrastar a alma de Ikki. Ela escapa. De novo. Ele sempre escapa. Deathmask recua frustrado.",
+          "bonusChance": 0.20
+        }
+      ]
     },
     {
       "id": "leo",
@@ -113,18 +176,34 @@
       "cosmos": 96,
       "basePassChance": 0.40,
       "description": "Aiolia é veloz e leal. Enfrenta com honra, mas sem piedade.",
-      "affinityBonus": {
-        "knights": [ "seiya", "aiolos", "regulus" ],
-        "bonus": 0.22,
-        "reason": "Aiolia reconhece o Cosmo do irmão em Seiya. Regulus é seu predecessor no século XVIII."
-      },
-      "easterEgg": {
-        "condition": "team_contains_all",
-        "knights": [ "seiya", "aiolos" ],
-        "effect": "bonus_chance",
-        "message": "O Cosmo de Aiolos brilha através de Seiya. Aiolia hesita — e isso é suficiente.",
-        "bonusChance": 0.35
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "seiya", "aiolos", "regulus" ],
+          "bonus": 0.22,
+          "reason": "Aiolia reconhece o Cosmo do irmão em Seiya. Regulus é seu predecessor do século XVIII."
+        },
+        {
+          "knights": [ "aiolia" ],
+          "bonus": 0.10,
+          "reason": "Uma versão diferente da timeline — o guardião hesita diante de si mesmo."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains_all",
+          "knights": [ "seiya", "aiolos" ],
+          "effect": "bonus_chance",
+          "message": "O Cosmo de Aiolos brilha através de Seiya. Aiolia hesita — e isso é suficiente.",
+          "bonusChance": 0.35
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "regulus" ],
+          "effect": "bonus_chance",
+          "message": "Regulus ergue sua armadura de Leão. Aiolia vê o passado e o futuro ao mesmo tempo. 'Prossiga.'",
+          "bonusChance": 0.25
+        }
+      ]
     },
     {
       "id": "virgo",
@@ -138,18 +217,34 @@
       "cosmos": 100,
       "basePassChance": 0.25,
       "description": "A casa mais difícil da travessia. Shaka remove os sentidos dos oponentes um a um.",
-      "affinityBonus": {
-        "knights": [ "ikki", "shun", "asmita" ],
-        "bonus": 0.25,
-        "reason": "Ikki sobreviveu a Shaka. Asmita é seu igual espiritual do século XVIII."
-      },
-      "easterEgg": {
-        "condition": "team_contains",
-        "knights": [ "ikki" ],
-        "effect": "bonus_chance",
-        "message": "Ikki sorri. 'Já passei por isso antes.' Seu Cosmo arde com a memória daquela batalha.",
-        "bonusChance": 0.30
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "ikki", "shun", "asmita" ],
+          "bonus": 0.25,
+          "reason": "Ikki sobreviveu a Shaka. Asmita é seu igual espiritual do século XVIII."
+        },
+        {
+          "knights": [ "dohko", "shion" ],
+          "bonus": 0.15,
+          "reason": "Os dois sobreviventes de 243 anos conhecem a iluminação de Shaka de perto."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains",
+          "knights": [ "ikki" ],
+          "effect": "bonus_chance",
+          "message": "Ikki sorri. 'Já passei por isso antes.' Seu Cosmo arde com a memória daquela batalha.",
+          "bonusChance": 0.30
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "asmita" ],
+          "effect": "bonus_chance",
+          "message": "Shaka abre os olhos ao sentir o Cosmo de Asmita. Dois iluminados do mesmo signo, de séculos diferentes. Um silêncio reverente.",
+          "bonusChance": 0.35
+        }
+      ]
     },
     {
       "id": "libra",
@@ -163,18 +258,34 @@
       "cosmos": 98,
       "basePassChance": 0.50,
       "description": "Dohko é o mais sábio dos Gold. Pode deixar passar quem demonstra propósito verdadeiro.",
-      "affinityBonus": {
-        "knights": [ "shiryu", "ryuho" ],
-        "bonus": 0.35,
-        "reason": "Shiryu é discípulo de Dohko. Ryuho carrega o mesmo legado."
-      },
-      "easterEgg": {
-        "condition": "team_contains",
-        "knights": [ "shiryu" ],
-        "effect": "revive",
-        "message": "Dohko olha para Shiryu em silêncio. 'Você cresceu.' Ele cede as armas da Libra e ressuscita um companheiro caído.",
-        "bonusChance": 0.40
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "shiryu", "ryuho" ],
+          "bonus": 0.35,
+          "reason": "Shiryu é discípulo de Dohko. Ryuho carrega o mesmo legado."
+        },
+        {
+          "knights": [ "tenma" ],
+          "bonus": 0.15,
+          "reason": "Dohko viveu 243 anos para cumprir uma promessa a Tenma — sente a ressonância do Cosmo."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains",
+          "knights": [ "shiryu" ],
+          "effect": "revive",
+          "message": "Dohko olha para Shiryu em silêncio. 'Você cresceu.' Ele cede as armas da Libra e ressuscita um companheiro caído.",
+          "bonusChance": 0.40
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "ryuho" ],
+          "effect": "bonus_chance",
+          "message": "Dohko vê em Ryuho o eco de Shiryu — e talvez do próprio Tenma. 'A linhagem do Dragão nunca se apaga.'",
+          "bonusChance": 0.25
+        }
+      ]
     },
     {
       "id": "scorpio",
@@ -188,18 +299,34 @@
       "cosmos": 94,
       "basePassChance": 0.45,
       "description": "Milo usa as agulhas escarlates para acumular veneno. Cavaleiros de defesa alta resistem melhor.",
-      "affinityBonus": {
-        "knights": [ "hyoga", "shiryu", "kardia" ],
-        "bonus": 0.20,
-        "reason": "Hyoga congelou o veneno antes. Kardia conhece a dor como arma melhor que ninguém."
-      },
-      "easterEgg": {
-        "condition": "team_contains",
-        "knights": [ "kardia" ],
-        "effect": "bonus_chance",
-        "message": "Kardia e Milo se encaram. Dois guerreiros que usam a morte como combustível. Milo recua — por respeito.",
-        "bonusChance": 0.35
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "hyoga", "shiryu", "kardia" ],
+          "bonus": 0.20,
+          "reason": "Hyoga congelou o veneno antes. Kardia conhece a dor como arma melhor que ninguém."
+        },
+        {
+          "knights": [ "seiya" ],
+          "bonus": 0.10,
+          "reason": "Seiya chegou à casa de Escorpião com 14 agulhas escarlates — e ainda de pé."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains",
+          "knights": [ "kardia" ],
+          "effect": "bonus_chance",
+          "message": "Kardia e Milo se encaram. Dois guerreiros que usam a morte como combustível. Milo recua — por respeito.",
+          "bonusChance": 0.35
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "hyoga" ],
+          "effect": "bonus_chance",
+          "message": "Hyoga congela as agulhas escarlates no ar. Milo range os dentes. 'Aprendi com o passado. E você?'",
+          "bonusChance": 0.25
+        }
+      ]
     },
     {
       "id": "sagittarius",
@@ -213,18 +340,34 @@
       "cosmos": 99,
       "basePassChance": 0.60,
       "description": "O espírito de Aiolos protege esta casa. Cavaleiros de coração puro têm vantagem natural.",
-      "affinityBonus": {
-        "knights": [ "seiya", "aiolia", "sisyphus" ],
-        "bonus": 0.25,
-        "reason": "Seiya carrega o Cosmo de Aiolos. O futuro de Atena está em suas mãos."
-      },
-      "easterEgg": {
-        "condition": "team_contains_all",
-        "knights": [ "seiya", "shiryu", "hyoga", "shun", "ikki" ],
-        "effect": "revive",
-        "message": "Os cinco Bronzes na Casa de Sagitário. Aiolos sorri do além. 'Aos jovens cavaleiros que aqui chegarem, confio Athena a vocês.' Um cavaleiro ressuscita.",
-        "bonusChance": 0.40
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "seiya", "aiolia", "sisyphus" ],
+          "bonus": 0.25,
+          "reason": "Seiya carrega o Cosmo de Aiolos. O futuro de Atena está em suas mãos."
+        },
+        {
+          "knights": [ "seiya" ],
+          "bonus": 0.10,
+          "reason": "Seiya vestiu a armadura de Sagitário — sua ressonância com esta casa é única."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains_all",
+          "knights": [ "seiya", "shiryu", "hyoga", "shun", "ikki" ],
+          "effect": "revive",
+          "message": "Os cinco Bronzes na Casa de Sagitário. Aiolos sorri do além. 'Aos jovens cavaleiros que aqui chegarem, confio Athena a vocês.' Um cavaleiro ressuscita.",
+          "bonusChance": 0.40
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "seiya" ],
+          "effect": "bonus_chance",
+          "message": "Seiya sente a armadura de Sagitário pulsar em seus braços. Aiolos sussurra: 'Use bem o que te dei.'",
+          "bonusChance": 0.25
+        }
+      ]
     },
     {
       "id": "capricorn",
@@ -238,18 +381,34 @@
       "cosmos": 92,
       "basePassChance": 0.30,
       "description": "A Excalibur de Shura corta qualquer defesa. Velocidade e cosmos alto são a chave.",
-      "affinityBonus": {
-        "knights": [ "shiryu", "el_cid" ],
-        "bonus": 0.28,
-        "reason": "Shiryu e Shura têm um elo de sangue após seu duelo. El Cid é seu equivalente do século XVIII."
-      },
-      "easterEgg": {
-        "condition": "team_contains",
-        "knights": [ "shiryu" ],
-        "effect": "bonus_chance",
-        "message": "Shura olha para a armadura do Dragão. Sente o peso daquele duelo. Baixa a Excalibur por um instante e Shiryu vence o duelo.",
-        "bonusChance": 0.30
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "shiryu", "el_cid" ],
+          "bonus": 0.28,
+          "reason": "Shiryu e Shura têm um elo de sangue após seu duelo. El Cid é seu equivalente do século XVIII."
+        },
+        {
+          "knights": [ "seiya", "ikki" ],
+          "bonus": 0.10,
+          "reason": "Esses cavaleiros enfrentaram Shura em batalha honrosa — ele reconhece a chama deles."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains",
+          "knights": [ "shiryu" ],
+          "effect": "bonus_chance",
+          "message": "Shura olha para a armadura do Dragão. Sente o peso daquele duelo. Baixa a Excalibur por um instante — e Shiryu vence.",
+          "bonusChance": 0.30
+        },
+        {
+          "condition": "team_contains_all",
+          "knights": [ "shiryu", "el_cid" ],
+          "effect": "bonus_chance",
+          "message": "El Cid e Shiryu lado a lado. Shura vê dois Capricórnios de eras diferentes unidos pelo mesmo ideal. A Excalibur para no ar.",
+          "bonusChance": 0.45
+        }
+      ]
     },
     {
       "id": "aquarius",
@@ -263,19 +422,34 @@
       "cosmos": 95,
       "basePassChance": 0.30,
       "description": "O Zero Absoluto de Camus congela até o Cosmo. Cavaleiros com fogo interno resistem.",
-      "affinityBonus": {
-        "knights": [ "hyoga", "degel" ],
-        "bonus": 0.30,
-        "reason": "Hyoga é discípulo de Camus. Degel é seu predecessor do século XVIII."
-      },
-
-      "easterEgg": {
-        "condition": "team_contains",
-        "knights": [ "hyoga" ],
-        "effect": "bonus_chance",
-        "message": "Hyoga para diante de Camus. Nenhuma palavra. O frio entre eles é de outro tipo. A casa se abre.",
-        "bonusChance": 0.35
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "hyoga", "degel" ],
+          "bonus": 0.30,
+          "reason": "Hyoga é discípulo de Camus. Degel é seu predecessor do século XVIII."
+        },
+        {
+          "knights": [ "crystal" ],
+          "bonus": 0.15,
+          "reason": "Crystal de Aquário de Omega carrega o mesmo gelo em suas veias."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains",
+          "knights": [ "hyoga" ],
+          "effect": "bonus_chance",
+          "message": "Hyoga para diante de Camus. Nenhuma palavra. O frio entre eles é de outro tipo. A casa se abre.",
+          "bonusChance": 0.35
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "degel" ],
+          "effect": "bonus_chance",
+          "message": "Camus sente o eco de Degel — o mestre que ele nunca conheceu, mas cujo legado carrega. O Zero Absoluto hesita.",
+          "bonusChance": 0.30
+        }
+      ]
     },
     {
       "id": "pisces",
@@ -289,18 +463,34 @@
       "cosmos": 92,
       "basePassChance": 0.35,
       "description": "A última barreira antes do Papa. As rosas de Aphrodite são veneno puro — mas a beleza distrai.",
-      "affinityBonus": {
-        "knights": [ "shun", "kanon", "albafica" ],
-        "bonus": 0.22,
-        "reason": "Shun conhece o terreno. Kanon passou por aqui. Albafica usa o mesmo domínio das flores venenosas."
-      },
-      "easterEgg": {
-        "condition": "team_contains",
-        "knights": [ "albafica" ],
-        "effect": "bonus_chance",
-        "message": "Albafica e Aphrodite. Dois mestres das flores venenosas, de séculos diferentes. Um duelo de respeito mútuo.",
-        "bonusChance": 0.35
-      }
+      "affinityBonuses": [
+        {
+          "knights": [ "shun", "kanon", "albafica" ],
+          "bonus": 0.22,
+          "reason": "Shun conhece o terreno. Kanon passou por aqui. Albafica usa o mesmo domínio das flores venenosas."
+        },
+        {
+          "knights": [ "ikki" ],
+          "bonus": 0.12,
+          "reason": "Ikki carregou Shun depois desta casa — sabe exatamente o que Aphrodite é capaz de fazer."
+        }
+      ],
+      "easterEggs": [
+        {
+          "condition": "team_contains",
+          "knights": [ "albafica" ],
+          "effect": "bonus_chance",
+          "message": "Albafica e Aphrodite. Dois mestres das flores venenosas, de séculos diferentes. Um duelo de respeito mútuo.",
+          "bonusChance": 0.35
+        },
+        {
+          "condition": "team_contains",
+          "knights": [ "shun" ],
+          "effect": "bonus_chance",
+          "message": "Shun conhece cada rosa deste jardim. Seus correntes de Andrômeda desviam o veneno com precisão cirúrgica.",
+          "bonusChance": 0.20
+        }
+      ]
     }
   ]
 }

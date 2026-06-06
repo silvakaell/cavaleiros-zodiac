@@ -1,19 +1,45 @@
 // battleEngine.js
 // Responsável por calcular o resultado de cada casa durante a travessia.
+//
+// Suporta tanto o formato antigo (singular) quanto o novo (plural):
+//   affinityBonus   → objeto único  (legado)
+//   affinityBonuses → array         (novo — múltiplas regras por casa)
+//   easterEgg       → objeto único  (legado)
+//   easterEggs      → array         (novo — múltiplos eventos por casa)
+
+
+// ─── HELPER: normaliza singular/plural ───────────────────────────────────────
+
+function getAffinities(house) {
+    if (house.affinityBonuses) return house.affinityBonuses;
+    if (house.affinityBonus) return [house.affinityBonus];
+    return [];
+}
+
+function getEasterEggs(house) {
+    if (house.easterEggs) return house.easterEggs;
+    if (house.easterEgg) return [house.easterEgg];
+    return [];
+}
+
 
 // ─── CALCULA A CHANCE DE PASSAR UMA CASA ─────────────────────────────────────
+
 export function calcPassChance(team, house, godBonus = 0) {
 
     let chance = house.basePassChance;
 
+    // Bônus de cosmos médio do time
     const avgCosmos = team.reduce((sum, k) => sum + k.cosmos, 0) / team.length;
     const cosmosBonus = ((avgCosmos - 50) / 100) * 0.40;
     chance += cosmosBonus;
 
-    const affinityBonus = house.affinityBonus;
-    const affinityMatches = team.filter(k => affinityBonus.knights.includes(k.id));
-    if (affinityMatches.length > 0) {
-        chance += affinityBonus.bonus * affinityMatches.length;
+    // Bônus de afinidade — suporta múltiplas regras
+    for (const ab of getAffinities(house)) {
+        const matches = team.filter(k => ab.knights.includes(k.id));
+        if (matches.length > 0) {
+            chance += ab.bonus * matches.length;
+        }
     }
 
     chance += godBonus;
@@ -24,27 +50,34 @@ export function calcPassChance(team, house, godBonus = 0) {
 
 
 // ─── VERIFICA EASTER EGGS ────────────────────────────────────────────────────
-// Mesmo que a condição seja atendida, o evento só dispara com certa probabilidade.
-// Isso evita que eventos aconteçam com frequência demais.
+// Percorre todos os easter eggs da casa em ordem.
+// Retorna o primeiro que for ativado, ou null.
+//
+// Condições disponíveis:
+//   "team_contains"      — time tem QUALQUER um dos knights listados  (35% de disparo)
+//   "team_contains_any"  — alias de team_contains                     (35% de disparo)
+//   "team_contains_all"  — time tem TODOS os knights listados         (55% de disparo)
 
 export function checkEasterEgg(team, house) {
-    const egg = house.easterEgg;
     const teamIds = team.map(k => k.id);
 
-    if (egg.condition === "team_contains") {
-        const triggered = egg.knights.some(id => teamIds.includes(id));
-        if (!triggered) return null;
-        // 35% de chance de disparar — condição fácil, então evento é mais raro
-        if (Math.random() > 0.35) return null;
-        return egg;
-    }
+    for (const egg of getEasterEggs(house)) {
 
-    if (egg.condition === "team_contains_all") {
-        const triggered = egg.knights.every(id => teamIds.includes(id));
-        if (!triggered) return null;
-        // 55% de chance de disparar — condição difícil, então evento é mais generoso
-        if (Math.random() > 0.55) return null;
-        return egg;
+        let conditionMet = false;
+
+        if (egg.condition === "team_contains" || egg.condition === "team_contains_any") {
+            conditionMet = egg.knights.some(id => teamIds.includes(id));
+            // Condição fácil → evento menos frequente
+            if (conditionMet && Math.random() > 0.35) conditionMet = false;
+        }
+
+        else if (egg.condition === "team_contains_all") {
+            conditionMet = egg.knights.every(id => teamIds.includes(id));
+            // Condição difícil → evento mais generoso
+            if (conditionMet && Math.random() > 0.55) conditionMet = false;
+        }
+
+        if (conditionMet) return egg;
     }
 
     return null;
@@ -52,6 +85,7 @@ export function checkEasterEgg(team, house) {
 
 
 // ─── SIMULA O RESULTADO DE UMA CASA ─────────────────────────────────────────
+
 export function resolveHouse(team, house, godBonus = 0) {
 
     let passChance = calcPassChance(team, house, godBonus);
@@ -92,6 +126,7 @@ export function resolveHouse(team, house, godBonus = 0) {
 
 
 // ─── CALCULA PONTUAÇÃO FINAL ─────────────────────────────────────────────────
+
 export function calcScore(results, survivors, easterEggsFound) {
     const housesPassed = results.filter(r => r.passed).length;
 

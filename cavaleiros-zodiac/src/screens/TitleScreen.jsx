@@ -75,7 +75,7 @@ export default function TitleScreen({ onStart }) {
                     <svg viewBox="0 0 1100 500" style={{ width: "100%", display: "block" }}>
                         <rect width="1100" height="500" fill="#050b14" />
 
-                        {/* Nebula */}
+                        {/* Nebula + filtros */}
                         <defs>
                             <radialGradient id="tnb1" cx="50%" cy="50%">
                                 <stop offset="0%" stopColor="#2010a0" stopOpacity="0.09" />
@@ -85,6 +85,10 @@ export default function TitleScreen({ onStart }) {
                                 <stop offset="0%" stopColor="#103080" stopOpacity="0.06" />
                                 <stop offset="100%" stopColor="#000" stopOpacity="0" />
                             </radialGradient>
+                            <filter id="houseGlow" x="-80%" y="-80%" width="260%" height="260%">
+                                <feGaussianBlur stdDeviation="5" result="blur" />
+                                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                            </filter>
                         </defs>
                         <ellipse cx="600" cy="250" rx="500" ry="230" fill="url(#tnb1)" />
                         <ellipse cx="200" cy="380" rx="260" ry="160" fill="url(#tnb2)" />
@@ -104,28 +108,24 @@ export default function TitleScreen({ onStart }) {
                             opacity="0.65"
                         />
 
-                        {/* Nós das 12 casas */}
+                        {/* Nós das 12 casas — brilho dourado */}
                         {HOUSE_POSITIONS.map((pos, i) => (
                             <g key={i} transform={`translate(${pos.cx},${pos.cy})`}>
-                                <circle r="13" fill="#08101a" stroke="#1e3a5a" strokeWidth="1.5" />
-                                <circle r="5" fill="#1e3a5a" opacity="0.7" />
+                                <circle r="18" fill="#c8a800" opacity="0.07" filter="url(#houseGlow)" />
+                                <circle r="13" fill="#08101a" stroke="#c8a800" strokeWidth="1.2" opacity="0.65" />
+                                <circle r="5" fill="#c8a800" opacity="0.55" />
+                                <circle r="2" fill="#fff8d0" opacity="0.5" />
                             </g>
                         ))}
 
                         {/* Labels primeira e última casa */}
-                        <text x="1030" y="484" textAnchor="middle" fill="#1e3a5a" fontSize="13" fontFamily="Georgia, serif">
+                        <text x="1030" y="484" textAnchor="middle" fill="#c8a800" opacity="0.5" fontSize="13" fontFamily="'Cormorant Garamond', Georgia, serif">
                             Áries
                         </text>
-                        <text x="115" y="72" textAnchor="middle" fill="#1e3a5a" fontSize="13" fontFamily="Georgia, serif">
+                        <text x="115" y="72" textAnchor="middle" fill="#c8a800" opacity="0.5" fontSize="13" fontFamily="'Cormorant Garamond', Georgia, serif">
                             Peixes
                         </text>
 
-                        {/* Marcador Atena */}
-                        <rect x="28" y="28" width="52" height="28" rx="4" fill="#080f1e" stroke="#1e2e40" strokeWidth="1" />
-                        <text x="54" y="47" textAnchor="middle" fill="#2a4a6a" fontSize="12" fontFamily="Georgia, serif">
-                            Atena
-                        </text>
-                        <line x1="80" y1="42" x2="115" y2="88" stroke="#1a2e40" strokeWidth="1" strokeDasharray="4 4" />
                     </svg>
                 </div>
 
@@ -186,7 +186,8 @@ const S = {
         letterSpacing: "5px",
         color: "#33445a",
         textTransform: "uppercase",
-        marginBottom: "8px",
+        display: "block",
+        marginBottom: "22px",
         fontFamily: "'Cinzel', serif",
     },
     title: {
@@ -194,6 +195,7 @@ const S = {
         color: "#c8a800",
         letterSpacing: "10px",
         fontWeight: "700",
+        lineHeight: "1.1",
         margin: "0 0 14px",
         fontFamily: "'Cinzel', serif",
     },

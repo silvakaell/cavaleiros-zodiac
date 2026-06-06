@@ -11,7 +11,11 @@
 			"speed": 90,
 			"cosmos": 85,
 			"type": "offense",
-			"affinities": [ "aries", "leo", "sagittarius" ],
+			"affinities": [
+				"aries",
+				"leo",
+				"sagittarius"
+			],
 			"lore": "Herói principal da saga clássica. Recebeu o Cosmo de Aiolos e foi reparado por Mu inúmeras vezes."
 		},
 		{
@@ -25,7 +29,10 @@
 			"speed": 70,
 			"cosmos": 80,
 			"type": "defense",
-			"affinities": [ "libra", "capricorn" ],
+			"affinities": [
+				"libra",
+				"capricorn"
+			],
 			"lore": "Discípulo do Mestre Ancião. Diposto aos mais extremos sacrifícios por Atena."
 		},
 		{
@@ -39,7 +46,9 @@
 			"speed": 80,
 			"cosmos": 82,
 			"type": "balance",
-			"affinities": [ "aquarius" ],
+			"affinities": [
+				"aquarius"
+			],
 			"lore": "Discípulo de Camus de Aquário. O vínculo mestre-discípulo é um dos mais fortes da saga."
 		},
 		{
@@ -53,7 +62,10 @@
 			"speed": 72,
 			"cosmos": 88,
 			"type": "support",
-			"affinities": [ "virgo", "pisces" ],
+			"affinities": [
+				"virgo",
+				"pisces"
+			],
 			"lore": "O mais gentil dos cavaleiros de Bronze. Sua corrente nebulosa possui propriedades divinas únicas."
 		},
 		{
@@ -67,7 +79,10 @@
 			"speed": 85,
 			"cosmos": 92,
 			"type": "offense",
-			"affinities": [ "virgo", "gemini" ],
+			"affinities": [
+				"virgo",
+				"gemini"
+			],
 			"lore": "O mais poderoso dos cavaleiros de Bronze. Sua batalha contra Shaka de Virgem é lendária. Ressuscita da morte."
 		},
 		{
@@ -165,7 +180,9 @@
 			"speed": 60,
 			"cosmos": 65,
 			"type": "defense",
-			"affinities": [ "pisces" ],
+			"affinities": [
+				"pisces"
+			],
 			"lore": "Cavaleiro de Prata da Baleia."
 		},
 		{
@@ -235,7 +252,9 @@
 			"speed": 80,
 			"cosmos": 95,
 			"type": "support",
-			"affinities": [ "aries" ],
+			"affinities": [
+				"aries"
+			],
 			"lore": "O único Dourado capaz de reparar Armaduras Divinas. Aliado secreto do cavaleiros de Bronze."
 		},
 		{
@@ -249,7 +268,9 @@
 			"speed": 60,
 			"cosmos": 88,
 			"type": "defense",
-			"affinities": [ "taurus" ],
+			"affinities": [
+				"taurus"
+			],
 			"lore": "O mais forte fisicamente entre os Cavaleiros de Ouro."
 		},
 		{
@@ -263,7 +284,9 @@
 			"speed": 88,
 			"cosmos": 100,
 			"type": "offense",
-			"affinities": [ "gemini" ],
+			"affinities": [
+				"gemini"
+			],
 			"lore": "O mais poderoso dos Cavaleiros de Ouro. Usurpou o Santuário com sua personalidade maligna."
 		},
 		{
@@ -277,7 +300,10 @@
 			"speed": 86,
 			"cosmos": 97,
 			"type": "offense",
-			"affinities": [ "gemini", "pisces" ],
+			"affinities": [
+				"gemini",
+				"pisces"
+			],
 			"lore": "Irmão gêmeo de Saga. Manipulou Poseidon e depois encontrou a redenção."
 		},
 		{
@@ -291,7 +317,9 @@
 			"speed": 80,
 			"cosmos": 88,
 			"type": "offense",
-			"affinities": [ "cancer" ],
+			"affinities": [
+				"cancer"
+			],
 			"lore": "Envia as almas de suas vítimas ao reino dos mortos."
 		},
 		{
@@ -305,7 +333,10 @@
 			"speed": 95,
 			"cosmos": 96,
 			"type": "offense",
-			"affinities": [ "leo", "sagittarius" ],
+			"affinities": [
+				"leo",
+				"sagittarius"
+			],
 			"lore": "Irmão de Aiolos. Um dos Gold mais leais a Atena."
 		},
 		{
@@ -319,7 +350,9 @@
 			"speed": 85,
 			"cosmos": 100,
 			"type": "balance",
-			"affinities": [ "virgo" ],
+			"affinities": [
+				"virgo"
+			],
 			"lore": "Considerado o homem mais próximo dos deuses."
 		},
 		{
@@ -333,7 +366,9 @@
 			"speed": 88,
 			"cosmos": 98,
 			"type": "balance",
-			"affinities": [ "libra" ],
+			"affinities": [
+				"libra"
+			],
 			"lore": "Mestre de Shiryu. Viveu 261 anos vigiando a Prisão do Inferno."
 		},
 		{
@@ -347,7 +382,9 @@
 			"speed": 92,
 			"cosmos": 94,
 			"type": "offense",
-			"affinities": [ "scorpio" ],
+			"affinities": [
+				"scorpio"
+			],
 			"lore": "Seu Scarlet Needles injeta veneno mortal em 15 pontos vitais."
 		},
 		{
@@ -361,7 +398,10 @@
 			"speed": 93,
 			"cosmos": 99,
 			"type": "offense",
-			"affinities": [ "sagittarius", "aries" ],
+			"affinities": [
+				"sagittarius",
+				"aries"
+			],
 			"lore": "Morreu protegendo o bebê Atena. Seu espírito guia os Bronzes durante toda a saga."
 		},
 		{
@@ -375,7 +415,9 @@
 			"speed": 90,
 			"cosmos": 92,
 			"type": "offense",
-			"affinities": [ "capricorn" ],
+			"affinities": [
+				"capricorn"
+			],
 			"lore": "Seu braço direito possui poder de corte absoluto — a Excalibur."
 		},
 		{
@@ -389,7 +431,9 @@
 			"speed": 86,
 			"cosmos": 95,
 			"type": "offense",
-			"affinities": [ "aquarius" ],
+			"affinities": [
+				"aquarius"
+			],
 			"lore": "Mestre de Hyoga. Um dos poucos a dominar o zero absoluto. Acreditava na frieza absoluta."
 		},
 		{
@@ -403,7 +447,9 @@
 			"speed": 84,
 			"cosmos": 92,
 			"type": "offense",
-			"affinities": [ "pisces" ],
+			"affinities": [
+				"pisces"
+			],
 			"lore": "Usa rosas venenosas como arma. O mais belo dos Cavaleiros de Ouro."
 		},
 		{
@@ -417,7 +463,10 @@
 			"speed": 88,
 			"cosmos": 82,
 			"type": "offense",
-			"affinities": [ "gemini", "aries" ],
+			"affinities": [
+				"gemini",
+				"aries"
+			],
 			"lore": "O Cavaleiro de Pégaso do século XVIII. Amigo de infância de Alone/Hades."
 		},
 		{
@@ -431,7 +480,9 @@
 			"speed": 97,
 			"cosmos": 95,
 			"type": "offense",
-			"affinities": [ "leo" ],
+			"affinities": [
+				"leo"
+			],
 			"lore": "Criança prodígio com velocidade sobre-humana. Dourado de Leão do século XVIII."
 		},
 		{
@@ -445,7 +496,9 @@
 			"speed": 82,
 			"cosmos": 94,
 			"type": "balance",
-			"affinities": [ "aquarius" ],
+			"affinities": [
+				"aquarius"
+			],
 			"lore": "O mais inteligente dos Dourados do Lost Canvas. Pesquisador do Cosmo."
 		},
 		{
@@ -459,7 +512,9 @@
 			"speed": 80,
 			"cosmos": 90,
 			"type": "offense",
-			"affinities": [ "cancer" ],
+			"affinities": [
+				"cancer"
+			],
 			"lore": "Lida com almas dos mortos como arma de combate."
 		},
 		{
@@ -473,7 +528,9 @@
 			"speed": 78,
 			"cosmos": 99,
 			"type": "support",
-			"affinities": [ "virgo" ],
+			"affinities": [
+				"virgo"
+			],
 			"lore": "Cego desde o nascimento. Possui o Cosmo mais elevado entre os Gold do Lost Canvas."
 		},
 		{
@@ -487,7 +544,9 @@
 			"speed": 91,
 			"cosmos": 96,
 			"type": "offense",
-			"affinities": [ "sagittarius" ],
+			"affinities": [
+				"sagittarius"
+			],
 			"lore": "Guardião da memória de Atena no século XVIII."
 		},
 		{
@@ -501,7 +560,9 @@
 			"speed": 82,
 			"cosmos": 93,
 			"type": "offense",
-			"affinities": [ "pisces" ],
+			"affinities": [
+				"pisces"
+			],
 			"lore": "Seu sangue é veneno mortal. Isolou-se da humanidade para protegê-la."
 		},
 		{
@@ -515,7 +576,9 @@
 			"speed": 88,
 			"cosmos": 92,
 			"type": "offense",
-			"affinities": [ "capricorn" ],
+			"affinities": [
+				"capricorn"
+			],
 			"lore": "Guerreiro de honra absoluta. Gold de Capricórnio do século XVIII."
 		},
 		{
@@ -529,7 +592,9 @@
 			"speed": 90,
 			"cosmos": 93,
 			"type": "offense",
-			"affinities": [ "scorpio" ],
+			"affinities": [
+				"scorpio"
+			],
 			"lore": "Portador de uma doença cardíaca fatal. Quanto mais usa o Cosmo, mais forte e mais perto da morte está."
 		},
 		{
@@ -557,7 +622,9 @@
 			"speed": 70,
 			"cosmos": 78,
 			"type": "defense",
-			"affinities": [ "libra" ],
+			"affinities": [
+				"libra"
+			],
 			"lore": "Filho de Shiryu. Herdou a armadura do Dragão e a determinação do pai."
 		},
 		{
@@ -571,7 +638,9 @@
 			"speed": 80,
 			"cosmos": 75,
 			"type": "offense",
-			"affinities": [ "leo" ],
+			"affinities": [
+				"leo"
+			],
 			"lore": "Cavaleiro de Bronze de Leão em Omega."
 		},
 		{
@@ -711,7 +780,9 @@
 			"speed": 80,
 			"cosmos": 80,
 			"type": "offense",
-			"affinities": [ "aquarius" ],
+			"affinities": [
+				"aquarius"
+			],
 			"lore": "Guerreiro Deus de Merak Beta. Usa ataques baseados em fogo — rival natural de Hyoga."
 		},
 		{
@@ -809,7 +880,9 @@
 			"speed": 80,
 			"cosmos": 85,
 			"type": "offense",
-			"affinities": [ "aquarius" ],
+			"affinities": [
+				"aquarius"
+			],
 			"lore": "Amigo de infância de Hyoga. Traído pelo destino, tornou-se General Marinho. Seu confronto com Hyoga é um dos mais emotivos da saga."
 		},
 		{
@@ -823,7 +896,9 @@
 			"speed": 80,
 			"cosmos": 84,
 			"type": "offense",
-			"affinities": [ "pisces" ],
+			"affinities": [
+				"pisces"
+			],
 			"lore": "General Marinho de Sirene. Usa sons como arma — sua flauta pode destruir o sistema nervoso dos inimigos. Enfrentou Shun."
 		},
 		{
@@ -879,7 +954,10 @@
 			"speed": 78,
 			"cosmos": 76,
 			"type": "offense",
-			"affinities": [ "aquarius", "pisces" ],
+			"affinities": [
+				"aquarius",
+				"pisces"
+			],
 			"lore": "General Marinha da Sereia. Devota de Poseidon. Usa o poder das correntes marinhas em combate."
 		},
 		{
@@ -921,7 +999,10 @@
 			"speed": 82,
 			"cosmos": 88,
 			"type": "offense",
-			"affinities": [ "leo", "sagittarius" ],
+			"affinities": [
+				"leo",
+				"sagittarius"
+			],
 			"lore": "O mais poderoso dos Cavaleiros da Coroa de Abel. Usa o calor solar como arma e serve o deus-sol com devoção absoluta."
 		},
 		{
@@ -1005,7 +1086,9 @@
 			"speed": 88,
 			"cosmos": 90,
 			"type": "offense",
-			"affinities": [ "leo" ],
+			"affinities": [
+				"leo"
+			],
 			"lore": "Um dos Cavaleiros do Paraíso de Apolo. Usa o poder da luz celestial — um dos guerreiros mais temidos do Capítulo do Céu."
 		},
 		{
@@ -1035,6 +1118,179 @@
 			"type": "offense",
 			"affinities": [],
 			"lore": "Cavaleiro do Paraíso. Serve diretamente a Apolo e usa os raios do Olimpo como arma."
+		},
+		{
+			"id": "rhadamanthus",
+			"name": "Radamanto de Wyvern",
+			"series": "hades",
+			"rank": "specter",
+			"constellation": "Wyvern",
+			"power": 96,
+			"defense": 88,
+			"speed": 85,
+			"cosmos": 95,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Um dos Três Juízes do Inferno. Representa a Lei Divina — cada um de seus julgamentos é uma sentença de morte irrevogável."
+		},
+		{
+			"id": "minos",
+			"name": "Minos de Griffon",
+			"series": "hades",
+			"rank": "specter",
+			"constellation": "Griffon",
+			"power": 94,
+			"defense": 90,
+			"speed": 80,
+			"cosmos": 93,
+			"type": "defense",
+			"affinities": [],
+			"lore": "Um dos Três Juízes do Inferno. Determina o peso das almas dos mortos — e pune os que tentam escapar do julgamento."
+		},
+		{
+			"id": "aeacus",
+			"name": "Éacos de Garuda",
+			"series": "hades",
+			"rank": "specter",
+			"constellation": "Garuda",
+			"power": 93,
+			"defense": 85,
+			"speed": 90,
+			"cosmos": 91,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Um dos Três Juízes do Inferno. O mais veloz dos três — pune com precisão cirúrgica os que tentam cruzar o Tártaro sem permissão."
+		},
+		{
+			"id": "lune",
+			"name": "Lune de Basilisco",
+			"series": "lost_canvas",
+			"rank": "specter",
+			"constellation": "Basilisk",
+			"power": 90,
+			"defense": 85,
+			"speed": 82,
+			"cosmos": 92,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Um dos Espectros mais poderosos de Hades no Lost Canvas. Servo fiel que enxerga a morte como a única forma de redenção."
+		},
+		{
+			"id": "myu",
+			"name": "Myu de Papillon",
+			"series": "lost_canvas",
+			"rank": "specter",
+			"constellation": "Papillon",
+			"power": 88,
+			"defense": 78,
+			"speed": 92,
+			"cosmos": 90,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Espectro da Borboleta no Lost Canvas. Usa o pó venenoso de suas asas como arma — belo e mortal como a criatura que representa."
+		},
+		{
+			"id": "charon",
+			"name": "Caronte, o Barqueiro",
+			"series": "hades",
+			"rank": "specter",
+			"constellation": "Styx",
+			"power": 85,
+			"defense": 82,
+			"speed": 72,
+			"cosmos": 88,
+			"type": "support",
+			"affinities": [],
+			"lore": "O guardião do Rio Estige. Conduz almas ao reino dos mortos há milênios — e castiga qualquer um que tente cruzar sem sua permissão."
+		},
+		{
+			"id": "ulisses",
+			"name": "Ulisses de Odisseia",
+			"series": "hades",
+			"rank": "specter",
+			"constellation": "Odyssey",
+			"power": 82,
+			"defense": 78,
+			"speed": 86,
+			"cosmos": 84,
+			"type": "balance",
+			"affinities": [],
+			"lore": "Espectro de Hades que herdou a astúcia do herói grego. Usa ilusões e estratagemas para derrotar adversários muito mais poderosos."
+		},
+		{
+			"id": "jamian",
+			"name": "Jamian de Corvo",
+			"series": "classic",
+			"rank": "silver",
+			"constellation": "Corvus",
+			"power": 60,
+			"defense": 55,
+			"speed": 65,
+			"cosmos": 62,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Cavaleiro de Prata do Corvo. Controla centenas de corvos para atacar e desorientar os oponentes. Atuou como mensageiro do falso Papa."
+		},
+		{
+			"id": "guilty",
+			"name": "Guilty, o Carrasco",
+			"series": "classic",
+			"rank": "silver",
+			"constellation": "Death Queen",
+			"power": 75,
+			"defense": 72,
+			"speed": 68,
+			"cosmos": 70,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Senhor da Ilha da Rainha da Morte e mestre cruel de Ikki. Forjou a Fênix através de tortura implacável — e pagou o preço por isso."
+		},
+		{
+			"id": "daedalus",
+			"name": "Dédalo de Andrômeda",
+			"series": "lost_canvas",
+			"rank": "silver",
+			"constellation": "Andromeda",
+			"power": 65,
+			"defense": 70,
+			"speed": 62,
+			"cosmos": 76,
+			"type": "support",
+			"affinities": [
+				"pisces"
+			],
+			"lore": "Mestre de Shun e guardião da Ilha de Andrômeda. Transmitiu a armadura e os segredos das correntes nebulosas — e sacrificou tudo por seu discípulo."
+		},
+		{
+			"id": "marin",
+			"name": "Marin de Águia",
+			"series": "classic",
+			"rank": "silver",
+			"constellation": "Aquila",
+			"power": 74,
+			"defense": 70,
+			"speed": 80,
+			"cosmos": 76,
+			"type": "balance",
+			"affinities": [
+				"aries",
+				"sagittarius"
+			],
+			"lore": "Cavaleira de Prata da Águia e instrutora de Seiya no Santuário. Uma das silver saints mais respeitadas — e uma das poucas que questionou o falso Papa."
+		},
+		{
+			"id": "algol",
+			"name": "Algol de Perseu",
+			"series": "classic",
+			"rank": "silver",
+			"constellation": "Perseus",
+			"power": 72,
+			"defense": 68,
+			"speed": 70,
+			"cosmos": 74,
+			"type": "offense",
+			"affinities": [],
+			"lore": "Cavaleiro de Prata de Perseu. Usa o Escudo de Medusa para petrificar os oponentes — um dos poderes mais temidos entre os Cavaleiros de Prata."
 		}
 	]
 }

@@ -102,10 +102,20 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
     const positions = knightPositions(allKnights.length);
 
     function getFinalMessage() {
-        if (score.housesPassed === 12) return "Travessia Perfeita. Atena sorri.";
-        if (score.housesPassed >= 9) return "Quase lá. Os deuses reconhecem sua força.";
-        if (score.housesPassed >= 6) return "Metade do caminho. A saga continua.";
-        if (score.housesPassed >= 3) return "A jornada foi curta, mas valente.";
+        const h = score.housesPassed;
+        const completed = history.length === 12; // chegou na última casa
+
+        // Travessia concluída — baseado em quantas batalhas foram vencidas
+        if (completed && h === 12) return "Travessia Perfeita. Atena sorri.";
+        if (completed && h >= 9) return "Travessia concluída. Poucos caíram no caminho.";
+        if (completed && h >= 6) return "Travessia concluída — à custa de muitas batalhas.";
+        if (completed) return "Chegaram ao fim, mas o preço foi alto.";
+
+        // Travessia interrompida — todos os cavaleiros caíram
+        if (h >= 10) return "Quase lá. Os deuses reconhecem sua força.";
+        if (h >= 7) return "Além da metade — a batalha foi épica.";
+        if (h >= 4) return "Metade do caminho. A saga continua.";
+        if (h >= 1) return "A jornada foi curta, mas valente.";
         return "Os guardiões foram implacáveis. Tente de novo.";
     }
 

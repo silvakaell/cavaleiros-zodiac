@@ -65,6 +65,30 @@ function nodeStyle(state) {
     }
 }
 
+// ─── Helpers de cálculo ──────────────────────────────────────────────────────
+
+function getAffinities(house) {
+    if (house.affinityBonuses) return house.affinityBonuses;
+    if (house.affinityBonus) return [house.affinityBonus];
+    return [];
+}
+
+function getCalcBreakdown(team, house, godBonus) {
+    const avgCosmos = team.reduce((sum, k) => sum + k.cosmos, 0) / team.length;
+    const cosmosBonus = ((avgCosmos - 50) / 100) * 0.40;
+    const affinities = getAffinities(house)
+        .map(ab => ({ ...ab, matches: team.filter(k => ab.knights.includes(k.id)) }))
+        .filter(ab => ab.matches.length > 0);
+    return {
+        avgCosmos: Math.round(avgCosmos),
+        guardianCosmos: house.cosmos,
+        base: Math.round(house.basePassChance * 100),
+        cosmosBonus: Math.round(cosmosBonus * 100),
+        affinities,
+        godBonusPct: Math.round(godBonus * 100),
+    };
+}
+
 // ─── Mini constelação ─────────────────────────────────────────────────────────
 
 function ConstellationMini({ layout, team, aliveTeam }) {
@@ -106,7 +130,7 @@ function ConstellationMini({ layout, team, aliveTeam }) {
 
 // ─── Componente principal ─────────────────────────────────────────────────────
 
-export default function Run({ team, godId, layout, teamSize, onFinish }) {
+export default function Run({ team, godId, layout, teamSize, onFinish, onMenu }) {
 
     const [houseIndex, setHouseIndex] = useState(0);
     const [aliveTeam, setAliveTeam] = useState(team);
@@ -204,17 +228,18 @@ export default function Run({ team, godId, layout, teamSize, onFinish }) {
                 {/* ── Painel inferior ── */}
                 <div style={S.bottom}>
 
-                    {/* Esquerda: constelação + lista */}
+                    {/* Esquerda: bênção + constelação + lista */}
                     <div style={S.leftPanel}>
                         <div>
-                            <div style={S.constellationHeader}>
-                                <span style={S.labelSmall}>Constelação</span>
-                                <span style={S.godName}>· {godName}</span>
-                            </div>
-                            <ConstellationMini layout={layout} team={team} aliveTeam={aliveTeam} />
+                            <div style={S.sectionLabel}>Bênção</div>
+                            <div style={S.godName}>{godName}</div>
                         </div>
                         <div>
-                            <div style={S.teamLabel}>Time</div>
+                            <div style={S.sectionLabel}>Constelação</div>
+                            <ConstellationMini layout={layout} team={team} aliveTeam={aliveTeam} />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                            <div style={S.sectionLabel}>Time</div>
                             {team.map(k => {
                                 const isFallen = !aliveTeam.some(a => a.id === k.id);
                                 return (
@@ -228,6 +253,11 @@ export default function Run({ team, godId, layout, teamSize, onFinish }) {
                                 );
                             })}
                         </div>
+                        {onMenu && (
+                            <button style={S.menuBtn} onClick={onMenu}>
+                                ← Menu
+                            </button>
+                        )}
                     </div>
 
                     {/* Direita: casa — enquadramento estilo templo grego */}
@@ -267,7 +297,7 @@ export default function Run({ team, godId, layout, teamSize, onFinish }) {
                                             ...S.resultBlock,
                                             borderColor: result.passed ? "#3a8040" : "#7a2020",
                                         }}>
-                                            <div style={{ color: result.passed ? "#4aaa50" : "#cc3030", fontSize: "14px", fontWeight: "500", marginBottom: "6px" }}>
+                                            <div style={{ color: result.passed ? "#4aaa50" : "#cc3030", fontSize: "15px", fontWeight: "600", marginBottom: "6px", fontFamily: "'Cormorant Garamond', Georgia, serif", letterSpacing: "0.5px" }}>
                                                 {result.passed ? "✓ Passagem garantida!" : "✗ Barreira não rompida!"}
                                             </div>
 
@@ -282,13 +312,13 @@ export default function Run({ team, godId, layout, teamSize, onFinish }) {
                                             )}
 
                                             {!result.passed && result.fallenKnight && (
-                                                <div style={{ color: "#9a3030", fontSize: "12px", marginTop: "6px" }}>
-                                                    {result.fallenKnight.name} caiu nesta casa.
+                                                <div style={{ color: "#9a3030", fontSize: "14px", marginTop: "8px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
+                                                    💀 {result.fallenKnight.name} caiu nesta casa.
                                                 </div>
                                             )}
 
                                             {result.reviveGranted && (
-                                                <div style={{ color: "#4aaa50", fontSize: "12px", marginTop: "6px" }}>
+                                                <div style={{ color: "#4aaa50", fontSize: "14px", marginTop: "8px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
                                                     ✨ Um cavaleiro caído foi revivido!
                                                 </div>
                                             )}
@@ -298,9 +328,87 @@ export default function Run({ team, godId, layout, teamSize, onFinish }) {
                                             </div>
                                         </div>
 
+                                        {/* ── Painel de cálculo ── */}
+                                        {(() => {
+                                            const bd = getCalcBreakdown(aliveTeam.length > 0 ? aliveTeam : team, currentHouse, godBonus);
+                                            const teamPct = Math.min(100, Math.round((bd.avgCosmos / 100) * 100));
+                                            const guardPct = Math.min(100, Math.round((bd.guardianCosmos / 100) * 100));
+                                            return (
+                                                <div style={SC.panel}>
+                                                    {/* header */}
+                                                    <div style={SC.panelHeader}>
+                                                        <span style={SC.panelTitle}>Cálculo da batalha</span>
+                                                        <span style={SC.panelVs}>
+                                                            time · cosmos {bd.avgCosmos} &nbsp;vs&nbsp; {currentHouse.guardian.split(" ")[0]} · cosmos {bd.guardianCosmos}
+                                                        </span>
+                                                    </div>
+
+                                                    {/* barras de cosmos */}
+                                                    <div style={SC.barsSection}>
+                                                        <div style={SC.barRow}>
+                                                            <span style={SC.barLabel}>Cosmos time</span>
+                                                            <div style={SC.barTrack}>
+                                                                <div style={{ ...SC.barFill, width: teamPct + "%", background: "#185FA5" }} />
+                                                            </div>
+                                                            <span style={SC.barVal}>{bd.avgCosmos}</span>
+                                                        </div>
+                                                        <div style={SC.barRow}>
+                                                            <span style={SC.barLabel}>Cosmos guardião</span>
+                                                            <div style={SC.barTrack}>
+                                                                <div style={{ ...SC.barFill, width: guardPct + "%", background: "#993C1D" }} />
+                                                            </div>
+                                                            <span style={SC.barVal}>{bd.guardianCosmos}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* linhas de bônus */}
+                                                    <div style={SC.rowsSection}>
+                                                        <div style={SC.calcRow}>
+                                                            <span style={SC.rowLabel}>Base da casa</span>
+                                                            <span style={SC.rowNeutral}>{bd.base}%</span>
+                                                        </div>
+                                                        <div style={SC.calcRow}>
+                                                            <span style={SC.rowLabel}>Cosmos do time</span>
+                                                            <span style={bd.cosmosBonus >= 0 ? SC.rowPos : SC.rowNeg}>
+                                                                {bd.cosmosBonus >= 0 ? "+" : ""}{bd.cosmosBonus}%
+                                                            </span>
+                                                        </div>
+                                                        {bd.affinities.length > 0 ? bd.affinities.map((ab, i) => (
+                                                            <div key={i} style={SC.calcRow}>
+                                                                <span style={SC.rowLabel}>
+                                                                    Afinidade — {ab.matches.map(k => k.name.split(" ")[0]).join(", ")}
+                                                                    <span style={SC.tag}>{ab.matches.length}× +{Math.round(ab.bonus * 100)}%</span>
+                                                                </span>
+                                                                <span style={SC.rowPos}>+{Math.round(ab.total * 100)}%</span>
+                                                            </div>
+                                                        )) : (
+                                                            <div style={SC.calcRow}>
+                                                                <span style={SC.rowLabel}>Afinidade</span>
+                                                                <span style={SC.rowNeutral}>+0%</span>
+                                                            </div>
+                                                        )}
+                                                        <div style={SC.calcRow}>
+                                                            <span style={SC.rowLabel}>Bônus de deus</span>
+                                                            <span style={bd.godBonusPct > 0 ? SC.rowPos : SC.rowNeutral}>
+                                                                {bd.godBonusPct >= 0 ? "+" : ""}{bd.godBonusPct}%
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* total */}
+                                                    <div style={SC.totalRow}>
+                                                        <span style={SC.totalLabel}>Chance final</span>
+                                                        <span style={SC.totalVal}>
+                                                            {result.passChance}% · rolagem {result.roll} · {result.passed ? "passou" : "falhou"}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })()}
+
                                         {runOver ? (
                                             <>
-                                                <div style={{ color: "#7a2020", fontSize: "12px", marginBottom: "10px" }}>
+                                                <div style={{ color: "#7a2020", fontSize: "15px", marginBottom: "12px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
                                                     Todos os cavaleiros caíram.
                                                 </div>
                                                 <button style={{ ...S.btn, background: "#7a2020", color: "#fff" }} onClick={handleNext}>
@@ -371,6 +479,15 @@ const S = {
         alignItems: "baseline",
         marginBottom: "6px",
     },
+    sectionLabel: {
+        fontSize: "10px",
+        color: "#2a5a7a",
+        letterSpacing: "3px",
+        textTransform: "uppercase",
+        fontFamily: "'Cinzel', serif",
+        textAlign: "center",
+        marginBottom: "6px",
+    },
     labelSmall: {
         fontSize: "13px",
         color: "#2a5a7a",
@@ -378,15 +495,34 @@ const S = {
         textTransform: "uppercase",
         fontFamily: "'Cinzel', serif",
     },
-    godName: { fontSize: "13px", color: "#FFD700" },
-    teamLabel: {
+    godName: {
         fontSize: "13px",
+        color: "#FFD700",
+        lineHeight: "1.4",
+        marginBottom: "8px",
+        textAlign: "center",
+    },
+    teamLabel: {
+        fontSize: "10px",
         color: "#2a5a7a",
-        letterSpacing: "2px",
+        letterSpacing: "3px",
         textAlign: "center",
         marginBottom: "6px",
         textTransform: "uppercase",
         fontFamily: "'Cinzel', serif",
+    },
+    menuBtn: {
+        background: "none",
+        border: "1px solid #1a2e40",
+        borderRadius: "4px",
+        color: "#2a4a5a",
+        fontFamily: "'Cinzel', serif",
+        fontSize: "10px",
+        letterSpacing: "2px",
+        padding: "6px 0",
+        width: "100%",
+        cursor: "pointer",
+        marginTop: "8px",
     },
     knightName: {
         fontSize: "14px",
@@ -455,12 +591,14 @@ const S = {
         color: "#33445a",
         fontSize: "15px",
         marginBottom: "8px",
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
     },
     houseDesc: {
         color: "#33445a",
         fontSize: "15px",
         lineHeight: "1.7",
         marginBottom: "16px",
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
     },
     btn: {
         background: "#c8a800",
@@ -487,6 +625,7 @@ const S = {
         fontSize: "15px",
         fontStyle: "italic",
         lineHeight: "1.7",
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
     },
     easterEgg: {
         color: "#FFD700",
@@ -494,10 +633,128 @@ const S = {
         fontStyle: "italic",
         lineHeight: "1.7",
         marginBottom: "6px",
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
     },
     rollInfo: {
         color: "#1e3040",
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
         fontSize: "13px",
         marginTop: "8px",
+    },
+};
+
+// ─── Estilos do painel de cálculo ─────────────────────────────────────────────
+
+const SC = {
+    panel: {
+        border: "1px solid #2a1e00",
+        borderRadius: "4px",
+        overflow: "hidden",
+        marginTop: "12px",
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
+    },
+    panelHeader: {
+        background: "#0e0c00",
+        borderBottom: "1px solid #2a1e00",
+        padding: "6px 12px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+        gap: "4px",
+    },
+    panelTitle: {
+        fontFamily: "'Cinzel', serif",
+        fontSize: "9px",
+        letterSpacing: "3px",
+        color: "#3a2800",
+        textTransform: "uppercase",
+    },
+    panelVs: {
+        fontSize: "11px",
+        color: "#2a3848",
+    },
+    barsSection: {
+        padding: "10px 12px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "6px",
+        borderBottom: "1px solid #1a1400",
+    },
+    barRow: {
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        fontSize: "12px",
+    },
+    barLabel: {
+        color: "#2a3848",
+        width: "100px",
+        flexShrink: 0,
+    },
+    barTrack: {
+        flex: 1,
+        height: "4px",
+        background: "#0d1420",
+        borderRadius: "99px",
+        overflow: "hidden",
+    },
+    barFill: {
+        height: "100%",
+        borderRadius: "99px",
+    },
+    barVal: {
+        color: "#4a6a80",
+        width: "28px",
+        textAlign: "right",
+        flexShrink: 0,
+        fontSize: "12px",
+    },
+    rowsSection: {
+        padding: "10px 12px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "4px",
+        borderBottom: "1px solid #1a1400",
+    },
+    calcRow: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "baseline",
+        fontSize: "13px",
+        gap: "8px",
+    },
+    rowLabel: {
+        color: "#2a4a5a",
+        flex: 1,
+    },
+    rowNeutral: { color: "#4a7080", flexShrink: 0 },
+    rowPos: { color: "#1D9E75", flexShrink: 0 },
+    rowNeg: { color: "#993C1D", flexShrink: 0 },
+    tag: {
+        fontSize: "10px",
+        background: "#0a1828",
+        color: "#185FA5",
+        padding: "1px 6px",
+        borderRadius: "99px",
+        marginLeft: "6px",
+    },
+    totalRow: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "baseline",
+        padding: "8px 12px",
+        background: "#0a0900",
+    },
+    totalLabel: {
+        fontFamily: "'Cinzel', serif",
+        fontSize: "10px",
+        letterSpacing: "1px",
+        color: "#3a5060",
+    },
+    totalVal: {
+        fontSize: "13px",
+        color: "#c8a800",
+        fontWeight: "600",
     },
 };
