@@ -110,7 +110,7 @@
       "defense": 88,
       "speed": 95,
       "cosmos": 96,
-      "basePassChance": 0.45,
+      "basePassChance": 0.40,
       "description": "Aiolia é veloz e leal. Enfrenta com honra, mas sem piedade.",
       "affinityBonus": {
         "knights": [ "seiya", "aiolos", "regulus" ],
@@ -135,7 +135,7 @@
       "defense": 95,
       "speed": 85,
       "cosmos": 100,
-      "basePassChance": 0.35,
+      "basePassChance": 0.25,
       "description": "A casa mais difícil da travessia. Shaka remove os sentidos dos oponentes um a um.",
       "affinityBonus": {
         "knights": [ "ikki", "shun", "asmita" ],
@@ -185,7 +185,7 @@
       "defense": 86,
       "speed": 92,
       "cosmos": 94,
-      "basePassChance": 0.48,
+      "basePassChance": 0.45,
       "description": "Milo usa as agulhas escarlates para acumular veneno. Cavaleiros de defesa alta resistem melhor.",
       "affinityBonus": {
         "knights": [ "hyoga", "shiryu", "kardia" ],
@@ -210,7 +210,7 @@
       "defense": 90,
       "speed": 93,
       "cosmos": 99,
-      "basePassChance": 0.52,
+      "basePassChance": 0.60,
       "description": "O espírito de Aiolos protege esta casa. Cavaleiros de coração puro têm vantagem natural.",
       "affinityBonus": {
         "knights": [ "seiya", "aiolia", "sisyphus" ],
@@ -235,7 +235,7 @@
       "defense": 90,
       "speed": 90,
       "cosmos": 92,
-      "basePassChance": 0.48,
+      "basePassChance": 0.30,
       "description": "A Excalibur de Shura corta qualquer defesa. Velocidade e cosmos alto são a chave.",
       "affinityBonus": {
         "knights": [ "shiryu", "el_cid" ],
@@ -260,7 +260,7 @@
       "defense": 88,
       "speed": 86,
       "cosmos": 95,
-      "basePassChance": 0.45,
+      "basePassChance": 0.30,
       "description": "O Zero Absoluto de Camus congela até o Cosmo. Cavaleiros com fogo interno resistem.",
       "affinityBonus": {
         "knights": [ "hyoga", "degel" ],
@@ -285,7 +285,7 @@
       "defense": 85,
       "speed": 84,
       "cosmos": 92,
-      "basePassChance": 0.50,
+      "basePassChance": 0.35,
       "description": "A última barreira antes do Papa. As rosas de Aphrodite são veneno puro — mas a beleza distrai.",
       "affinityBonus": {
         "knights": [ "shun", "kanon", "albafica" ],
