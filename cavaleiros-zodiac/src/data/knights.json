@@ -16,7 +16,8 @@
 				"leo",
 				"sagittarius"
 			],
-			"lore": "Herói principal da saga clássica. Recebeu o Cosmo de Aiolos e foi reparado por Mu inúmeras vezes."
+			"lore": "Herói principal da saga clássica. Recebeu o Cosmo de Aiolos e foi reparado por Mu inúmeras vezes.",
+			"nameEn": "Pegasus Seiya"
 		},
 		{
 			"id": "shiryu",
@@ -33,7 +34,8 @@
 				"libra",
 				"capricorn"
 			],
-			"lore": "Discípulo do Mestre Ancião. Diposto aos mais extremos sacrifícios por Atena."
+			"lore": "Discípulo do Mestre Ancião. Diposto aos mais extremos sacrifícios por Atena.",
+			"nameEn": "Dragon Shiryu"
 		},
 		{
 			"id": "hyoga",
@@ -49,7 +51,8 @@
 			"affinities": [
 				"aquarius"
 			],
-			"lore": "Discípulo de Camus de Aquário. O vínculo mestre-discípulo é um dos mais fortes da saga."
+			"lore": "Discípulo de Camus de Aquário. O vínculo mestre-discípulo é um dos mais fortes da saga.",
+			"nameEn": "Cygnus Hyoga"
 		},
 		{
 			"id": "shun",
@@ -66,7 +69,8 @@
 				"virgo",
 				"pisces"
 			],
-			"lore": "O mais gentil dos cavaleiros de Bronze. Sua corrente nebulosa possui propriedades divinas únicas."
+			"lore": "O mais gentil dos cavaleiros de Bronze. Sua corrente nebulosa possui propriedades divinas únicas.",
+			"nameEn": "Andromeda Shun"
 		},
 		{
 			"id": "ikki",
@@ -83,7 +87,8 @@
 				"virgo",
 				"gemini"
 			],
-			"lore": "O mais poderoso dos cavaleiros de Bronze. Sua batalha contra Shaka de Virgem é lendária. Ressuscita da morte."
+			"lore": "O mais poderoso dos cavaleiros de Bronze. Sua batalha contra Shaka de Virgem é lendária. Ressuscita da morte.",
+			"nameEn": "Phoenix Ikki"
 		},
 		{
 			"id": "jabu",
@@ -97,7 +102,8 @@
 			"cosmos": 55,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze do Unicórnio, rival de Seiya no orfanato."
+			"lore": "Cavaleiro de Bronze do Unicórnio, rival de Seiya no orfanato.",
+			"nameEn": "Unicorn Jabu"
 		},
 		{
 			"id": "ichi",
@@ -111,7 +117,8 @@
 			"cosmos": 52,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze da Hidra. Usa suas garras para vencer."
+			"lore": "Cavaleiro de Bronze da Hidra. Usa suas garras para vencer.",
+			"nameEn": "Hydra Ichi"
 		},
 		{
 			"id": "nachi",
@@ -125,7 +132,8 @@
 			"cosmos": 56,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze do Lobo, conhecido pela velocidade."
+			"lore": "Cavaleiro de Bronze do Lobo, conhecido pela velocidade.",
+			"nameEn": "Wolf Nachi"
 		},
 		{
 			"id": "ban",
@@ -139,7 +147,8 @@
 			"cosmos": 54,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze do Leãozinho."
+			"lore": "Cavaleiro de Bronze do Leãozinho.",
+			"nameEn": "Leo Minor Ban"
 		},
 		{
 			"id": "geki",
@@ -153,7 +162,8 @@
 			"cosmos": 50,
 			"type": "defense",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze do Urso, o mais forte fisicamente entre os cavaleiros de Bronze."
+			"lore": "Cavaleiro de Bronze do Urso, o mais forte fisicamente entre os cavaleiros de Bronze.",
+			"nameEn": "Great Bear Geki"
 		},
 		{
 			"id": "misty",
@@ -167,7 +177,8 @@
 			"cosmos": 70,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Considerado o mais belo e cruel dos Cavaleiros de Prata."
+			"lore": "Considerado o mais belo e cruel dos Cavaleiros de Prata.",
+			"nameEn": "Lizard Misty"
 		},
 		{
 			"id": "moses",
@@ -183,7 +194,8 @@
 			"affinities": [
 				"pisces"
 			],
-			"lore": "Cavaleiro de Prata da Baleia."
+			"lore": "Cavaleiro de Prata da Baleia.",
+			"nameEn": "Whale Moses"
 		},
 		{
 			"id": "asterion",
@@ -197,7 +209,8 @@
 			"cosmos": 72,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Especialista em ilusões e manipulação mental."
+			"lore": "Especialista em ilusões e manipulação mental.",
+			"nameEn": "Canis Major Asterion"
 		},
 		{
 			"id": "shina",
@@ -211,7 +224,8 @@
 			"cosmos": 68,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Uma das Amazonas de Prata mais fortes da saga clássica."
+			"lore": "Uma das Amazonas de Prata mais fortes da saga clássica.",
+			"nameEn": "Ophiuchus Shina"
 		},
 		{
 			"id": "babel",
@@ -225,7 +239,8 @@
 			"cosmos": 66,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro de Prata do Centauro. Usa o fogo."
+			"lore": "Cavaleiro de Prata do Centauro. Usa o fogo.",
+			"nameEn": "Centaurus Babel"
 		},
 		{
 			"id": "capella",
@@ -239,7 +254,8 @@
 			"cosmos": 64,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Cavaleiro de Prata do Auriga."
+			"lore": "Cavaleiro de Prata do Auriga.",
+			"nameEn": "Auriga Capella"
 		},
 		{
 			"id": "mu",
@@ -255,7 +271,8 @@
 			"affinities": [
 				"aries"
 			],
-			"lore": "O único Dourado capaz de reparar Armaduras Divinas. Aliado secreto do cavaleiros de Bronze."
+			"lore": "O único Dourado capaz de reparar Armaduras Divinas. Aliado secreto do cavaleiros de Bronze.",
+			"nameEn": "Aries Mu"
 		},
 		{
 			"id": "aldebaran",
@@ -271,7 +288,8 @@
 			"affinities": [
 				"taurus"
 			],
-			"lore": "O mais forte fisicamente entre os Cavaleiros de Ouro."
+			"lore": "O mais forte fisicamente entre os Cavaleiros de Ouro.",
+			"nameEn": "Taurus Aldebaran"
 		},
 		{
 			"id": "saga",
@@ -287,7 +305,8 @@
 			"affinities": [
 				"gemini"
 			],
-			"lore": "O mais poderoso dos Cavaleiros de Ouro. Usurpou o Santuário com sua personalidade maligna."
+			"lore": "O mais poderoso dos Cavaleiros de Ouro. Usurpou o Santuário com sua personalidade maligna.",
+			"nameEn": "Gemini Saga"
 		},
 		{
 			"id": "kanon",
@@ -304,7 +323,8 @@
 				"gemini",
 				"pisces"
 			],
-			"lore": "Irmão gêmeo de Saga. Manipulou Poseidon e depois encontrou a redenção."
+			"lore": "Irmão gêmeo de Saga. Manipulou Poseidon e depois encontrou a redenção.",
+			"nameEn": "Gemini Kanon"
 		},
 		{
 			"id": "deathmask",
@@ -320,7 +340,8 @@
 			"affinities": [
 				"cancer"
 			],
-			"lore": "Envia as almas de suas vítimas ao reino dos mortos."
+			"lore": "Envia as almas de suas vítimas ao reino dos mortos.",
+			"nameEn": "Cancer Deathmask"
 		},
 		{
 			"id": "aiolia",
@@ -337,7 +358,8 @@
 				"leo",
 				"sagittarius"
 			],
-			"lore": "Irmão de Aiolos. Um dos Gold mais leais a Atena."
+			"lore": "Irmão de Aiolos. Um dos Gold mais leais a Atena.",
+			"nameEn": "Leo Aiolia"
 		},
 		{
 			"id": "shaka",
@@ -353,7 +375,8 @@
 			"affinities": [
 				"virgo"
 			],
-			"lore": "Considerado o homem mais próximo dos deuses."
+			"lore": "Considerado o homem mais próximo dos deuses.",
+			"nameEn": "Virgo Shaka"
 		},
 		{
 			"id": "dohko",
@@ -369,7 +392,8 @@
 			"affinities": [
 				"libra"
 			],
-			"lore": "Mestre de Shiryu. Viveu 261 anos vigiando a Prisão do Inferno."
+			"lore": "Mestre de Shiryu. Viveu 261 anos vigiando a Prisão do Inferno.",
+			"nameEn": "Libra Dohko"
 		},
 		{
 			"id": "milo",
@@ -385,7 +409,8 @@
 			"affinities": [
 				"scorpio"
 			],
-			"lore": "Seu Scarlet Needles injeta veneno mortal em 15 pontos vitais."
+			"lore": "Seu Scarlet Needles injeta veneno mortal em 15 pontos vitais.",
+			"nameEn": "Scorpio Milo"
 		},
 		{
 			"id": "aiolos",
@@ -402,7 +427,8 @@
 				"sagittarius",
 				"aries"
 			],
-			"lore": "Morreu protegendo o bebê Atena. Seu espírito guia os Bronzes durante toda a saga."
+			"lore": "Morreu protegendo o bebê Atena. Seu espírito guia os Bronzes durante toda a saga.",
+			"nameEn": "Sagittarius Aiolos"
 		},
 		{
 			"id": "shura",
@@ -418,7 +444,8 @@
 			"affinities": [
 				"capricorn"
 			],
-			"lore": "Seu braço direito possui poder de corte absoluto — a Excalibur."
+			"lore": "Seu braço direito possui poder de corte absoluto — a Excalibur.",
+			"nameEn": "Capricorn Shura"
 		},
 		{
 			"id": "camus",
@@ -434,7 +461,8 @@
 			"affinities": [
 				"aquarius"
 			],
-			"lore": "Mestre de Hyoga. Um dos poucos a dominar o zero absoluto. Acreditava na frieza absoluta."
+			"lore": "Mestre de Hyoga. Um dos poucos a dominar o zero absoluto. Acreditava na frieza absoluta.",
+			"nameEn": "Aquarius Camus"
 		},
 		{
 			"id": "aphrodite",
@@ -450,7 +478,8 @@
 			"affinities": [
 				"pisces"
 			],
-			"lore": "Usa rosas venenosas como arma. O mais belo dos Cavaleiros de Ouro."
+			"lore": "Usa rosas venenosas como arma. O mais belo dos Cavaleiros de Ouro.",
+			"nameEn": "Pisces Aphrodite"
 		},
 		{
 			"id": "tenma",
@@ -467,7 +496,8 @@
 				"gemini",
 				"aries"
 			],
-			"lore": "O Cavaleiro de Pégaso do século XVIII. Amigo de infância de Alone/Hades."
+			"lore": "O Cavaleiro de Pégaso do século XVIII. Amigo de infância de Alone/Hades.",
+			"nameEn": "Pegasus Tenma"
 		},
 		{
 			"id": "regulus",
@@ -483,7 +513,8 @@
 			"affinities": [
 				"leo"
 			],
-			"lore": "Criança prodígio com velocidade sobre-humana. Dourado de Leão do século XVIII."
+			"lore": "Criança prodígio com velocidade sobre-humana. Dourado de Leão do século XVIII.",
+			"nameEn": "Leo Regulus"
 		},
 		{
 			"id": "degel",
@@ -499,7 +530,8 @@
 			"affinities": [
 				"aquarius"
 			],
-			"lore": "O mais inteligente dos Dourados do Lost Canvas. Pesquisador do Cosmo."
+			"lore": "O mais inteligente dos Dourados do Lost Canvas. Pesquisador do Cosmo.",
+			"nameEn": "Aquarius Degel"
 		},
 		{
 			"id": "manigoldo",
@@ -515,7 +547,8 @@
 			"affinities": [
 				"cancer"
 			],
-			"lore": "Lida com almas dos mortos como arma de combate."
+			"lore": "Lida com almas dos mortos como arma de combate.",
+			"nameEn": "Cancer Manigoldo"
 		},
 		{
 			"id": "asmita",
@@ -531,7 +564,8 @@
 			"affinities": [
 				"virgo"
 			],
-			"lore": "Cego desde o nascimento. Possui o Cosmo mais elevado entre os Gold do Lost Canvas."
+			"lore": "Cego desde o nascimento. Possui o Cosmo mais elevado entre os Gold do Lost Canvas.",
+			"nameEn": "Virgo Asmita"
 		},
 		{
 			"id": "sisyphus",
@@ -547,7 +581,8 @@
 			"affinities": [
 				"sagittarius"
 			],
-			"lore": "Guardião da memória de Atena no século XVIII."
+			"lore": "Guardião da memória de Atena no século XVIII.",
+			"nameEn": "Sagittarius Sisyphus"
 		},
 		{
 			"id": "albafica",
@@ -563,7 +598,8 @@
 			"affinities": [
 				"pisces"
 			],
-			"lore": "Seu sangue é veneno mortal. Isolou-se da humanidade para protegê-la."
+			"lore": "Seu sangue é veneno mortal. Isolou-se da humanidade para protegê-la.",
+			"nameEn": "Pisces Albafica"
 		},
 		{
 			"id": "el_cid",
@@ -579,7 +615,8 @@
 			"affinities": [
 				"capricorn"
 			],
-			"lore": "Guerreiro de honra absoluta. Gold de Capricórnio do século XVIII."
+			"lore": "Guerreiro de honra absoluta. Gold de Capricórnio do século XVIII.",
+			"nameEn": "Capricorn El Cid"
 		},
 		{
 			"id": "kardia",
@@ -595,7 +632,8 @@
 			"affinities": [
 				"scorpio"
 			],
-			"lore": "Portador de uma doença cardíaca fatal. Quanto mais usa o Cosmo, mais forte e mais perto da morte está."
+			"lore": "Portador de uma doença cardíaca fatal. Quanto mais usa o Cosmo, mais forte e mais perto da morte está.",
+			"nameEn": "Scorpio Kardia"
 		},
 		{
 			"id": "kouga",
@@ -609,7 +647,8 @@
 			"cosmos": 80,
 			"type": "offense",
 			"affinities": [],
-			"lore": "O Cavaleiro de Pégaso da nova geração em Saint Seiya Omega."
+			"lore": "O Cavaleiro de Pégaso da nova geração em Saint Seiya Omega.",
+			"nameEn": "Pegasus Kouga"
 		},
 		{
 			"id": "ryuho",
@@ -625,7 +664,8 @@
 			"affinities": [
 				"libra"
 			],
-			"lore": "Filho de Shiryu. Herdou a armadura do Dragão e a determinação do pai."
+			"lore": "Filho de Shiryu. Herdou a armadura do Dragão e a determinação do pai.",
+			"nameEn": "Dragon Ryuho"
 		},
 		{
 			"id": "souma",
@@ -641,7 +681,8 @@
 			"affinities": [
 				"leo"
 			],
-			"lore": "Cavaleiro de Bronze de Leão em Omega."
+			"lore": "Cavaleiro de Bronze de Leão em Omega.",
+			"nameEn": "Leo Souma"
 		},
 		{
 			"id": "eden",
@@ -655,7 +696,8 @@
 			"cosmos": 83,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Filho de Apolo em Omega. Inicialmente antagonista, depois aliado dos Cavaleiros de Atena."
+			"lore": "Filho de Apolo em Omega. Inicialmente antagonista, depois aliado dos Cavaleiros de Atena.",
+			"nameEn": "Orion Eden"
 		},
 		{
 			"id": "haruto",
@@ -669,7 +711,8 @@
 			"cosmos": 74,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Ninja e Cavaleiro de Bronze do Lobo em Omega."
+			"lore": "Ninja e Cavaleiro de Bronze do Lobo em Omega.",
+			"nameEn": "Wolf Haruto"
 		},
 		{
 			"id": "yuna",
@@ -683,7 +726,8 @@
 			"cosmos": 72,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Cavaleira de Bronze da Ursa Menor em Omega."
+			"lore": "Cavaleira de Bronze da Ursa Menor em Omega.",
+			"nameEn": "Ursa Minor Yuna"
 		},
 		{
 			"id": "black_pegasus",
@@ -697,7 +741,8 @@
 			"cosmos": 58,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Contraparte sombria de Seiya. Lidera os Cavaleiros Negros de Pégaso sob as ordens de Ikki."
+			"lore": "Contraparte sombria de Seiya. Lidera os Cavaleiros Negros de Pégaso sob as ordens de Ikki.",
+			"nameEn": "Black Pegasus"
 		},
 		{
 			"id": "black_dragon",
@@ -711,7 +756,8 @@
 			"cosmos": 56,
 			"type": "defense",
 			"affinities": [],
-			"lore": "Contraparte sombria de Shiryu. Usa uma versão corrompida do Escudo do Dragão."
+			"lore": "Contraparte sombria de Shiryu. Usa uma versão corrompida do Escudo do Dragão.",
+			"nameEn": "Black Dragon"
 		},
 		{
 			"id": "black_cygnus",
@@ -725,7 +771,8 @@
 			"cosmos": 55,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Contraparte sombria de Hyoga. Usa ataques de gelo corrompidos pelo lado das trevas."
+			"lore": "Contraparte sombria de Hyoga. Usa ataques de gelo corrompidos pelo lado das trevas.",
+			"nameEn": "Black Cygnus"
 		},
 		{
 			"id": "black_andromeda",
@@ -739,7 +786,8 @@
 			"cosmos": 58,
 			"type": "support",
 			"affinities": [],
-			"lore": "Contraparte sombria de Shun. Usa correntes negras como arma."
+			"lore": "Contraparte sombria de Shun. Usa correntes negras como arma.",
+			"nameEn": "Black Andromeda"
 		},
 		{
 			"id": "black_phoenix",
@@ -753,7 +801,8 @@
 			"cosmos": 68,
 			"type": "offense",
 			"affinities": [],
-			"lore": "O mais poderoso dos Cavaleiros Negros remanescentes após a partida de Ikki."
+			"lore": "O mais poderoso dos Cavaleiros Negros remanescentes após a partida de Ikki.",
+			"nameEn": "Black Phoenix"
 		},
 		{
 			"id": "siegfried",
@@ -767,7 +816,8 @@
 			"cosmos": 94,
 			"type": "offense",
 			"affinities": [],
-			"lore": "O mais poderoso dos Guerreiros Deuses de Asgard.  Rival digno dos Cavaleiros de Ouro."
+			"lore": "O mais poderoso dos Guerreiros Deuses de Asgard.  Rival digno dos Cavaleiros de Ouro.",
+			"nameEn": "Dubhe Siegfried"
 		},
 		{
 			"id": "hagen",
@@ -783,7 +833,8 @@
 			"affinities": [
 				"aquarius"
 			],
-			"lore": "Guerreiro Deus de Merak Beta. Usa ataques baseados em fogo — rival natural de Hyoga."
+			"lore": "Guerreiro Deus de Merak Beta. Usa ataques baseados em fogo — rival natural de Hyoga.",
+			"nameEn": "Merak Hagen"
 		},
 		{
 			"id": "thor_asgard",
@@ -797,7 +848,8 @@
 			"cosmos": 82,
 			"type": "defense",
 			"affinities": [],
-			"lore": "Guerreiro Deus de Alioth Epsilon. Força física monstruosa — uma das maiores de toda a saga. Lento, mas quase indestrutível."
+			"lore": "Guerreiro Deus de Alioth Epsilon. Força física monstruosa — uma das maiores de toda a saga. Lento, mas quase indestrutível.",
+			"nameEn": "Alioth Thor"
 		},
 		{
 			"id": "alberich",
@@ -811,7 +863,8 @@
 			"cosmos": 78,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Guerreiro Deus de Megrez Delta. Usa forças da natureza como arma. Traidor que busca o poder de Odin para si mesmo."
+			"lore": "Guerreiro Deus de Megrez Delta. Usa forças da natureza como arma. Traidor que busca o poder de Odin para si mesmo.",
+			"nameEn": "Megrez Alberich"
 		},
 		{
 			"id": "mime",
@@ -825,7 +878,8 @@
 			"cosmos": 85,
 			"type": "support",
 			"affinities": [],
-			"lore": "Guerreiro Deus de Benetnasch Eta. Usa sua harpa como arma — os sons se tornam golpes devastadores. Teve um passado trágico."
+			"lore": "Guerreiro Deus de Benetnasch Eta. Usa sua harpa como arma — os sons se tornam golpes devastadores. Teve um passado trágico.",
+			"nameEn": "Benetnasch Mime"
 		},
 		{
 			"id": "Shido",
@@ -839,7 +893,8 @@
 			"cosmos": 76,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Guerreiro Deus de Mizar Zeta. Usa garras e poderes das trevas como arma principal. Tem uma identidade dupla que esconde até dos aliados"
+			"lore": "Guerreiro Deus de Mizar Zeta. Usa garras e poderes das trevas como arma principal. Tem uma identidade dupla que esconde até dos aliados",
+			"nameEn": "Mizar Shido"
 		},
 		{
 			"id": "bado",
@@ -853,7 +908,8 @@
 			"cosmos": 78,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Guerreiro Deus de Alcor. Irmão de Shido."
+			"lore": "Guerreiro Deus de Alcor. Irmão de Shido.",
+			"nameEn": "Alcor Bado"
 		},
 		{
 			"id": "krishna",
@@ -867,7 +923,8 @@
 			"cosmos": 90,
 			"type": "offense",
 			"affinities": [],
-			"lore": "O mais obstinado dos Generais Marinhos. Sua Espada de Chrysaor pode cortar qualquer coisa — rivalizou com Shiryu em intensidade."
+			"lore": "O mais obstinado dos Generais Marinhos. Sua Espada de Chrysaor pode cortar qualquer coisa — rivalizou com Shiryu em intensidade.",
+			"nameEn": "Chrysaor Krishna"
 		},
 		{
 			"id": "isaak",
@@ -883,7 +940,8 @@
 			"affinities": [
 				"aquarius"
 			],
-			"lore": "Amigo de infância de Hyoga. Traído pelo destino, tornou-se General Marinho. Seu confronto com Hyoga é um dos mais emotivos da saga."
+			"lore": "Amigo de infância de Hyoga. Traído pelo destino, tornou-se General Marinho. Seu confronto com Hyoga é um dos mais emotivos da saga.",
+			"nameEn": "Kraken Isaak"
 		},
 		{
 			"id": "sorrento",
@@ -899,7 +957,8 @@
 			"affinities": [
 				"pisces"
 			],
-			"lore": "General Marinho de Sirene. Usa sons como arma — sua flauta pode destruir o sistema nervoso dos inimigos. Enfrentou Shun."
+			"lore": "General Marinho de Sirene. Usa sons como arma — sua flauta pode destruir o sistema nervoso dos inimigos. Enfrentou Shun.",
+			"nameEn": "Siren Sorrento"
 		},
 		{
 			"id": "baian",
@@ -913,7 +972,8 @@
 			"cosmos": 78,
 			"type": "defense",
 			"affinities": [],
-			"lore": "General Marinho do Cavalo-Marinho. Usa ataques aquáticos de longo alcance."
+			"lore": "General Marinho do Cavalo-Marinho. Usa ataques aquáticos de longo alcance.",
+			"nameEn": "Seahorse Baian"
 		},
 		{
 			"id": "kasa",
@@ -927,7 +987,8 @@
 			"cosmos": 80,
 			"type": "support",
 			"affinities": [],
-			"lore": "General Marinho das Lymnades. Pode assumir a aparência de qualquer pessoa — um dos poderes mais traiçoeiros da saga."
+			"lore": "General Marinho das Lymnades. Pode assumir a aparência de qualquer pessoa — um dos poderes mais traiçoeiros da saga.",
+			"nameEn": "Lymnades Kasa"
 		},
 		{
 			"id": "scylla_io",
@@ -941,7 +1002,8 @@
 			"cosmos": 76,
 			"type": "offense",
 			"affinities": [],
-			"lore": "General Marinho de Scylla. Pode invocar múltiplas cabeças de monstro para atacar simultaneamente."
+			"lore": "General Marinho de Scylla. Pode invocar múltiplas cabeças de monstro para atacar simultaneamente.",
+			"nameEn": "Scylla Io"
 		},
 		{
 			"id": "thetis",
@@ -958,7 +1020,8 @@
 				"aquarius",
 				"pisces"
 			],
-			"lore": "General Marinha da Sereia. Devota de Poseidon. Usa o poder das correntes marinhas em combate."
+			"lore": "General Marinha da Sereia. Devota de Poseidon. Usa o poder das correntes marinhas em combate.",
+			"nameEn": "Mermaid Thetis"
 		},
 		{
 			"id": "odin_loki",
@@ -972,7 +1035,8 @@
 			"cosmos": 86,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Representante das forças de Odin no mundo mortal. Usa o poder do trovão nórdico e manipula o destino dos guerreiros."
+			"lore": "Representante das forças de Odin no mundo mortal. Usa o poder do trovão nórdico e manipula o destino dos guerreiros.",
+			"nameEn": "Loki"
 		},
 		{
 			"id": "odin_gunnar",
@@ -986,7 +1050,8 @@
 			"cosmos": 76,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Guerreiro da Valhala que serve diretamente aos desígnios de Odin."
+			"lore": "Guerreiro da Valhala que serve diretamente aos desígnios de Odin.",
+			"nameEn": "Valhalla Gunnar"
 		},
 		{
 			"id": "phaeton",
@@ -1003,7 +1068,8 @@
 				"leo",
 				"sagittarius"
 			],
-			"lore": "O mais poderoso dos Cavaleiros da Coroa de Abel. Usa o calor solar como arma e serve o deus-sol com devoção absoluta."
+			"lore": "O mais poderoso dos Cavaleiros da Coroa de Abel. Usa o calor solar como arma e serve o deus-sol com devoção absoluta.",
+			"nameEn": "Titan Phaeton"
 		},
 		{
 			"id": "corona_hyperion",
@@ -1017,7 +1083,8 @@
 			"cosmos": 82,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro da Coroa que canaliza o poder do sol primordial. Um dos guerreiros de elite de Abel."
+			"lore": "Cavaleiro da Coroa que canaliza o poder do sol primordial. Um dos guerreiros de elite de Abel.",
+			"nameEn": "Helios Hyperion"
 		},
 		{
 			"id": "corona_marte",
@@ -1031,7 +1098,8 @@
 			"cosmos": 80,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro da Coroa de Abel. Usa a energia solar concentrada para devastar oponentes."
+			"lore": "Cavaleiro da Coroa de Abel. Usa a energia solar concentrada para devastar oponentes.",
+			"nameEn": "Sol Mars"
 		},
 		{
 			"id": "fallen_lucifer",
@@ -1045,7 +1113,8 @@
 			"cosmos": 92,
 			"type": "offense",
 			"affinities": [],
-			"lore": "O mais poderoso servo de Lúcifer. Carrega o poder de um anjo que renegou o paraíso — sua força supera a maioria dos Cavaleiros de Ouro."
+			"lore": "O mais poderoso servo de Lúcifer. Carrega o poder de um anjo que renegou o paraíso — sua força supera a maioria dos Cavaleiros de Ouro.",
+			"nameEn": "Fallen Lucifer"
 		},
 		{
 			"id": "fallen_seraph",
@@ -1059,7 +1128,8 @@
 			"cosmos": 85,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Anjo caído que serve Lúcifer. Usa asas negras como arma e corrompeu seu Cosmo com energia das trevas."
+			"lore": "Anjo caído que serve Lúcifer. Usa asas negras como arma e corrompeu seu Cosmo com energia das trevas.",
+			"nameEn": "Dark Seraph"
 		},
 		{
 			"id": "fallen_cherub",
@@ -1073,7 +1143,8 @@
 			"cosmos": 80,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Um dos anjos caídos de Lúcifer. Usa o poder do vazio entre os mundos para desorientar os adversários."
+			"lore": "Um dos anjos caídos de Lúcifer. Usa o poder do vazio entre os mundos para desorientar os adversários.",
+			"nameEn": "Abyss Cherub"
 		},
 		{
 			"id": "thebe",
@@ -1089,7 +1160,8 @@
 			"affinities": [
 				"leo"
 			],
-			"lore": "Um dos Cavaleiros do Paraíso de Apolo. Usa o poder da luz celestial — um dos guerreiros mais temidos do Capítulo do Céu."
+			"lore": "Um dos Cavaleiros do Paraíso de Apolo. Usa o poder da luz celestial — um dos guerreiros mais temidos do Capítulo do Céu.",
+			"nameEn": "Heaven Thebe"
 		},
 		{
 			"id": "heaven_io",
@@ -1103,7 +1175,8 @@
 			"cosmos": 86,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Cavaleiro do Paraíso de Apolo. Usa a energia pura do éter celestial para atacar e defender."
+			"lore": "Cavaleiro do Paraíso de Apolo. Usa a energia pura do éter celestial para atacar e defender.",
+			"nameEn": "Heaven Io"
 		},
 		{
 			"id": "heaven_ganymede",
@@ -1117,7 +1190,8 @@
 			"cosmos": 84,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro do Paraíso. Serve diretamente a Apolo e usa os raios do Olimpo como arma."
+			"lore": "Cavaleiro do Paraíso. Serve diretamente a Apolo e usa os raios do Olimpo como arma.",
+			"nameEn": "Olympus Ganymede"
 		},
 		{
 			"id": "rhadamanthus",
@@ -1131,7 +1205,8 @@
 			"cosmos": 95,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Um dos Três Juízes do Inferno. Representa a Lei Divina — cada um de seus julgamentos é uma sentença de morte irrevogável."
+			"lore": "Um dos Três Juízes do Inferno. Representa a Lei Divina — cada um de seus julgamentos é uma sentença de morte irrevogável.",
+			"nameEn": "Wyvern Rhadamanthus"
 		},
 		{
 			"id": "minos",
@@ -1145,7 +1220,8 @@
 			"cosmos": 93,
 			"type": "defense",
 			"affinities": [],
-			"lore": "Um dos Três Juízes do Inferno. Determina o peso das almas dos mortos — e pune os que tentam escapar do julgamento."
+			"lore": "Um dos Três Juízes do Inferno. Determina o peso das almas dos mortos — e pune os que tentam escapar do julgamento.",
+			"nameEn": "Griffon Minos"
 		},
 		{
 			"id": "aeacus",
@@ -1159,7 +1235,8 @@
 			"cosmos": 91,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Um dos Três Juízes do Inferno. O mais veloz dos três — pune com precisão cirúrgica os que tentam cruzar o Tártaro sem permissão."
+			"lore": "Um dos Três Juízes do Inferno. O mais veloz dos três — pune com precisão cirúrgica os que tentam cruzar o Tártaro sem permissão.",
+			"nameEn": "Garuda Aeacus"
 		},
 		{
 			"id": "lune",
@@ -1173,7 +1250,8 @@
 			"cosmos": 92,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Um dos Espectros mais poderosos de Hades no Lost Canvas. Servo fiel que enxerga a morte como a única forma de redenção."
+			"lore": "Um dos Espectros mais poderosos de Hades no Lost Canvas. Servo fiel que enxerga a morte como a única forma de redenção.",
+			"nameEn": "Basilisk Lune"
 		},
 		{
 			"id": "myu",
@@ -1187,7 +1265,8 @@
 			"cosmos": 90,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Espectro da Borboleta no Lost Canvas. Usa o pó venenoso de suas asas como arma — belo e mortal como a criatura que representa."
+			"lore": "Espectro da Borboleta no Lost Canvas. Usa o pó venenoso de suas asas como arma — belo e mortal como a criatura que representa.",
+			"nameEn": "Papillon Myu"
 		},
 		{
 			"id": "charon",
@@ -1201,7 +1280,8 @@
 			"cosmos": 88,
 			"type": "support",
 			"affinities": [],
-			"lore": "O guardião do Rio Estige. Conduz almas ao reino dos mortos há milênios — e castiga qualquer um que tente cruzar sem sua permissão."
+			"lore": "O guardião do Rio Estige. Conduz almas ao reino dos mortos há milênios — e castiga qualquer um que tente cruzar sem sua permissão.",
+			"nameEn": "Styx Charon"
 		},
 		{
 			"id": "ulisses",
@@ -1215,7 +1295,8 @@
 			"cosmos": 84,
 			"type": "balance",
 			"affinities": [],
-			"lore": "Espectro de Hades que herdou a astúcia do herói grego. Usa ilusões e estratagemas para derrotar adversários muito mais poderosos."
+			"lore": "Espectro de Hades que herdou a astúcia do herói grego. Usa ilusões e estratagemas para derrotar adversários muito mais poderosos.",
+			"nameEn": "Odyssey Ulysses"
 		},
 		{
 			"id": "jamian",
@@ -1229,7 +1310,8 @@
 			"cosmos": 62,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro de Prata do Corvo. Controla centenas de corvos para atacar e desorientar os oponentes. Atuou como mensageiro do falso Papa."
+			"lore": "Cavaleiro de Prata do Corvo. Controla centenas de corvos para atacar e desorientar os oponentes. Atuou como mensageiro do falso Papa.",
+			"nameEn": "Corvus Jamian"
 		},
 		{
 			"id": "guilty",
@@ -1243,7 +1325,8 @@
 			"cosmos": 70,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Senhor da Ilha da Rainha da Morte e mestre cruel de Ikki. Forjou a Fênix através de tortura implacável — e pagou o preço por isso."
+			"lore": "Senhor da Ilha da Rainha da Morte e mestre cruel de Ikki. Forjou a Fênix através de tortura implacável — e pagou o preço por isso.",
+			"nameEn": "Death Queen Guilty"
 		},
 		{
 			"id": "daedalus",
@@ -1259,7 +1342,8 @@
 			"affinities": [
 				"pisces"
 			],
-			"lore": "Mestre de Shun e guardião da Ilha de Andrômeda. Transmitiu a armadura e os segredos das correntes nebulosas — e sacrificou tudo por seu discípulo."
+			"lore": "Mestre de Shun e guardião da Ilha de Andrômeda. Transmitiu a armadura e os segredos das correntes nebulosas — e sacrificou tudo por seu discípulo.",
+			"nameEn": "Andromeda Daedalus"
 		},
 		{
 			"id": "marin",
@@ -1276,7 +1360,8 @@
 				"aries",
 				"sagittarius"
 			],
-			"lore": "Cavaleira de Prata da Águia e instrutora de Seiya no Santuário. Uma das silver saints mais respeitadas — e uma das poucas que questionou o falso Papa."
+			"lore": "Cavaleira de Prata da Águia e instrutora de Seiya no Santuário. Uma das silver saints mais respeitadas — e uma das poucas que questionou o falso Papa.",
+			"nameEn": "Aquila Marin"
 		},
 		{
 			"id": "algol",
@@ -1290,7 +1375,8 @@
 			"cosmos": 74,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro de Prata de Perseu. Usa o Escudo de Medusa para petrificar os oponentes — um dos poderes mais temidos entre os Cavaleiros de Prata."
+			"lore": "Cavaleiro de Prata de Perseu. Usa o Escudo de Medusa para petrificar os oponentes — um dos poderes mais temidos entre os Cavaleiros de Prata.",
+			"nameEn": "Perseus Algol"
 		},
 		{
 			"id": "shaina",
@@ -1307,7 +1393,8 @@
 				"aries",
 				"virgo"
 			],
-			"lore": "Cavaleira de Prata de Ofiúco e uma das raras mulheres do Santuário. Feroz e orgulhosa, sua máscara esconde tanto rancor quanto admiração — especialmente por Seiya."
+			"lore": "Cavaleira de Prata de Ofiúco e uma das raras mulheres do Santuário. Feroz e orgulhosa, sua máscara esconde tanto rancor quanto admiração — especialmente por Seiya.",
+			"nameEn": "Ophiuchus Shaina"
 		},
 		{
 			"id": "june",
@@ -1324,7 +1411,8 @@
 				"pisces",
 				"cancer"
 			],
-			"lore": "Cavaleira de Prata do Peixe-Anjo e instrutora de Shun em Andromeda Island. Uma das poucas mulheres a treinar cavaleiros — respeitada por sua disciplina e lealdade."
+			"lore": "Cavaleira de Prata do Peixe-Anjo e instrutora de Shun em Andromeda Island. Uma das poucas mulheres a treinar cavaleiros — respeitada por sua disciplina e lealdade.",
+			"nameEn": "Angelfish June"
 		},
 		{
 			"id": "seika",
@@ -1341,7 +1429,8 @@
 				"aries",
 				"sagittarius"
 			],
-			"lore": "Irmã de Seiya, perdida na Grécia por anos. Sem treinamento formal, seu cosmo despertou através do elo espiritual com o irmão — um vínculo que nenhuma distância ou golpe pôde apagar."
+			"lore": "Irmã de Seiya, perdida na Grécia por anos. Sem treinamento formal, seu cosmo despertou através do elo espiritual com o irmão — um vínculo que nenhuma distância ou golpe pôde apagar.",
+			"nameEn": "Seika"
 		},
 		{
 			"id": "freya",
@@ -1358,7 +1447,8 @@
 				"libra",
 				"taurus"
 			],
-			"lore": "Assistente pessoal de Hilda e guerreira das terras geladas de Asgard. Seu cosmo puro e lealdade inabalável a tornam formidável mesmo entre os Guerreiros Deuses."
+			"lore": "Assistente pessoal de Hilda e guerreira das terras geladas de Asgard. Seu cosmo puro e lealdade inabalável a tornam formidável mesmo entre os Guerreiros Deuses.",
+			"nameEn": "Freya"
 		},
 		{
 			"id": "hilda",
@@ -1375,7 +1465,8 @@
 				"sagittarius",
 				"capricorn"
 			],
-			"lore": "Representante de Odin na Terra e governante de Asgard. Controlada pelo Anel de Nibelungo de Poseidon, seu cosmo foi levado ao extremo — destruidora e protetora ao mesmo tempo."
+			"lore": "Representante de Odin na Terra e governante de Asgard. Controlada pelo Anel de Nibelungo de Poseidon, seu cosmo foi levado ao extremo — destruidora e protetora ao mesmo tempo.",
+			"nameEn": "Polaris Hilda"
 		}
 	]
 }

@@ -233,6 +233,7 @@ function SizeSelectionScreen({ onChoose, onBack }) {
 function ConstellationBoard({ team, teamSize, layout }) {
     const { lang } = useLanguage();
     const td = T[lang].draft;
+    const kName = (k) => lang === 'en' && k.nameEn ? k.nameEn : k.name;
     const filledCount = team.length;
 
     const label = filledCount === 0
@@ -308,7 +309,7 @@ function ConstellationBoard({ team, teamSize, layout }) {
                             {isFilled && knight && (
                                 <text x={pos.x} y={pos.y + 24} textAnchor="middle"
                                     fill={rankColor} fontSize="11" fontFamily="'Cormorant Garamond', Georgia, serif" opacity={0.95}>
-                                    {knight.name.length > 16 ? knight.name.slice(0, 14) + "…" : knight.name}
+                                    {kName(knight).length > 16 ? kName(knight).slice(0, 14) + "…" : kName(knight)}
                                 </text>
                             )}
                             {!isFilled && (
@@ -331,6 +332,7 @@ export default function KnightSelect({ godId, onConfirm, onBack }) {
     const allKnights = knightsData.knights;
     const { lang } = useLanguage();
     const td = T[lang].draft;
+    const kName = (k) => lang === 'en' && k.nameEn ? k.nameEn : k.name;
 
     const [teamSize, setTeamSize] = useState(null);
     const [layout, setLayout] = useState(null);
@@ -424,7 +426,7 @@ export default function KnightSelect({ godId, onConfirm, onBack }) {
                                         onMouseLeave={e => e.currentTarget.style.borderColor = "#333"}
                                     >
                                         <div style={styles.nameRow}>
-                                            <p style={{ ...styles.knightName, color: rankColor }}>{knight.name}</p>
+                                            <p style={{ ...styles.knightName, color: rankColor }}>{kName(knight)}</p>
                                             <span style={{ ...styles.overall, color: overallColor(calcOverall(knight)) }}>
                                                 {calcOverall(knight)} OVR
                                             </span>

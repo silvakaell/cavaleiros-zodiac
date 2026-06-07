@@ -97,6 +97,8 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
     const tr = T[lang].result;
     const houseNames = T[lang].houses;   // 12 signos traduzidos
     const f = T[lang].footer;
+    const kName = (k) => lang === 'en' && k.nameEn ? k.nameEn : k.name;
+    const kShort = (k) => { const n = kName(k); const p = n.split(" "); return lang === 'en' ? p[p.length - 1] : p[0]; };
 
     const [hoveredHouse, setHoveredHouse] = useState(null);
 
@@ -185,7 +187,7 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                             {allKnights.map((k, i) => {
                                 const pos = positions[i];
                                 const alive = survivors.some(s => s.id === k.id);
-                                const firstName = k.name.split(" ")[0];
+                                const firstName = kShort(k);
                                 const houseIdx = fallenInHouse[k.id];
                                 const houseName = houseIdx !== undefined ? houseNames[houseIdx] : null;
                                 return (
@@ -241,7 +243,7 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                                     const houseName = houseIdx !== undefined ? houseNames[houseIdx] : "—";
                                     return (
                                         <div key={k.id} style={S.fallenRow}>
-                                            <span style={S.fallenName}>{k.name.split(" ")[0]}</span>
+                                            <span style={S.fallenName}>{kShort(k)}</span>
                                             <span style={S.fallenHouse}>{houseName}</span>
                                         </div>
                                     );
@@ -409,7 +411,7 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                                     <span style={S.eggTag}>{tr.history.egg}</span>
                                 )}
                                 {(fallenByHouse[i] ?? []).map(k => (
-                                    <span key={k.id} style={S.fallenTag}>💀 {k.name}</span>
+                                    <span key={k.id} style={S.fallenTag}>💀 {kName(k)}</span>
                                 ))}
                             </div>
                         ))}

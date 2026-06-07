@@ -109,6 +109,8 @@ function getCalcBreakdown(team, house, godId, houseIndex) {
 
 function ConstellationMini({ layout, team, aliveTeam }) {
     const [hoveredStar, setHoveredStar] = useState(null);
+    const { lang } = useLanguage();
+    const kShort = (k) => { const n = lang === 'en' && k.nameEn ? k.nameEn : k.name; const p = n.split(" "); return lang === 'en' ? p[p.length - 1] : p[0]; };
 
     if (!layout) return null;
     const { stars, lines } = layout;
@@ -216,7 +218,7 @@ function ConstellationMini({ layout, team, aliveTeam }) {
                                     textAnchor="middle" fill={color}
                                     fontSize="15" fontFamily="Georgia, serif" fontStyle="italic"
                                 >
-                                    {knight.name.split(" ")[0]}
+                                    {kShort(knight)}
                                 </text>
                                 <text x={s.x} y={s.y + 56}
                                     textAnchor="middle" fill={color}
@@ -240,6 +242,8 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
     const { lang } = useLanguage();
     const tr = T[lang].run;
     const houses = T[lang].houses; // 12 nomes de signos traduzidos
+    const kName = (k) => lang === 'en' && k.nameEn ? k.nameEn : k.name;
+    const kShort = (k) => { const n = kName(k); const parts = n.split(" "); return lang === 'en' ? parts[parts.length - 1] : parts[0]; };
 
     const [houseIndex, setHouseIndex] = useState(0);
     const [aliveTeam, setAliveTeam] = useState(() => applyGodCosmosModifiers(team, godId));
@@ -419,7 +423,7 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
                                         color: isFallen ? "#2a2a2a" : "#4a7a9a",
                                         textDecoration: isFallen ? "line-through" : "none",
                                     }}>
-                                        {k.name}
+                                        {kName(k)}
                                     </div>
                                 );
                             })}
@@ -439,7 +443,7 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
                                 <div style={S.dentils} />
                                 <div style={S.pediment}>
                                     <span style={S.capOrnL}>◆</span>
-                                    <span style={S.houseName}>{currentHouse.name}</span>
+                                    <span style={S.houseName}>{lang === 'en' ? houses[houseIndex] : currentHouse.name}</span>
                                     <span style={S.capOrnR}>◆</span>
                                 </div>
                                 <div style={S.dentils} />
@@ -454,7 +458,7 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
                                         <div style={S.houseDesc}>{currentHouse.description}</div>
                                         {!runOver && (
                                             <button style={S.btn} onClick={handleResolve}>
-                                                {tr.battle.faceBtn(currentHouse.guardian)}
+                                                {tr.battle.faceBtn(currentHouse.guardian.split(" de ")[0].split(" do ")[0])}
                                             </button>
                                         )}
                                     </>
@@ -480,13 +484,13 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
 
                                             {!result.passed && result.fallenKnight && !result.reviveGranted && (
                                                 <div style={{ color: "#9a3030", fontSize: "14px", marginTop: "8px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
-                                                    {tr.battle.knightFell(result.fallenKnight.name)}
+                                                    {tr.battle.knightFell(kName(result.fallenKnight))}
                                                 </div>
                                             )}
 
                                             {result.reviveGranted && result.fallenKnight && (
                                                 <div style={{ color: "#b060e0", fontSize: "14px", marginTop: "8px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
-                                                    {tr.battle.knightRevived(result.fallenKnight.name)}
+                                                    {tr.battle.knightRevived(kName(result.fallenKnight))}
                                                 </div>
                                             )}
 
@@ -541,7 +545,7 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
                                                         {bd.affinities.length > 0 ? bd.affinities.map((ab, i) => (
                                                             <div key={i} style={SC.calcRow}>
                                                                 <span style={SC.rowLabel}>
-                                                                    {tc.affinity} — {ab.matches.map(k => k.name.split(" ")[0]).join(", ")}
+                                                                    {tc.affinity} — {ab.matches.map(k => { const n = lang === 'en' && k.nameEn ? k.nameEn : k.name; const p = n.split(" "); return lang === 'en' ? p[p.length - 1] : p[0]; }).join(", ")}
                                                                     <span style={SC.tag}>{ab.matches.length}× +{Math.round(ab.bonus * 100)}%</span>
                                                                 </span>
                                                                 <span style={SC.rowPos}>+{Math.round(ab.total * 100)}%</span>
