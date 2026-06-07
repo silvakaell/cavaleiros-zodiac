@@ -13,7 +13,7 @@ export const T = {
         footer: {
             creator: "Criado por @kamonbr",
             game: "A Travessia — fã-game não oficial",
-            copyright: "Cavaleiros do Zodíaco © Masami Kurumada · 2025",
+            copyright: "Cavaleiros do Zodíaco © Masami Kurumada · 2026",
             privacy: "Privacidade",
         },
 
