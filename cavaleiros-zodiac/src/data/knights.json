@@ -16,7 +16,7 @@
 				"leo",
 				"sagittarius"
 			],
-			"lore": "Herói principal da saga clássica. Recebeu o Cosmo de Aiolos e foi reparado por Mu inúmeras vezes.",
+			"lore": "Herói principal da saga clássica. Recebeu o Cosmo de Aiolos e lutou por Atena em inúmeras batalhas..",
 			"nameEn": "Pegasus Seiya"
 		},
 		{
@@ -34,7 +34,7 @@
 				"libra",
 				"capricorn"
 			],
-			"lore": "Discípulo do Mestre Ancião. Diposto aos mais extremos sacrifícios por Atena.",
+			"lore": "Discípulo do Mestre Ancião. Disposto aos mais extremos sacrifícios por Atena.",
 			"nameEn": "Dragon Shiryu"
 		},
 		{
@@ -137,7 +137,7 @@
 		},
 		{
 			"id": "ban",
-			"name": "Ban do Leão Menor.",
+			"name": "Ban de Leão Menor.",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Leo Minor",
@@ -147,7 +147,7 @@
 			"cosmos": 54,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro de Bronze do Leãozinho.",
+			"lore": "Cavaleiro de Bronze de Leão-Menor.",
 			"nameEn": "Leo Minor Ban"
 		},
 		{
@@ -358,7 +358,7 @@
 				"leo",
 				"sagittarius"
 			],
-			"lore": "Irmão de Aiolos. Um dos Gold mais leais a Atena.",
+			"lore": "Irmão de Aiolos. Um dos cavaleiros de Ouro mais leais a Atena.",
 			"nameEn": "Leo Aiolia"
 		},
 		{
@@ -392,7 +392,7 @@
 			"affinities": [
 				"libra"
 			],
-			"lore": "Mestre de Shiryu. Viveu 261 anos vigiando a Prisão do Inferno.",
+			"lore": "Mestre de Shiryu. Viveu durante séculos nos Cinco Picos Antigos.",
 			"nameEn": "Libra Dohko"
 		},
 		{
@@ -409,7 +409,7 @@
 			"affinities": [
 				"scorpio"
 			],
-			"lore": "Seu Scarlet Needles injeta veneno mortal em 15 pontos vitais.",
+			"lore": "Um dos cavaleiros de Ouro mais orgulhosos do Santuário, suas agulhas escarlates causam terror aos inimigos de Atena.",
 			"nameEn": "Scorpio Milo"
 		},
 		{
@@ -496,7 +496,7 @@
 				"gemini",
 				"aries"
 			],
-			"lore": "O Cavaleiro de Pégaso do século XVIII. Amigo de infância de Alone/Hades.",
+			"lore": "O Cavaleiro de Pégaso do século XVIII. Amigo de infância de Alone e Sasha.",
 			"nameEn": "Pegasus Tenma"
 		},
 		{
@@ -564,7 +564,7 @@
 			"affinities": [
 				"virgo"
 			],
-			"lore": "Cego desde o nascimento. Possui o Cosmo mais elevado entre os Gold do Lost Canvas.",
+			"lore": "Cego desde o nascimento. Possui o Cosmo mais elevado entre os dourados do Lost Canvas.",
 			"nameEn": "Virgo Asmita"
 		},
 		{
@@ -741,7 +741,7 @@
 			"cosmos": 58,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Contraparte sombria de Seiya. Lidera os Cavaleiros Negros de Pégaso sob as ordens de Ikki.",
+			"lore": "Contraparte sombria de Pegáso. Lidera os Cavaleiros Negros sob as ordens de Ikki.",
 			"nameEn": "Black Pegasus"
 		},
 		{
@@ -833,7 +833,7 @@
 			"affinities": [
 				"aquarius"
 			],
-			"lore": "Guerreiro Deus de Merak Beta. Usa ataques baseados em fogo — rival natural de Hyoga.",
+			"lore": "Guerreiro Deus de Merak Beta. Usa ataques baseados em gelo e fogo — rival natural de Hyoga.",
 			"nameEn": "Merak Hagen"
 		},
 		{
@@ -878,7 +878,7 @@
 			"cosmos": 85,
 			"type": "support",
 			"affinities": [],
-			"lore": "Guerreiro Deus de Benetnasch Eta. Usa sua harpa como arma — os sons se tornam golpes devastadores. Teve um passado trágico.",
+			"lore": "Guerreiro Deus de Benetnasch. Usa sua harpa como arma — os sons se tornam golpes devastadores. Teve um passado trágico.",
 			"nameEn": "Benetnasch Mime"
 		},
 		{
@@ -893,7 +893,7 @@
 			"cosmos": 76,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Guerreiro Deus de Mizar Zeta. Usa garras e poderes das trevas como arma principal. Tem uma identidade dupla que esconde até dos aliados",
+			"lore": "Guerreiro Deus de Mizar Zeta. Usa garras e poderes das trevas como arma principal. Tem uma identidade dupla que esconde até dos aliados.",
 			"nameEn": "Mizar Shido"
 		},
 		{
@@ -1020,7 +1020,7 @@
 				"aquarius",
 				"pisces"
 			],
-			"lore": "General Marinha da Sereia. Devota de Poseidon. Usa o poder das correntes marinhas em combate.",
+			"lore": "Devota de Poseidon.",
 			"nameEn": "Mermaid Thetis"
 		},
 		{
@@ -1040,7 +1040,7 @@
 		},
 		{
 			"id": "odin_gunnar",
-			"name": "Gunnar da Valhala",
+			"name": "Midgard",
 			"series": "movie_odin",
 			"rank": "odin_warrior",
 			"constellation": "Valhalla",
@@ -1050,7 +1050,7 @@
 			"cosmos": 76,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Guerreiro da Valhala que serve diretamente aos desígnios de Odin.",
+			"lore": "Guerreiro de Valhala que serve diretamente aos desígnios de Odin.",
 			"nameEn": "Valhalla Gunnar"
 		},
 		{
@@ -1073,7 +1073,7 @@
 		},
 		{
 			"id": "corona_hyperion",
-			"name": "Hyperion de Hélio",
+			"name": "Atlas",
 			"series": "movie_abel",
 			"rank": "corona",
 			"constellation": "Helios",
@@ -1083,12 +1083,12 @@
 			"cosmos": 82,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro da Coroa que canaliza o poder do sol primordial. Um dos guerreiros de elite de Abel.",
+			"lore": "Um dos guerreiros de elite de Abel.",
 			"nameEn": "Helios Hyperion"
 		},
 		{
 			"id": "corona_marte",
-			"name": "Marte do Cosmos Solar",
+			"name": "Berenice",
 			"series": "movie_abel",
 			"rank": "corona",
 			"constellation": "Sol",
@@ -1098,12 +1098,12 @@
 			"cosmos": 80,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro da Coroa de Abel. Usa a energia solar concentrada para devastar oponentes.",
+			"lore": "Usa a energia solar concentrada para devastar oponentes.",
 			"nameEn": "Sol Mars"
 		},
 		{
 			"id": "fallen_lucifer",
-			"name": "Anjo Caído de Lúcifer",
+			"name": "Ashtaroth",
 			"series": "movie_lucifer",
 			"rank": "fallen",
 			"constellation": "Fallen Star",
@@ -1118,7 +1118,7 @@
 		},
 		{
 			"id": "fallen_seraph",
-			"name": "Serafim das Trevas",
+			"name": "Moa",
 			"series": "movie_lucifer",
 			"rank": "fallen",
 			"constellation": "Dark Seraph",
@@ -1133,7 +1133,7 @@
 		},
 		{
 			"id": "fallen_cherub",
-			"name": "Querubim do Abismo",
+			"name": "Moa",
 			"series": "movie_lucifer",
 			"rank": "fallen",
 			"constellation": "Abyss",
@@ -1148,7 +1148,7 @@
 		},
 		{
 			"id": "thebe",
-			"name": "Thebe do Paraíso",
+			"name": "Tohma",
 			"series": "movie_apolo",
 			"rank": "heaven",
 			"constellation": "Heaven Thebe",
@@ -1165,7 +1165,7 @@
 		},
 		{
 			"id": "heaven_io",
-			"name": "Io do Paraíso",
+			"name": "Teseu",
 			"series": "movie_apolo",
 			"rank": "heaven",
 			"constellation": "Heaven Io",
@@ -1180,7 +1180,7 @@
 		},
 		{
 			"id": "heaven_ganymede",
-			"name": "Ganimedes do Olimpo",
+			"name": "Odisseu",
 			"series": "movie_apolo",
 			"rank": "heaven",
 			"constellation": "Olympus",
@@ -1195,7 +1195,7 @@
 		},
 		{
 			"id": "rhadamanthus",
-			"name": "Radamanto de Wyvern",
+			"name": "Radamantyhs de Wyvern",
 			"series": "hades",
 			"rank": "specter",
 			"constellation": "Wyvern",
@@ -1225,7 +1225,7 @@
 		},
 		{
 			"id": "aeacus",
-			"name": "Éacos de Garuda",
+			"name": "Aiacos de Garuda",
 			"series": "hades",
 			"rank": "specter",
 			"constellation": "Garuda",
@@ -1315,7 +1315,7 @@
 		},
 		{
 			"id": "guilty",
-			"name": "Guilty, o Carrasco",
+			"name": "Guilty",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Death Queen",
@@ -1360,7 +1360,7 @@
 				"aries",
 				"sagittarius"
 			],
-			"lore": "Cavaleira de Prata da Águia e instrutora de Seiya no Santuário. Uma das silver saints mais respeitadas — e uma das poucas que questionou o falso Papa.",
+			"lore": "Cavaleira de Prata da Águia e instrutora de Seiya no Santuário. Uma das amazonas mais respeitadas — e uma das poucas que questionou o falso Grande Mestre.",
 			"nameEn": "Aquila Marin"
 		},
 		{
@@ -1398,7 +1398,7 @@
 		},
 		{
 			"id": "june",
-			"name": "June do Peixe-Anjo",
+			"name": "June de Camaleão",
 			"series": "classic",
 			"rank": "silver",
 			"constellation": "Angelfish",
@@ -1416,7 +1416,7 @@
 		},
 		{
 			"id": "seika",
-			"name": "Seika",
+			"name": "Shoko",
 			"series": "classic",
 			"rank": "bronze",
 			"constellation": "Pegasus",
@@ -1429,7 +1429,7 @@
 				"aries",
 				"sagittarius"
 			],
-			"lore": "Irmã de Seiya, perdida na Grécia por anos. Sem treinamento formal, seu cosmo despertou através do elo espiritual com o irmão — um vínculo que nenhuma distância ou golpe pôde apagar.",
+			"lore": "Amazona de Pégaso.",
 			"nameEn": "Seika"
 		},
 		{
