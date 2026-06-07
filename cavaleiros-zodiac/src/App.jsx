@@ -40,8 +40,8 @@ export default function App() {
         setScreen("run");
     }
 
-    function handleRunFinish(history, survivors, fallen) {
-        setRunData({ history, survivors, fallen });
+    function handleRunFinish(history, survivors, fallen, fallenHouses) {
+        setRunData({ history, survivors, fallen, fallenHouses });
         setScreen("result");
     }
 
@@ -112,6 +112,7 @@ export default function App() {
                     history={runData.history}
                     survivors={runData.survivors}
                     fallen={runData.fallen}
+                    fallenHouses={runData.fallenHouses}
                     godId={selectedGod}
                     onRestart={handleRestart}
                     onRetry={handleRetry}

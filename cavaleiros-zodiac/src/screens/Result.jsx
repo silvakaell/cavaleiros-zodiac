@@ -93,7 +93,7 @@ function houseStyle(i, history) {
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
-export default function Result({ history, survivors, fallen, godId, onRestart, onRetry }) {
+export default function Result({ history, survivors, fallen, fallenHouses = {}, godId, onRestart, onRetry }) {
 
     const [hoveredHouse, setHoveredHouse] = useState(null);
 
@@ -105,11 +105,22 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
     const allKnights = [...survivors, ...fallen];
     const positions = knightPositions(allKnights.length);
 
-    // Mapa: knightId → índice da casa onde caiu
-    const fallenInHouse = {};
-    history.forEach((h, i) => {
-        if (!h.passed && h.fallenKnight) {
-            fallenInHouse[h.fallenKnight.id] = i;
+    // fallenHouses vem do Run (knightId → houseIndex), cobre casos de retry.
+    // Como fallback, extrai do history para compatibilidade.
+    const fallenInHouse = { ...fallenHouses };
+    if (Object.keys(fallenInHouse).length === 0) {
+        history.forEach((h, i) => {
+            if (h.fallenKnight) fallenInHouse[h.fallenKnight.id] = i;
+        });
+    }
+
+    // Mapa inverso: houseIndex → [fallen knights]
+    const fallenByHouse = {};
+    fallen.forEach(k => {
+        const idx = fallenInHouse[k.id];
+        if (idx !== undefined) {
+            if (!fallenByHouse[idx]) fallenByHouse[idx] = [];
+            fallenByHouse[idx].push(k);
         }
     });
 
@@ -408,9 +419,9 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
                                 {r.easterEggTriggered && (
                                     <span style={S.eggTag}>✦ especial</span>
                                 )}
-                                {r.fallenKnight && (
-                                    <span style={S.fallenTag}>💀 {r.fallenKnight.name}</span>
-                                )}
+                                {(fallenByHouse[i] ?? []).map(k => (
+                                    <span key={k.id} style={S.fallenTag}>💀 {k.name}</span>
+                                ))}
                             </div>
                         ))}
                     </div>

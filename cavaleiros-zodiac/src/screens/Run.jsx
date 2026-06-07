@@ -271,6 +271,7 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
     // Cosmos modificado pelo deus desde o início — nunca muda o prop `team` original
     const [aliveTeam, setAliveTeam] = useState(() => applyGodCosmosModifiers(team, godId));
     const [fallen, setFallen] = useState([]);
+    const [fallenHouses, setFallenHouses] = useState({}); // knightId → houseIndex onde caiu
     const [result, setResult] = useState(null);
     const [history, setHistory] = useState([]);
 
@@ -305,6 +306,7 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
             if (!revived) {
                 setAliveTeam(prev => prev.filter(k => k.id !== outcome.fallenKnight.id));
                 setFallen(prev => [...prev, outcome.fallenKnight]);
+                setFallenHouses(prev => ({ ...prev, [outcome.fallenKnight.id]: houseIndex }));
             }
             setResult({ ...outcome, reviveGranted: revived });
         } else {
@@ -315,7 +317,7 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
     function handleNext() {
         const h = [...history, result];
         if (isLastHouse || aliveTeam.length === 0) {
-            onFinish(h, aliveTeam, fallen);
+            onFinish(h, aliveTeam, fallen, fallenHouses);
         } else {
             // Desgaste temporal (ex: Chronos perde cosmos por casa)
             const decay = getCosmosDecay(godId);
