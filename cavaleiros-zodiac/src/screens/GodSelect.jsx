@@ -1,5 +1,5 @@
 // GodSelect.jsx
-// 8 deuses em anel octagonal sobre fundo de galáxia.
+// 8 deuses em anel octagonal + "Sem Divindade" abaixo, fora do anel.
 // Clique num deus → info flutua no centro → Confirmar chama onSelect(godId).
 
 import { useState } from "react";
@@ -14,7 +14,7 @@ function seededRng(seed) {
 const _rng = seededRng(137);
 const STARS = Array.from({ length: 200 }, () => ({
     cx: +(_rng() * 1000).toFixed(1),
-    cy: +(_rng() * 420).toFixed(1),
+    cy: +(_rng() * 500).toFixed(1),
     r: +(_rng() * 1.2 + 0.3).toFixed(1),
     op: +(_rng() * 0.28 + 0.06).toFixed(2),
 }));
@@ -44,11 +44,10 @@ const GODS = [
         name: "Espada de Hades",
         short: "Hades",
         color: "#9b59b6",
-        lx: 78, ly: 19,
-        desc: "O deus dos mortos. Acesso a Espectros, guardiões mais agressivos.",
+        lx: 78, ly: 18,
+        desc: "O deus dos mortos. Guardiões mais agressivos, mas a morte não é definitiva.",
         pros: [
-            "Espectros disponíveis no pool (poder alto).",
-            "Cavaleiro caído vira 'espectro' — usável nas últimas 3 casas.",
+            "35% de chance de reviver um cavaleiro caído em batalha.",
         ],
         cons: [
             "Chance base de todas as casas reduzida em 10%.",
@@ -59,11 +58,11 @@ const GODS = [
         name: "Tridente de Poseidon",
         short: "Poseidon",
         color: "#1abc9c",
-        lx: 91, ly: 50,
+        lx: 91, ly: 47,
         desc: "O deus dos mares. Generais Marinhos no pool, mas casas de água são mortais.",
         pros: [
-            "Generais Marinhos disponíveis no pool.",
-            "Bônus de +15% nas casas de Aquário e Peixes.",
+            "Pool prioriza Generais Marinhos.",
+            "Bônus de +15% nas casas de Aquário e Peixes com time aquático.",
         ],
         cons: [
             "Aquário e Peixes têm -20% sem cavaleiros de afinidade aquática.",
@@ -74,14 +73,14 @@ const GODS = [
         name: "Fúria de Marte",
         short: "Marte",
         color: "#e74c3c",
-        lx: 78, ly: 82,
+        lx: 78, ly: 72,
         desc: "O deus da guerra de Omega. Caos e poder bruto — a nova geração domina.",
         pros: [
-            "Cavaleiros de Omega têm stats aumentados em 20%.",
-            "Pool tem maior concentração de Omega.",
+            "Pool restrito a cavaleiros Omega.",
+            "Cosmos de Omega aumentado em 20%.",
         ],
         cons: [
-            "Cavaleiros clássicos perdem 15% de eficácia. Easter eggs clássicos desativados.",
+            "Cavaleiros clássicos e Lost Canvas perdem 15% de cosmos.",
         ],
     },
     {
@@ -89,14 +88,14 @@ const GODS = [
         name: "O calor de Apolo",
         short: "Apolo",
         color: "#e8a020",
-        lx: 50, ly: 94,
-        desc: "O deus do sol. Cavaleiros de Ouro são abundantes, mas os Bronzes somem.",
+        lx: 50, ly: 82,
+        desc: "O deus do sol. Os Cavaleiros de Ouro, normalmente inacessíveis, surgem no draft.",
         pros: [
-            "Alta concentração de Cavaleiros de Ouro no pool.",
-            "Stats de Gold aumentados em 15%.",
+            "Cavaleiros de Ouro aparecem no pool de draft.",
+            "Cosmos de Gold aumentado em 15%.",
         ],
         cons: [
-            "Cavaleiros de Bronze raríssimos no pool (máximo 1 por run).",
+            "Leve vantagem — a verdadeira dificuldade são as casas finais.",
         ],
     },
     {
@@ -104,11 +103,10 @@ const GODS = [
         name: "O espírito de Chronos",
         short: "Chronos",
         color: "#8ea8b8",
-        lx: 22, ly: 82,
-        desc: "O deus do tempo de Next Dimension. Manipule o destino — mas o desgaste é real.",
+        lx: 22, ly: 72,
+        desc: "O deus do tempo. O cosmos dos cavaleiros se desgasta com o passar das casas.",
         pros: [
-            "Pode re-rolar o pool de cavaleiros 1 vez antes de montar o time.",
-            "Pode repetir uma casa que falhou (1 vez por run).",
+            "Cosmos inicial dos cavaleiros inalterado.",
         ],
         cons: [
             "Cada cavaleiro perde 10 de cosmos por casa passada (desgaste temporal).",
@@ -119,14 +117,14 @@ const GODS = [
         name: "Onda de Ártemis",
         short: "Ártemis",
         color: "#d4a820",
-        lx: 9, ly: 50,
-        desc: "A deusa da lua de Saintia Sho. Só as Cavaleiras de Atena podem brilhar aqui.",
+        lx: 9, ly: 47,
+        desc: "A deusa da lua. Apenas cavaleiras femininas compõem este time.",
         pros: [
-            "Cavaleiras femininas têm stats aumentados em 30%.",
-            "Pool prioriza personagens femininas.",
+            "Cavaleiras têm cosmos aumentado em 30%.",
+            "Pool restrito a cavaleiras femininas.",
         ],
         cons: [
-            "Cavaleiros de Ouro masculinos não aparecem no pool.",
+            "Time composto exclusivamente por cavaleiras — pool limitado.",
         ],
     },
     {
@@ -134,28 +132,46 @@ const GODS = [
         name: "Lança de Odin",
         short: "Odin",
         color: "#78c4d8",
-        lx: 22, ly: 19,
+        lx: 22, ly: 18,
         desc: "O deus nórdico de Asgard. Os Guerreiros do Norte ingressam na travessia.",
         pros: [
-            "Guerreiros de Asgard disponíveis no pool.",
+            "Pool prioriza Guerreiros de Asgard (+20% cosmos).",
             "Bônus de +20% nas sete primeiras casas.",
         ],
         cons: [
-            "Easter eggs do lore clássico ficam desativados.",
+            "Pouca vantagem nas casas finais.",
+        ],
+    },
+    {
+        id: "renegado",
+        name: "Sem Divindade",
+        short: "Sem Divindade",
+        color: "#8a6a4a",
+        lx: 50, ly: 95,
+        desc: "Nenhum deus, nenhuma lealdade. Cavaleiros renegados que traçam seu próprio caminho.",
+        pros: [
+            "Cavaleiros negros têm cosmos aumentado em 25%.",
+            "+5% de chance em todas as casas — imprevisíveis.",
+            "Pool prioriza cavaleiros sem ligação direta com deuses.",
+        ],
+        cons: [
+            "Cavaleiros ligados a divindades perdem de 8% a 20% de cosmos.",
         ],
     },
 ];
 
-// SVG line endpoints — lx*10, ly*4.2 para viewBox 1000×420 c/ preserveAspectRatio="none"
+// SVG line endpoints — lx*10, ly*5 para viewBox 1000×500 c/ preserveAspectRatio="none"
+// Octógono comprimido (ly máx ≈82%) para caber "renegado" em ly:95% abaixo.
 const SXY = {
-    atena: [500, 30],
-    hades: [780, 80],
-    poseidon: [910, 210],
-    marte: [780, 344],
-    apolo: [500, 395],
-    chronos: [220, 344],
-    artemis: [90, 210],
-    odin: [220, 80],
+    atena: [500, 35],
+    hades: [780, 90],
+    poseidon: [910, 235],
+    marte: [780, 360],
+    apolo: [500, 410],
+    chronos: [220, 360],
+    artemis: [90, 235],
+    odin: [220, 90],
+    renegado: [500, 475],
 };
 
 const RING = ["atena", "hades", "poseidon", "marte", "apolo", "chronos", "artemis", "odin"];
@@ -194,7 +210,7 @@ export default function GodSelect({ onSelect }) {
             <div style={S.area}>
 
                 {/* Stars + nebula + constellation lines */}
-                <svg style={S.bgSvg} viewBox="0 0 1000 420" preserveAspectRatio="none">
+                <svg style={S.bgSvg} viewBox="0 0 1000 500" preserveAspectRatio="none">
                     <defs>
                         <radialGradient id="gnb1" cx="50%" cy="50%">
                             <stop offset="0%" stopColor="#2810a0" stopOpacity="0.10" />
@@ -205,8 +221,8 @@ export default function GodSelect({ onSelect }) {
                             <stop offset="100%" stopColor="#000" stopOpacity="0" />
                         </radialGradient>
                     </defs>
-                    <ellipse cx="500" cy="210" rx="400" ry="180" fill="url(#gnb1)" />
-                    <ellipse cx="200" cy="310" rx="200" ry="120" fill="url(#gnb2)" />
+                    <ellipse cx="500" cy="250" rx="400" ry="200" fill="url(#gnb1)" />
+                    <ellipse cx="200" cy="370" rx="200" ry="130" fill="url(#gnb2)" />
 
                     {STARS.map((s, i) => (
                         <circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill="#fff" opacity={s.op} />
@@ -346,7 +362,7 @@ const S = {
         maxWidth: "1000px",
         width: "100%",
         margin: "0 auto",
-        minHeight: "420px",
+        minHeight: "500px",
     },
     bgSvg: {
         position: "absolute",
