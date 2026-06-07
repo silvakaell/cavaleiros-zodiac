@@ -2,7 +2,7 @@
 // Tela da travessia — mapa das 12 casas do santuário.
 // Recebe: team, godId, layout, teamSize, onFinish
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import housesData from "../data/houses.json";
 import { resolveHouse } from "../game/battleEngine";
 import { getGodPassBonus, GODS } from "../game/godBonuses";
@@ -26,18 +26,18 @@ const RANK_COLORS = {
 
 // Posições dos nós no mapa SVG (viewBox 640x292)
 const HOUSE_POSITIONS = [
-    { cx: 590, cy: 262 }, // 1  Áries
-    { cx: 510, cy: 228 }, // 2  Touro
-    { cx: 562, cy: 175 }, // 3  Gêmeos
-    { cx: 455, cy: 150 }, // 4  Câncer
-    { cx: 348, cy: 177 }, // 5  Leão
-    { cx: 400, cy: 123 }, // 6  Virgem
-    { cx: 512, cy: 101 }, // 7  Libra
-    { cx: 462, cy: 63 }, // 8  Escorpião
-    { cx: 352, cy: 80 }, // 9  Sagitário
-    { cx: 246, cy: 57 }, // 10 Capricórnio
-    { cx: 150, cy: 81 }, // 11 Aquário
-    { cx: 66, cy: 50 }, // 12 Peixes
+    { cx: 590, cy: 262, name: "Áries", anchor: "below" },
+    { cx: 510, cy: 228, name: "Touro", anchor: "left" },
+    { cx: 562, cy: 175, name: "Gêmeos", anchor: "right" },
+    { cx: 455, cy: 150, name: "Câncer", anchor: "below" },
+    { cx: 348, cy: 177, name: "Leão", anchor: "left" },
+    { cx: 400, cy: 123, name: "Virgem", anchor: "above" },
+    { cx: 512, cy: 101, name: "Libra", anchor: "right" },
+    { cx: 462, cy: 63, name: "Escorpião", anchor: "above" },
+    { cx: 352, cy: 80, name: "Sagitário", anchor: "below" },
+    { cx: 246, cy: 57, name: "Capricórnio", anchor: "above" },
+    { cx: 150, cy: 81, name: "Aquário", anchor: "below" },
+    { cx: 66, cy: 50, name: "Peixes", anchor: "above" },
 ];
 
 // Estrelas de fundo do mapa [cx, cy, r, opacity]
@@ -53,6 +53,24 @@ const STARS = [
     [348, 170, .5, .1], [495, 170, .5, .12], [605, 180, .5, .1],
     [88, 280, .5, .12], [210, 284, .5, .1], [348, 275, .5, .11], [478, 280, .5, .1],
 ];
+
+// ─── Offset do label por âncora ──────────────────────────────────────────────
+
+function labelOffset(anchor) {
+    switch (anchor) {
+        case "above": return [0, -16];
+        case "below": return [0, 20];
+        case "left": return [-14, 4];
+        case "right": return [14, 4];
+        default: return [0, 20];
+    }
+}
+
+function labelAnchor(anchor) {
+    if (anchor === "left") return "end";
+    if (anchor === "right") return "start";
+    return "middle";
+}
 
 // ─── Aparência de cada nó conforme estado ────────────────────────────────────
 
@@ -138,6 +156,22 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
     const [result, setResult] = useState(null);
     const [history, setHistory] = useState([]);
 
+    const animLineRef = useRef(null);
+
+    useEffect(() => {
+        if (!animLineRef.current || houseIndex === 0) return;
+        const a = HOUSE_POSITIONS[houseIndex - 1];
+        const b = HOUSE_POSITIONS[houseIndex];
+        const len = Math.round(Math.sqrt((b.cx - a.cx) ** 2 + (b.cy - a.cy) ** 2));
+        const el = animLineRef.current;
+        el.style.transition = "none";
+        el.setAttribute("stroke-dashoffset", String(len));
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            el.style.transition = "stroke-dashoffset 1.6s ease";
+            el.setAttribute("stroke-dashoffset", "0");
+        }));
+    }, [houseIndex]);
+
     const houses = housesData.houses;
     const currentHouse = houses[houseIndex];
     const godBonus = getGodPassBonus(godId);
@@ -165,10 +199,6 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
         }
     }
 
-    // Label da casa atual — posição abaixo do nó, exceto se perto da borda inferior
-    const curPos = HOUSE_POSITIONS[houseIndex];
-    const labelY = curPos.cy > 240 ? curPos.cy - 22 : curPos.cy + 22;
-    const houseName = currentHouse.name.replace("Casa de ", "").replace("Casa do ", "");
 
     return (
         <div style={{ background: "#050b14", minHeight: "100vh" }}>
@@ -190,11 +220,37 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
                             <circle key={i} cx={cx} cy={cy} r={r} fill="#fff" opacity={op} />
                         ))}
 
-                        {/* Caminho tracejado */}
+                        {/* Caminho dim de fundo */}
                         <polyline
                             points="590,262 510,228 562,175 455,150 348,177 400,123 512,101 462,63 352,80 246,57 150,81 66,50"
                             fill="none" stroke="#1a3248" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.8"
                         />
+
+                        {/* Segmentos já percorridos — ouro estático */}
+                        {Array.from({ length: Math.max(0, houseIndex - 1) }, (_, i) => {
+                            const a = HOUSE_POSITIONS[i], b = HOUSE_POSITIONS[i + 1];
+                            return (
+                                <line key={i} x1={a.cx} y1={a.cy} x2={b.cx} y2={b.cy}
+                                    stroke="#c8a800" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.65" />
+                            );
+                        })}
+
+                        {/* Segmento atual — animado ao avançar de casa */}
+                        {houseIndex > 0 && (() => {
+                            const a = HOUSE_POSITIONS[houseIndex - 1], b = HOUSE_POSITIONS[houseIndex];
+                            const dx = b.cx - a.cx, dy = b.cy - a.cy;
+                            const len = Math.round(Math.sqrt(dx * dx + dy * dy));
+                            return (
+                                <line
+                                    ref={animLineRef}
+                                    x1={a.cx} y1={a.cy} x2={b.cx} y2={b.cy}
+                                    stroke="#c8a800" strokeWidth="1.8"
+                                    strokeDasharray={`${len} ${len}`}
+                                    strokeDashoffset={len}
+                                    opacity="0.85"
+                                />
+                            );
+                        })()}
 
                         {/* Nós das casas */}
                         {HOUSE_POSITIONS.map((pos, i) => {
@@ -210,19 +266,24 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
                             );
                         })}
 
-                        {/* Label da casa atual */}
-                        <text
-                            x={curPos.cx} y={labelY}
-                            textAnchor="middle"
-                            fill="#c8a800" fontSize="11" fontFamily="Georgia, serif"
-                        >
-                            {houseName} ▷
-                        </text>
-
-                        {/* Marcador Atena */}
-                        <rect x="18" y="16" width="34" height="22" rx="3" fill="#080f1e" stroke="#1e2e40" strokeWidth="1" />
-                        <text x="35" y="31" textAnchor="middle" fill="#2a4a6a" fontSize="9" fontFamily="Georgia, serif">Atena</text>
-                        <line x1="52" y1="27" x2="66" y2="50" stroke="#1a2e40" strokeWidth="1" strokeDasharray="3 3" />
+                        {/* Labels de todos os signos */}
+                        {HOUSE_POSITIONS.map((pos, i) => {
+                            const state = i < houseIndex ? "passed" : i === houseIndex ? "current" : "future";
+                            const [dx, dy] = labelOffset(pos.anchor);
+                            return (
+                                <text
+                                    key={i}
+                                    x={pos.cx + dx} y={pos.cy + dy}
+                                    textAnchor={labelAnchor(pos.anchor)}
+                                    fill={state === "current" ? "#c8a800" : state === "passed" ? "#4aaa50" : "#4a6a80"}
+                                    fontSize="11"
+                                    fontFamily="Georgia, serif"
+                                    opacity={state === "future" ? "0.55" : "1"}
+                                >
+                                    {i === houseIndex ? `${pos.name} ▷` : pos.name}
+                                </text>
+                            );
+                        })}
                     </svg>
                 </div>
 

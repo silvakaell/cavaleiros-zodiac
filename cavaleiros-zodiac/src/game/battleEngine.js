@@ -88,16 +88,25 @@ export function checkEasterEgg(team, house) {
 
 export function resolveHouse(team, house, godBonus = 0) {
 
-    let passChance = calcPassChance(team, house, godBonus);
-
+    // ── Easter eggs têm precedência: se disparar, a casa é resolvida
+    //    antes de qualquer batalha — nenhum cavaleiro cai.
     const egg = checkEasterEgg(team, house);
-    let easterEggTriggered = false;
 
     if (egg) {
-        passChance = Math.min(0.95, passChance + egg.bonusChance);
-        easterEggTriggered = true;
+        return {
+            house: house.id,
+            passed: true,
+            passChance: 100,
+            roll: 0,
+            fallenKnight: null,
+            easterEggTriggered: true,
+            easterEggMessage: egg.message,
+            reviveGranted: egg.effect === "revive",
+        };
     }
 
+    // ── Sem easter egg: batalha normal ───────────────────────────────
+    const passChance = calcPassChance(team, house, godBonus);
     const roll = Math.random();
     const passed = roll < passChance;
 
@@ -107,20 +116,15 @@ export function resolveHouse(team, house, godBonus = 0) {
         fallenKnight = team[randomIndex];
     }
 
-    let reviveGranted = false;
-    if (easterEggTriggered && egg.effect === "revive") {
-        reviveGranted = true;
-    }
-
     return {
         house: house.id,
         passed,
         passChance: Math.round(passChance * 100),
         roll: Math.round(roll * 100),
         fallenKnight,
-        easterEggTriggered,
-        easterEggMessage: easterEggTriggered ? egg.message : null,
-        reviveGranted,
+        easterEggTriggered: false,
+        easterEggMessage: null,
+        reviveGranted: false,
     };
 }
 
