@@ -651,7 +651,7 @@ export const T = {
             back: "← Back to Menu",
             eyebrow: "Saint Seiya — The Crossing",
             title: "Privacy Policy",
-            updated: "Last updated: 2025",
+            updated: "Last updated: 2026",
             disclaimer: "The Crossing is an unofficial, free, non-commercial fan game. Saint Seiya is the intellectual property of Masami Kurumada. This project has no affiliation with Toei Animation, Bandai, or any other rights holder.",
             sections: [
                 {
@@ -674,7 +674,7 @@ export const T = {
                     ],
                 },
                 {
-                    title: "Children",
+                    title: "Kids",
                     paragraphs: [
                         "The Crossing is appropriate for all ages. No data from minors is collected.",
                     ],

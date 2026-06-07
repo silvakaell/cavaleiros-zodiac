@@ -455,14 +455,14 @@
       "id": "pisces",
       "number": 12,
       "name": "Casa de Peixes",
-      "guardian": "Aphrodite de Peixes",
+      "guardian": "Afrodite de Peixes",
       "guardianId": "aphrodite",
       "power": 91,
       "defense": 85,
       "speed": 84,
       "cosmos": 92,
       "basePassChance": 0.35,
-      "description": "A última barreira antes do Papa. As rosas de Aphrodite são veneno puro — mas a beleza distrai.",
+      "description": "A última barreira antes do Grande Mestre. As rosas de Aphrodite são veneno puro — mas a beleza distrai.",
       "affinityBonuses": [
         {
           "knights": [ "shun", "kanon", "albafica" ],
@@ -472,7 +472,7 @@
         {
           "knights": [ "ikki" ],
           "bonus": 0.12,
-          "reason": "Ikki carregou Shun depois desta casa — sabe exatamente o que Aphrodite é capaz de fazer."
+          "reason": "Ikki viu o sacrifício que Shun fez. E não perdoará Afrodite."
         }
       ],
       "easterEggs": [

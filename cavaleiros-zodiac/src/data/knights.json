@@ -1310,7 +1310,7 @@
 			"cosmos": 62,
 			"type": "offense",
 			"affinities": [],
-			"lore": "Cavaleiro de Prata do Corvo. Controla centenas de corvos para atacar e desorientar os oponentes. Atuou como mensageiro do falso Papa.",
+			"lore": "Cavaleiro de Prata do Corvo. Controla centenas de corvos para atacar e desorientar os oponentes.",
 			"nameEn": "Corvus Jamian"
 		},
 		{
@@ -1360,7 +1360,7 @@
 				"aries",
 				"sagittarius"
 			],
-			"lore": "Cavaleira de Prata da Águia e instrutora de Seiya no Santuário. Uma das amazonas mais respeitadas — e uma das poucas que questionou o falso Grande Mestre.",
+			"lore": "Amazona de Prata da Águia e instrutora de Seiya no Santuário. Uma das amazonas mais respeitadas — e uma das poucas que questionou o falso Grande Mestre.",
 			"nameEn": "Aquila Marin"
 		},
 		{
@@ -1411,7 +1411,7 @@
 				"pisces",
 				"cancer"
 			],
-			"lore": "Cavaleira de Prata do Peixe-Anjo e instrutora de Shun em Andromeda Island. Uma das poucas mulheres a treinar cavaleiros — respeitada por sua disciplina e lealdade.",
+			"lore": "Amazona de Prata e instrutora de Shun na ilha de Andrômeda. Uma das poucas mulheres a treinar cavaleiros — respeitada por sua disciplina e lealdade.",
 			"nameEn": "Angelfish June"
 		},
 		{
