@@ -408,7 +408,7 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
                                 {r.easterEggTriggered && (
                                     <span style={S.eggTag}>✦ especial</span>
                                 )}
-                                {!r.passed && r.fallenKnight && (
+                                {r.fallenKnight && (
                                     <span style={S.fallenTag}>💀 {r.fallenKnight.name}</span>
                                 )}
                             </div>
