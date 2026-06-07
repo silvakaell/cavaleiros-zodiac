@@ -7,6 +7,8 @@
 //   easterEgg       → objeto único  (legado)
 //   easterEggs      → array         (novo — múltiplos eventos por casa)
 
+import { getGodHouseBonus } from "./godBonuses";
+
 
 // ─── HELPER: normaliza singular/plural ───────────────────────────────────────
 
@@ -25,7 +27,8 @@ function getEasterEggs(house) {
 
 // ─── CALCULA A CHANCE DE PASSAR UMA CASA ─────────────────────────────────────
 
-export function calcPassChance(team, house, godBonus = 0) {
+// godId e houseIndex são usados para aplicar os bônus do deus corretos.
+export function calcPassChance(team, house, godId = "atena", houseIndex = 0) {
 
     let chance = house.basePassChance;
 
@@ -42,7 +45,9 @@ export function calcPassChance(team, house, godBonus = 0) {
         }
     }
 
-    chance += godBonus;
+    // Bônus do deus (passBonus global + bônus/penalidade por casa)
+    chance += getGodHouseBonus(godId, house.id, team, houseIndex);
+
     chance = Math.max(0.05, Math.min(0.95, chance));
 
     return chance;
@@ -86,10 +91,13 @@ export function checkEasterEgg(team, house) {
 
 // ─── SIMULA O RESULTADO DE UMA CASA ─────────────────────────────────────────
 
-export function resolveHouse(team, house, godBonus = 0) {
+// godId: ID do deus selecionado (ex: "atena", "hades")
+// houseIndex: índice 0-based da casa na run (para bônus de casas iniciais)
+export function resolveHouse(team, house, godId = "atena", houseIndex = 0) {
 
     // ── Easter eggs têm precedência: se disparar, a casa é resolvida
     //    antes de qualquer batalha — nenhum cavaleiro cai.
+    //    Easter eggs sempre são verificados, independente do deus.
     const egg = checkEasterEgg(team, house);
 
     if (egg) {
@@ -106,7 +114,7 @@ export function resolveHouse(team, house, godBonus = 0) {
     }
 
     // ── Sem easter egg: batalha normal ───────────────────────────────
-    const passChance = calcPassChance(team, house, godBonus);
+    const passChance = calcPassChance(team, house, godId, houseIndex);
     const roll = Math.random();
     const passed = roll < passChance;
 

@@ -1,167 +1,238 @@
 // godBonuses.js
-// Define as regras de cada deus escolhido no início da run.
-// Cada deus modifica o jogo de forma diferente — estilo Balatro.
+// ═══════════════════════════════════════════════════════════════════════════
+// FONTE ÚNICA de configuração dos bônus de cada deus.
+//
+// Para EDITAR um deus  → altere o objeto dentro de GOD_RULES.
+// Para ADICIONAR       → adicione em GOD_RULES + uma entrada em GODS (UI).
+// Para REMOVER         → delete o objeto de GOD_RULES e remova de GODS.
+//
+// Campos disponíveis por deus:
+//
+//   passBonus               Bônus global de chance em todas as casas (ex: 0.10 = +10%)
+//   houseBonus              { houseId: valor } — bônus em casa específica
+//   housePenalty            { houseId: valor } — penalidade em casa específica
+//   penaltyCondition        { houseId: [knightIds] } — se algum destes cavaleiros
+//                             estiver no time → aplica houseBonus; senão → housePenalty
+//   earlyHouseBonus         Bônus aplicado nas primeiras earlyHouseCount casas
+//   earlyHouseCount         Número de casas que recebem earlyHouseBonus
+//   cosmosMultiplierByRank  { rank: mult } — multiplica cosmos de cavaleiros daquele rank
+//   cosmosMultiplierBySeries{ series: mult } — multiplica cosmos por série
+//   femaleKnights           IDs de cavaleiras femininas que recebem femaleCosmosBonus
+//   femaleCosmosBonus       Multiplicador de cosmos para as femaleKnights (ex: 1.30)
+//   cosmosDecayPerHouse     Cosmos perdido por cavaleiro ao passar de cada casa (negativo)
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const GOD_RULES = {
+
+    // ── Atena ─────────────────────────────────────────────────────────────
+    // Modo padrão. Sem vantagens nem desvantagens — ideal para aprender.
+    atena: {
+        passBonus: 0,
+        houseBonus: {},
+        housePenalty: {},
+        penaltyCondition: {},
+        earlyHouseBonus: 0,
+        earlyHouseCount: 0,
+        cosmosMultiplierByRank: {},
+        cosmosMultiplierBySeries: {},
+        femaleKnights: [],
+        femaleCosmosBonus: 0,
+        cosmosDecayPerHouse: 0,
+    },
+
+    // ── Hades ─────────────────────────────────────────────────────────────
+    // Guardiões mais agressivos em todas as casas.
+    hades: {
+        passBonus: -0.10,
+        houseBonus: {},
+        housePenalty: {},
+        penaltyCondition: {},
+        earlyHouseBonus: 0,
+        earlyHouseCount: 0,
+        cosmosMultiplierByRank: {},
+        cosmosMultiplierBySeries: {},
+        femaleKnights: [],
+        femaleCosmosBonus: 0,
+        cosmosDecayPerHouse: 0,
+    },
+
+    // ── Poseidon ──────────────────────────────────────────────────────────
+    // Bônus nas casas de água se o time tiver afinidade aquática;
+    // penalidade se não tiver.
+    poseidon: {
+        passBonus: 0,
+        houseBonus: { aquarius: 0.15, pisces: 0.15 },
+        housePenalty: { aquarius: -0.20, pisces: -0.20 },
+        // Se algum destes estiver no time → aplica houseBonus; senão → housePenalty
+        penaltyCondition: {
+            aquarius: ["camus", "aphrodite", "julian_solo", "myu", "charon"],
+            pisces: ["aphrodite", "camus", "julian_solo"],
+        },
+        earlyHouseBonus: 0,
+        earlyHouseCount: 0,
+        cosmosMultiplierByRank: {},
+        cosmosMultiplierBySeries: {},
+        femaleKnights: [],
+        femaleCosmosBonus: 0,
+        cosmosDecayPerHouse: 0,
+    },
+
+    // ── Marte ─────────────────────────────────────────────────────────────
+    // A nova geração domina; cavaleiros clássicos perdem eficácia.
+    marte: {
+        passBonus: 0,
+        houseBonus: {},
+        housePenalty: {},
+        penaltyCondition: {},
+        earlyHouseBonus: 0,
+        earlyHouseCount: 0,
+        cosmosMultiplierByRank: {},
+        cosmosMultiplierBySeries: {
+            omega: 1.20,   // Omega +20% cosmos
+            classic: 0.85,   // Clássico -15% cosmos
+            lost_canvas: 0.85,   // Lost Canvas -15% cosmos
+        },
+        femaleKnights: [],
+        femaleCosmosBonus: 0,
+        easterEggsEnabled: false,
+        cosmosDecayPerHouse: 0,
+    },
+
+    // ── Chronos ───────────────────────────────────────────────────────────
+    // Desgaste temporal: cada cavaleiro perde cosmos a cada casa passada.
+    chronos: {
+        passBonus: 0,
+        houseBonus: {},
+        housePenalty: {},
+        penaltyCondition: {},
+        earlyHouseBonus: 0,
+        earlyHouseCount: 0,
+        cosmosMultiplierByRank: {},
+        cosmosMultiplierBySeries: {},
+        femaleKnights: [],
+        femaleCosmosBonus: 0,
+        cosmosDecayPerHouse: -10,   // -10 cosmos por cavaleiro a cada casa passada
+    },
+
+    // ── Ártemis ───────────────────────────────────────────────────────────
+    // Cavaleiras femininas ganham bônus significativo de cosmos.
+    artemis: {
+        passBonus: 0,
+        houseBonus: {},
+        housePenalty: {},
+        penaltyCondition: {},
+        earlyHouseBonus: 0,
+        earlyHouseCount: 0,
+        cosmosMultiplierByRank: {},
+        cosmosMultiplierBySeries: {},
+        femaleKnights: ["shaina", "marin", "june", "seika", "freya", "hilda"],
+        femaleCosmosBonus: 1.30,  // cavaleiras +30% cosmos
+        cosmosDecayPerHouse: 0,
+    },
+
+    // ── Apolo ─────────────────────────────────────────────────────────────
+    // Cavaleiros de Ouro dominam; leve bônus global.
+    apolo: {
+        passBonus: 0.05,
+        houseBonus: {},
+        housePenalty: {},
+        penaltyCondition: {},
+        earlyHouseBonus: 0,
+        earlyHouseCount: 0,
+        cosmosMultiplierByRank: { gold: 1.15 }, // Ouro +15% cosmos
+        cosmosMultiplierBySeries: {},
+        femaleKnights: [],
+        femaleCosmosBonus: 0,
+        cosmosDecayPerHouse: 0,
+    },
+
+    // ── Odin ──────────────────────────────────────────────────────────────
+    // Forte nas primeiras casas.
+    odin: {
+        passBonus: 0,
+        houseBonus: {},
+        housePenalty: {},
+        penaltyCondition: {},
+        earlyHouseBonus: 0.20,  // +20% nas primeiras 7 casas
+        earlyHouseCount: 7,
+        cosmosMultiplierByRank: {},
+        cosmosMultiplierBySeries: { asgard: 1.20 }, // Guerreiros de Asgard +20% cosmos
+        femaleKnights: [],
+        femaleCosmosBonus: 0,
+        easterEggsEnabled: false,
+        cosmosDecayPerHouse: 0,
+    },
+
+};
+
+
+// ── GODS — para uso na UI (nome e cor) ────────────────────────────────────────
 
 export const GODS = [
+    { id: "atena", name: "Báculo de Atena", color: "#5a9de0" },
+    { id: "hades", name: "Espada de Hades", color: "#9b59b6" },
+    { id: "poseidon", name: "Tridente de Poseidon", color: "#1abc9c" },
+    { id: "marte", name: "Fúria de Marte", color: "#e74c3c" },
+    { id: "apolo", name: "O calor de Apolo", color: "#e8a020" },
+    { id: "chronos", name: "O espírito de Chronos", color: "#8ea8b8" },
+    { id: "artemis", name: "Onda de Ártemis", color: "#d4a820" },
+    { id: "odin", name: "Lança de Odin", color: "#78c4d8" },
+];
 
-    {
-        id: "athena",
-        name: "Báculo de Atena",
-        description: "A deusa protetora. Modo equilibrado, ideal para aprender o jogo.",
-        advantage: "Pool de cavaleiros equilibrado. Todos os easter eggs de lore estão ativos.",
-        disadvantage: "Nenhuma desvantagem — é o modo padrão.",
-        color: "#FFD700",
-
-        // Modificadores aplicados durante a run
-        modifiers: {
-            passChanceBonus: 0,          // sem bônus global na chance de passar
-            poolFilter: null,             // sem filtro no pool — todos os cavaleiros disponíveis
-            easterEggsMultiplier: 1.0,    // easter eggs funcionam normalmente
-            reviveCharges: 0,             // sem revive garantido
-            survivorScoreMultiplier: 1.0, // pontuação normal por sobreviventes
-        }
-    },
-
-    {
-        id: "hades",
-        name: "Espada de Hades",
-        description: "O deus dos mortos. Acesso a Espectros, mas os guardiões ficam mais agressivos.",
-        advantage: "Espectros disponíveis no pool (poder alto). Cada cavaleiro que cai vira 'espectro' e pode ser usado nas últimas 3 casas.",
-        disadvantage: "Chance base de todas as casas reduzida em 10%.",
-        color: "#6A0DAD",
-
-        modifiers: {
-            passChanceBonus: -0.10,
-            poolFilter: ["specter"],       // inclui espectros no pool
-            easterEggsMultiplier: 1.0,
-            reviveCharges: 0,
-            survivorScoreMultiplier: 1.2,  // sobreviver com Hades vale mais
-            specialRule: "fallen_become_specters", // cavaleiros caídos retornam como espectros nas últimas 3 casas
-        }
-    },
-
-    {
-        id: "poseidon",
-        name: "Tridente de Poseidon",
-        description: "O deus dos mares. Generais Marinhos no pool, mas casas de água são mortais.",
-        advantage: "Generais Marinhos disponíveis no pool. Bônus de +15% nas casas de Aquário e Peixes.",
-        disadvantage: "Casas de Aquário e Peixes têm chance base reduzida em 20% se o time não tiver cavaleiros de afinidade aquática.",
-        color: "#1E90FF",
-
-        modifiers: {
-            passChanceBonus: 0,
-            poolFilter: ["marina"],        // inclui Generais Marinhos no pool
-            easterEggsMultiplier: 1.0,
-            reviveCharges: 0,
-            survivorScoreMultiplier: 1.0,
-            houseModifiers: {
-                aquarius: { bonus: 0.15, penalty: -0.20, penaltyCondition: "no_water_affinity" },
-                pisces: { bonus: 0.15, penalty: -0.20, penaltyCondition: "no_water_affinity" },
-            }
-        }
-    },
-
-    {
-        id: "mars",
-        name: "Fúria de Marte",
-        description: "O deus da guerra de Omega. Caos e poder bruto — a nova geração domina.",
-        advantage: "Cavaleiros de Omega têm stats aumentados em 20%. Pool tem maior concentração de Omega.",
-        disadvantage: "Cavaleiros clássicos perdem 15% de eficácia. Easter eggs de lore clássico não funcionam.",
-        color: "#CC0000",
-
-        modifiers: {
-            passChanceBonus: 0,
-            poolFilter: ["omega_heavy"],   // pool tem mais cavaleiros de Omega
-            easterEggsMultiplier: 0,       // easter eggs desativados
-            reviveCharges: 0,
-            survivorScoreMultiplier: 1.0,
-            seriesModifiers: {
-                omega: { statMultiplier: 1.20 },
-                classic: { statMultiplier: 0.85 },
-                lost_canvas: { statMultiplier: 0.85 },
-            }
-        }
-    },
-
-    {
-        id: "chronos",
-        name: "O espírito de Chronos",
-        description: "O deus do tempo de Next Dimension. Manipule o destino — mas o desgaste é real.",
-        advantage: "Pode re-rolar o pool de cavaleiros 1 vez antes de montar o time. Pode repetir uma casa que falhou (1 vez por run).",
-        disadvantage: "Cada cavaleiro perde 10 de cosmos por casa passada (desgaste temporal).",
-        color: "#C0C0C0",
-
-        modifiers: {
-            passChanceBonus: 0,
-            poolFilter: null,
-            easterEggsMultiplier: 1.0,
-            reviveCharges: 0,
-            survivorScoreMultiplier: 1.3,  // difícil sobreviver, então vale mais
-            specialRule: "time_decay",     // -10 cosmos por casa em cada cavaleiro
-            rerollCharges: 1,              // pode re-rolar o pool uma vez
-            retryCharges: 1,               // pode repetir uma casa uma vez
-        }
-    },
-
-    {
-        id: "artemis",
-        name: "Onda de Ártemis",
-        description: "A deusa da lua de Saintia Sho. Só as Cavaleiras de Atena podem brilhar aqui.",
-        advantage: "Cavaleiras femininas têm stats aumentados em 30%. Pool prioriza personagens femininas.",
-        disadvantage: "Cavaleiros de Ouro masculinos não aparecem no pool.",
-        color: "#E0E0FF",
-
-        modifiers: {
-            passChanceBonus: 0,
-            poolFilter: ["female_heavy"],  // pool prioriza personagens femininas
-            easterEggsMultiplier: 1.5,     // easter eggs com personagens femininos valem mais
-            reviveCharges: 0,
-            survivorScoreMultiplier: 1.2,
-            seriesModifiers: {
-                female: { statMultiplier: 1.30 },
-            },
-            blacklist: ["male_gold"],      // sem Cavaleiros de Ouro masculinos
-        }
-    },
-
-    {
-        id: "apollo",
-        name: "O calor de Apolo",
-        description: "O deus do sol. Cavaleiros de Ouro são abundantes, mas os Bronzes somem.",
-        advantage: "Pool tem alta concentração de Cavaleiros de Ouro. Stats de Gold aumentados em 15%.",
-        disadvantage: "Cavaleiros de Bronze são raríssimos no pool (máximo 1 por run).",
-        color: "#FFA500",
-
-        modifiers: {
-            passChanceBonus: 0.05,         // leve bônus global por ter Golds fortes
-            poolFilter: ["gold_heavy"],    // pool tem muito mais Gold
-            easterEggsMultiplier: 1.0,
-            reviveCharges: 0,
-            survivorScoreMultiplier: 1.0,
-            rankModifiers: {
-                gold: { statMultiplier: 1.15 },
-                bronze: { statMultiplier: 1.0, maxInPool: 1 }, // máximo 1 Bronze no pool
-            }
-        }
-    },
-
-]
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 
-// Retorna um deus pelo id
-export function getGod(id) {
-    return GODS.find(g => g.id === id) || null;
+function getRules(godId) {
+    return GOD_RULES[godId] ?? GOD_RULES.atena;
 }
 
-// Retorna o bônus de chance de passagem global do deus
+// Aplica os modificadores de cosmos do deus ao time.
+// Retorna um novo array — nunca modifica o original.
+export function applyGodCosmosModifiers(team, godId) {
+    const r = getRules(godId);
+    return team.map(k => {
+        let cosmos = k.cosmos;
+        if (r.cosmosMultiplierByRank[k.rank]) cosmos *= r.cosmosMultiplierByRank[k.rank];
+        if (r.cosmosMultiplierBySeries[k.series]) cosmos *= r.cosmosMultiplierBySeries[k.series];
+        if (r.femaleCosmosBonus && r.femaleKnights.includes(k.id)) cosmos *= r.femaleCosmosBonus;
+        return { ...k, cosmos: Math.round(Math.min(100, cosmos)) };
+    });
+}
+
+// Retorna o bônus/penalidade total de chance para uma casa específica.
+// houseIndex: índice 0-based da casa na run (para earlyHouseBonus).
+export function getGodHouseBonus(godId, houseId, team, houseIndex = 0) {
+    const r = getRules(godId);
+    const teamIds = team.map(k => k.id);
+    let bonus = r.passBonus;
+
+    // Bônus nas primeiras N casas (ex: Odin)
+    if (r.earlyHouseBonus && houseIndex < r.earlyHouseCount) {
+        bonus += r.earlyHouseBonus;
+    }
+
+    // Bônus/penalidade por casa específica (ex: Poseidon)
+    const hasHouseRule = houseId in r.houseBonus || houseId in r.housePenalty;
+    if (hasHouseRule) {
+        const condition = r.penaltyCondition[houseId];
+        if (condition) {
+            const hasAffinity = condition.some(id => teamIds.includes(id));
+            bonus += hasAffinity ? (r.houseBonus[houseId] ?? 0) : (r.housePenalty[houseId] ?? 0);
+        } else {
+            bonus += r.houseBonus[houseId] ?? 0;
+        }
+    }
+
+    return bonus;
+}
+
+// Retorna o decaimento de cosmos por casa (valor negativo = perda).
+export function getCosmosDecay(godId) {
+    return getRules(godId).cosmosDecayPerHouse;
+}
+
+// Retorna o bônus global de passagem (passBonus apenas).
+// Prefira getGodHouseBonus para cálculo completo.
 export function getGodPassBonus(godId) {
-    const god = getGod(godId);
-    return god ? god.modifiers.passChanceBonus : 0;
-}
-
-// Retorna o multiplicador de easter eggs do deus
-export function getEasterEggMultiplier(godId) {
-    const god = getGod(godId);
-    return god ? god.modifiers.easterEggsMultiplier : 1.0;
+    return getRules(godId).passBonus;
 }

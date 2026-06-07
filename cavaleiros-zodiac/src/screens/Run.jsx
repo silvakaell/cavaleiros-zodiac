@@ -5,7 +5,7 @@
 import { useState, useRef, useEffect } from "react";
 import housesData from "../data/houses.json";
 import { resolveHouse } from "../game/battleEngine";
-import { getGodPassBonus, GODS } from "../game/godBonuses";
+import { GODS, applyGodCosmosModifiers, getGodHouseBonus, getCosmosDecay } from "../game/godBonuses";
 import { getBattleDescription } from "../game/battleDescriptions";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
@@ -91,12 +91,13 @@ function getAffinities(house) {
     return [];
 }
 
-function getCalcBreakdown(team, house, godBonus) {
+function getCalcBreakdown(team, house, godId, houseIndex) {
     const avgCosmos = team.reduce((sum, k) => sum + k.cosmos, 0) / team.length;
     const cosmosBonus = ((avgCosmos - 50) / 100) * 0.40;
     const affinities = getAffinities(house)
         .map(ab => ({ ...ab, matches: team.filter(k => ab.knights.includes(k.id)) }))
         .filter(ab => ab.matches.length > 0);
+    const godBonus = getGodHouseBonus(godId, house.id, team, houseIndex);
     return {
         avgCosmos: Math.round(avgCosmos),
         guardianCosmos: house.cosmos,
@@ -151,7 +152,8 @@ function ConstellationMini({ layout, team, aliveTeam }) {
 export default function Run({ team, godId, layout, teamSize, onFinish, onMenu }) {
 
     const [houseIndex, setHouseIndex] = useState(0);
-    const [aliveTeam, setAliveTeam] = useState(team);
+    // Cosmos modificado pelo deus desde o início — nunca muda o prop `team` original
+    const [aliveTeam, setAliveTeam] = useState(() => applyGodCosmosModifiers(team, godId));
     const [fallen, setFallen] = useState([]);
     const [result, setResult] = useState(null);
     const [history, setHistory] = useState([]);
@@ -174,13 +176,12 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
 
     const houses = housesData.houses;
     const currentHouse = houses[houseIndex];
-    const godBonus = getGodPassBonus(godId);
     const godName = GODS.find(g => g.id === godId)?.name ?? "Atena";
     const isLastHouse = houseIndex === houses.length - 1;
     const runOver = aliveTeam.length === 0;
 
     function handleResolve() {
-        const outcome = resolveHouse(aliveTeam, currentHouse, godBonus);
+        const outcome = resolveHouse(aliveTeam, currentHouse, godId, houseIndex);
         if (!outcome.passed && outcome.fallenKnight) {
             setAliveTeam(prev => prev.filter(k => k.id !== outcome.fallenKnight.id));
             setFallen(prev => [...prev, outcome.fallenKnight]);
@@ -193,6 +194,14 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
         if (isLastHouse || aliveTeam.length === 0) {
             onFinish(h, aliveTeam, fallen);
         } else {
+            // Desgaste temporal (ex: Chronos perde cosmos por casa)
+            const decay = getCosmosDecay(godId);
+            if (decay !== 0) {
+                setAliveTeam(prev => prev.map(k => ({
+                    ...k,
+                    cosmos: Math.max(0, k.cosmos + decay),
+                })));
+            }
             setHistory(h);
             setHouseIndex(prev => prev + 1);
             setResult(null);
@@ -392,7 +401,7 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
 
                                         {/* ── Painel de cálculo ── */}
                                         {(() => {
-                                            const bd = getCalcBreakdown(aliveTeam.length > 0 ? aliveTeam : team, currentHouse, godBonus);
+                                            const bd = getCalcBreakdown(aliveTeam.length > 0 ? aliveTeam : team, currentHouse, godId, houseIndex);
                                             const teamPct = Math.min(100, Math.round((bd.avgCosmos / 100) * 100));
                                             const guardPct = Math.min(100, Math.round((bd.guardianCosmos / 100) * 100));
                                             return (
