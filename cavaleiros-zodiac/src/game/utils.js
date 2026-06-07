@@ -18,12 +18,15 @@ export function calcOverall(knight) {
 }
 
 // ─── COR DO OVERALL ───────────────────────────────────────────────────────────
-// Retorna uma cor baseada na nota — verde para alto, vermelho para baixo.
+// Retorna uma cor baseada na nota:
+//   90+      → ouro reluzente
+//   85–89    → roxo nobre
+//   80–84    → prata reluzente
+//   abaixo   → bronze reluzente
 
 export function overallColor(overall) {
-    if (overall >= 90) return "#FFD700"; // dourado — elite
-    if (overall >= 80) return "#4CAF50"; // verde — forte
-    if (overall >= 70) return "#FFC107"; // amarelo — médio
-    if (overall >= 60) return "#FF9800"; // laranja — fraco
-    return "#f44336";                    // vermelho — muito fraco
+    if (overall >= 90) return "#FFD700";  // ouro
+    if (overall >= 85) return "#b36fff";  // roxo nobre
+    if (overall >= 80) return "#d8eaf7";  // prata reluzente
+    return "#e0a060";                     // bronze reluzente
 }
