@@ -14,6 +14,7 @@ export const T = {
             creator: "Criado por @kamonbr",
             game: "A Travessia — fã-game não oficial",
             copyright: "Cavaleiros do Zodíaco © Masami Kurumada · 2025",
+            privacy: "Privacidade",
         },
 
         // ── Signos (12 casas, em ordem) ──────────────────────────────────────
@@ -299,6 +300,48 @@ export const T = {
                 "Havia coragem ali. Coragem sem poder é só uma bela história para contar depois.",
             ],
         },
+
+        // ── PrivacyScreen ─────────────────────────────────────────────────────
+        privacy: {
+            back: "← Voltar ao Menu",
+            eyebrow: "Cavaleiros do Zodíaco — A Travessia",
+            title: "Política de Privacidade",
+            updated: "Última atualização: 2025",
+            disclaimer: "A Travessia é um fã-game não oficial, gratuito e sem fins lucrativos. Cavaleiros do Zodíaco é uma propriedade intelectual de Masami Kurumada. Este projeto não possui qualquer afiliação com a Toei Animation, Bandai ou qualquer outro detentor de direitos.",
+            sections: [
+                {
+                    title: "Dados que coletamos",
+                    paragraphs: [
+                        "A Travessia não coleta dados pessoais. Não há cadastro, login ou envio de informações para servidores externos.",
+                        "A única informação armazenada localmente é a preferência de idioma (PT / EN), salva no localStorage do navegador. Esses dados ficam exclusivamente no seu dispositivo e nunca são transmitidos.",
+                    ],
+                },
+                {
+                    title: "Cookies e publicidade",
+                    paragraphs: [
+                        "Este jogo não utiliza cookies de rastreamento nem exibe publicidade de qualquer tipo.",
+                    ],
+                },
+                {
+                    title: "Serviços de terceiros",
+                    paragraphs: [
+                        "A Travessia utiliza Google Fonts para carregar as fontes Cinzel e Cormorant Garamond. Ao acessar o jogo, seu navegador realiza uma requisição ao servidores do Google Fonts. Consulte a política de privacidade do Google para mais detalhes.",
+                    ],
+                },
+                {
+                    title: "Crianças",
+                    paragraphs: [
+                        "A Travessia é adequado para todas as idades. Nenhum dado de menores é coletado.",
+                    ],
+                },
+                {
+                    title: "Alterações",
+                    paragraphs: [
+                        "Esta política pode ser atualizada ocasionalmente. Eventuais mudanças serão refletidas nesta página.",
+                    ],
+                },
+            ],
+        },
     },
 
     // ══════════════════════════════════════════════════════════════════════════
@@ -311,6 +354,7 @@ export const T = {
             creator: "Created by @kamonbr",
             game: "The Crossing — unofficial fan game",
             copyright: "Saint Seiya © Masami Kurumada · 2025",
+            privacy: "Privacy",
         },
 
         houses: ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"],
@@ -599,6 +643,48 @@ export const T = {
                 "The armor wasn't enough. The Cosmo wasn't enough. Nothing was.",
                 "Every blow was absorbed like wind. The guardian's response left no doubt.",
                 "There was courage there. Courage without power is just a fine story to tell afterward.",
+            ],
+        },
+
+        // ── PrivacyScreen ─────────────────────────────────────────────────────
+        privacy: {
+            back: "← Back to Menu",
+            eyebrow: "Saint Seiya — The Crossing",
+            title: "Privacy Policy",
+            updated: "Last updated: 2025",
+            disclaimer: "The Crossing is an unofficial, free, non-commercial fan game. Saint Seiya is the intellectual property of Masami Kurumada. This project has no affiliation with Toei Animation, Bandai, or any other rights holder.",
+            sections: [
+                {
+                    title: "Data we collect",
+                    paragraphs: [
+                        "The Crossing does not collect personal data. There is no registration, login, or data sent to external servers.",
+                        "The only information stored locally is your language preference (PT / EN), saved in your browser's localStorage. This data stays exclusively on your device and is never transmitted.",
+                    ],
+                },
+                {
+                    title: "Cookies and advertising",
+                    paragraphs: [
+                        "This game does not use tracking cookies and displays no advertising of any kind.",
+                    ],
+                },
+                {
+                    title: "Third-party services",
+                    paragraphs: [
+                        "The Crossing uses Google Fonts to load the Cinzel and Cormorant Garamond typefaces. When you access the game, your browser makes a request to Google Fonts servers. Refer to Google's privacy policy for details.",
+                    ],
+                },
+                {
+                    title: "Children",
+                    paragraphs: [
+                        "The Crossing is appropriate for all ages. No data from minors is collected.",
+                    ],
+                },
+                {
+                    title: "Changes",
+                    paragraphs: [
+                        "This policy may be updated occasionally. Any changes will be reflected on this page.",
+                    ],
+                },
             ],
         },
     },

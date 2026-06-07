@@ -9,6 +9,7 @@ import GodSelect from "./screens/GodSelect";
 import KnightSelect from "./screens/KnightSelect";
 import Run from "./screens/Run";
 import Result from "./screens/Result";
+import PrivacyScreen from "./screens/PrivacyScreen";
 
 export default function App() {
 
@@ -76,7 +77,11 @@ export default function App() {
         <LanguageProvider>
             <div>
                 {screen === "title" && (
-                    <TitleScreen onStart={handleStart} />
+                    <TitleScreen onStart={handleStart} onPrivacy={() => setScreen("privacy")} />
+                )}
+
+                {screen === "privacy" && (
+                    <PrivacyScreen onBack={() => setScreen("title")} />
                 )}
 
                 {screen === "location_select" && (

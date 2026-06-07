@@ -40,7 +40,7 @@ const PATH_POINTS = HOUSE_POSITIONS.map(p => `${p.cx},${p.cy}`).join(" ");
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
-export default function TitleScreen({ onStart }) {
+export default function TitleScreen({ onStart, onPrivacy }) {
     const { lang, setLang } = useLanguage();
     const t = T[lang].title;
     const f = T[lang].footer;
@@ -142,6 +142,7 @@ export default function TitleScreen({ onStart }) {
                 <span style={S.footerText}>{f.creator}</span>
                 <span style={S.footerText}>{f.game}</span>
                 <span style={S.footerText}>{f.copyright}</span>
+                <button style={S.privacyLink} onClick={onPrivacy}>{f.privacy}</button>
             </footer>
         </div>
     );
@@ -280,5 +281,17 @@ const S = {
         fontSize: "10px",
         color: "#1a3040",
         letterSpacing: ".5px",
+    },
+    privacyLink: {
+        background: "none",
+        border: "none",
+        padding: 0,
+        fontSize: "10px",
+        color: "#1a3040",
+        letterSpacing: ".5px",
+        cursor: "pointer",
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
+        textDecoration: "underline",
+        textUnderlineOffset: "2px",
     },
 };
