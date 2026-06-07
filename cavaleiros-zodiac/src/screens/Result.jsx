@@ -2,6 +2,7 @@
 // Tela de resultado final da run.
 // Layout: header → constelação + mapa zodiacal → placar → histórico → botões
 
+import { useState } from "react";
 import { calcScore } from "../game/battleEngine";
 
 // Mapa local de deuses — não depende de godBonuses.js
@@ -14,6 +15,7 @@ const GODS_MAP = {
     chronos: { name: "O espírito de Chronos", color: "#8ea8b8" },
     artemis: { name: "Onda de Ártemis", color: "#d4a820" },
     odin: { name: "Lança de Odin", color: "#78c4d8" },
+    renegado: { name: "Sem Divindade", color: "#8a6a4a" },
 };
 
 // ─── Starfield ────────────────────────────────────────────────────────────────
@@ -93,25 +95,33 @@ function houseStyle(i, history) {
 
 export default function Result({ history, survivors, fallen, godId, onRestart, onRetry }) {
 
+    const [hoveredHouse, setHoveredHouse] = useState(null);
+
     const easterEggsFound = history.filter(r => r.easterEggTriggered).length;
     const score = calcScore(history, survivors.length, easterEggsFound);
-    const god = GODS_MAP[godId];
+    const god = GODS_MAP[godId] ?? GODS_MAP.atena;
 
     // Full team na ordem: sobreviventes primeiro, depois caídos
     const allKnights = [...survivors, ...fallen];
     const positions = knightPositions(allKnights.length);
 
+    // Mapa: knightId → índice da casa onde caiu
+    const fallenInHouse = {};
+    history.forEach((h, i) => {
+        if (!h.passed && h.fallenKnight) {
+            fallenInHouse[h.fallenKnight.id] = i;
+        }
+    });
+
     function getFinalMessage() {
         const h = score.housesPassed;
-        const completed = history.length === 12; // chegou na última casa
+        const completed = history.length === 12;
 
-        // Travessia concluída — baseado em quantas batalhas foram vencidas
         if (completed && h === 12) return "Travessia Perfeita. Atena sorri.";
         if (completed && h >= 9) return "Travessia concluída. Poucos caíram no caminho.";
         if (completed && h >= 6) return "Travessia concluída — à custa de muitas batalhas.";
         if (completed) return "Chegaram ao fim, mas o preço foi alto.";
 
-        // Travessia interrompida — todos os cavaleiros caíram
         if (h >= 10) return "Quase lá. Os deuses reconhecem sua força.";
         if (h >= 7) return "Além da metade — a batalha foi épica.";
         if (h >= 4) return "Metade do caminho. A saga continua.";
@@ -128,7 +138,7 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
                     <h1 style={S.title}>Fim da Travessia</h1>
                     <p style={S.message}>{getFinalMessage()}</p>
                     <p style={S.godLabel}>
-                        Deus: <span style={{ color: god?.color }}>{god?.name}</span>
+                        Bênção: <span style={{ color: god?.color }}>{god?.name}</span>
                     </p>
                 </div>
 
@@ -166,6 +176,8 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
                                 const pos = positions[i];
                                 const alive = survivors.some(s => s.id === k.id);
                                 const firstName = k.name.split(" ")[0];
+                                const houseIdx = fallenInHouse[k.id];
+                                const houseName = houseIdx !== undefined ? HOUSE_POS[houseIdx].name : null;
                                 return (
                                     <g key={k.id} transform={`translate(${pos.x},${pos.y})`}>
                                         {alive ? (
@@ -183,13 +195,24 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
                                                 <line x1="6" y1="-6" x2="-6" y2="6" stroke="#7a2020" strokeWidth="1.5" opacity="0.8" />
                                             </>
                                         )}
+                                        {/* Nome do cavaleiro */}
                                         <text
                                             y="20" textAnchor="middle"
                                             fill={alive ? "#2a5a30" : "#5a2020"}
-                                            fontSize="7" fontFamily="Georgia, serif"
+                                            fontSize="10" fontFamily="Georgia, serif"
                                         >
                                             {firstName}
                                         </text>
+                                        {/* Casa onde caiu (apenas para caídos) */}
+                                        {!alive && houseName && (
+                                            <text
+                                                y="31" textAnchor="middle"
+                                                fill="#3a1414"
+                                                fontSize="8" fontFamily="Georgia, serif"
+                                            >
+                                                {houseName}
+                                            </text>
+                                        )}
                                     </g>
                                 );
                             })}
@@ -197,12 +220,29 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
                             {/* Legenda */}
                             <circle cx="20" cy="193" r="5" fill="#08141a" stroke="#3a8040" strokeWidth="1.2" />
                             <circle cx="20" cy="193" r="2" fill="#4aaa50" opacity="0.8" />
-                            <text x="29" y="197" fill="#1a4a28" fontSize="7" fontFamily="Georgia, serif">vivo</text>
+                            <text x="29" y="197" fill="#1a4a28" fontSize="9" fontFamily="Georgia, serif">vivo</text>
                             <circle cx="65" cy="193" r="5" fill="#0e0808" stroke="#7a2020" strokeWidth="1.2" opacity="0.8" />
                             <line x1="61" y1="189" x2="69" y2="197" stroke="#7a2020" strokeWidth="1.2" opacity="0.8" />
                             <line x1="69" y1="189" x2="61" y2="197" stroke="#7a2020" strokeWidth="1.2" opacity="0.8" />
-                            <text x="74" y="197" fill="#4a1818" fontSize="7" fontFamily="Georgia, serif">caído</text>
+                            <text x="74" y="197" fill="#4a1818" fontSize="9" fontFamily="Georgia, serif">caído</text>
                         </svg>
+
+                        {/* Cavaleiros caídos */}
+                        {fallen.length > 0 && (
+                            <div style={S.fallenList}>
+                                <p style={S.fallenListTitle}>Cavaleiros caídos</p>
+                                {fallen.map(k => {
+                                    const houseIdx = fallenInHouse[k.id];
+                                    const houseName = houseIdx !== undefined ? HOUSE_POS[houseIdx].name : "—";
+                                    return (
+                                        <div key={k.id} style={S.fallenRow}>
+                                            <span style={S.fallenName}>{k.name.split(" ")[0]}</span>
+                                            <span style={S.fallenHouse}>{houseName}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </div>
 
                     {/* Mapa das 12 casas */}
@@ -215,6 +255,13 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
                                     <stop offset="0%" stopColor="#2010a0" stopOpacity="0.08" />
                                     <stop offset="100%" stopColor="#000" stopOpacity="0" />
                                 </radialGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
                             </defs>
                             <ellipse cx="600" cy="250" rx="500" ry="230" fill="url(#rnb)" />
 
@@ -231,20 +278,75 @@ export default function Result({ history, survivors, fallen, godId, onRestart, o
                             {HOUSE_POS.map((pos, i) => {
                                 const hs = houseStyle(i, history);
                                 const isEgg = i < history.length && history[i].passed && history[i].easterEggTriggered;
+                                const isHover = hoveredHouse === i;
+
+                                // Posição do tooltip: acima se próximo ao fundo, abaixo caso contrário
+                                const tipAbove = pos.cy > 380;
+                                const tipOffset = hs.r + 10;
+                                const tipY = tipAbove ? -tipOffset - 18 : tipOffset;
+                                const textY = tipAbove ? -tipOffset - 5 : tipOffset + 13;
+
                                 return (
-                                    <g key={i} transform={`translate(${pos.cx},${pos.cy})`} opacity={hs.op}>
-                                        <circle r={hs.r} fill={hs.fill} stroke={hs.stroke} strokeWidth="1.5" />
+                                    <g
+                                        key={i}
+                                        transform={`translate(${pos.cx},${pos.cy})`}
+                                        opacity={hs.op}
+                                        onMouseEnter={() => setHoveredHouse(i)}
+                                        onMouseLeave={() => setHoveredHouse(null)}
+                                        style={{ cursor: "pointer" }}
+                                    >
+                                        {/* Glow de hover */}
+                                        {isHover && (
+                                            <circle
+                                                r={hs.r + 8}
+                                                fill={hs.dot}
+                                                opacity="0.15"
+                                                filter="url(#glow)"
+                                            />
+                                        )}
+
+                                        <circle
+                                            r={isHover ? hs.r + 2 : hs.r}
+                                            fill={hs.fill}
+                                            stroke={hs.stroke}
+                                            strokeWidth={isHover ? 2.2 : 1.5}
+                                        />
                                         <circle r={hs.r === 13 ? 5 : 4} fill={hs.dot} opacity="0.8" />
                                         {isEgg && (
                                             <text y={-hs.r - 4} textAnchor="middle" fill="#c8a800" fontSize="11" fontFamily="Georgia, serif">✦</text>
+                                        )}
+
+                                        {/* Tooltip com nome do signo */}
+                                        {isHover && (
+                                            <g>
+                                                <rect
+                                                    x="-42" y={tipY}
+                                                    width="84" height="20"
+                                                    rx="4"
+                                                    fill="#050b14"
+                                                    stroke={hs.stroke}
+                                                    strokeWidth="0.8"
+                                                    opacity="0.92"
+                                                />
+                                                <text
+                                                    x="0" y={textY}
+                                                    textAnchor="middle"
+                                                    fill="#b0cce0"
+                                                    fontSize="13"
+                                                    fontFamily="Georgia, serif"
+                                                    fontStyle="italic"
+                                                >
+                                                    {pos.name}
+                                                </text>
+                                            </g>
                                         )}
                                     </g>
                                 );
                             })}
 
-                            {/* Labels extremos */}
-                            <text x="1030" y="484" textAnchor="middle" fill="#2a5a30" fontSize="11" fontFamily="Georgia, serif">Áries</text>
-                            <text x="115" y="72" textAnchor="middle" fill="#1e3a5a" fontSize="11" fontFamily="Georgia, serif">Peixes</text>
+                            {/* Labels dos extremos */}
+                            <text x="1030" y="484" textAnchor="middle" fill="#2a5a30" fontSize="13" fontFamily="Georgia, serif">Áries</text>
+                            <text x="115" y="72" textAnchor="middle" fill="#1e3a5a" fontSize="13" fontFamily="Georgia, serif">Peixes</text>
 
                             {/* Legenda */}
                             <g transform="translate(0,456)">
@@ -397,6 +499,35 @@ const S = {
         color: "#4a8aaa",
         textTransform: "uppercase",
         textAlign: "center",
+    },
+    fallenList: {
+        borderTop: "1px solid #1a2a3a",
+        paddingTop: "8px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "4px",
+    },
+    fallenListTitle: {
+        fontSize: "10px",
+        letterSpacing: "2px",
+        color: "#4a2a2a",
+        textTransform: "uppercase",
+        marginBottom: "4px",
+    },
+    fallenRow: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "baseline",
+        gap: "6px",
+    },
+    fallenName: {
+        fontSize: "12px",
+        color: "#5a2a2a",
+        fontStyle: "italic",
+    },
+    fallenHouse: {
+        fontSize: "10px",
+        color: "#3a1818",
     },
     scoreWrap: {
         display: "flex",
