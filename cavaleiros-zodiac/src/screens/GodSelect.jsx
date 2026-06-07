@@ -1,8 +1,9 @@
 // GodSelect.jsx
 // 8 deuses em anel octagonal + "Sem Divindade" abaixo, fora do anel.
-// Clique num deus → info flutua no centro → Confirmar chama onSelect(godId).
 
 import { useState } from "react";
+import { useLanguage } from "../i18n/LanguageContext";
+import { T } from "../i18n/translations";
 
 // ─── Starfield ────────────────────────────────────────────────────────────────
 
@@ -19,149 +20,22 @@ const STARS = Array.from({ length: 200 }, () => ({
     op: +(_rng() * 0.28 + 0.06).toFixed(2),
 }));
 
-// ─── Gods ────────────────────────────────────────────────────────────────────
-// lx / ly: posição do nó em % do container (0-100)
-// SXY derivado de lx*10, ly*4.2 para viewBox 1000×420 c/ preserveAspectRatio="none"
+// ─── IDs dos deuses e posições (independentes de idioma) ──────────────────────
 
-const GODS = [
-    {
-        id: "atena",
-        name: "Báculo de Atena",
-        short: "Atena",
-        color: "#5a9de0",
-        lx: 50, ly: 7,
-        desc: "A deusa protetora. Modo equilibrado, ideal para aprender o jogo.",
-        pros: [
-            "Pool de cavaleiros equilibrado.",
-            "Todos os easter eggs de lore estão ativos.",
-        ],
-        cons: [
-            "Nenhuma desvantagem — é o modo padrão.",
-        ],
-    },
-    {
-        id: "hades",
-        name: "Espada de Hades",
-        short: "Hades",
-        color: "#9b59b6",
-        lx: 78, ly: 18,
-        desc: "O deus dos mortos. Guardiões mais agressivos, mas a morte não é definitiva.",
-        pros: [
-            "35% de chance de reviver um cavaleiro caído em batalha.",
-        ],
-        cons: [
-            "Chance base de todas as casas reduzida em 10%.",
-        ],
-    },
-    {
-        id: "poseidon",
-        name: "Tridente de Poseidon",
-        short: "Poseidon",
-        color: "#1abc9c",
-        lx: 91, ly: 47,
-        desc: "O deus dos mares. Generais Marinhos no pool, mas casas de água são mortais.",
-        pros: [
-            "Pool prioriza Generais Marinhos.",
-            "Bônus de +15% nas casas de Aquário e Peixes com time aquático.",
-        ],
-        cons: [
-            "Aquário e Peixes têm -20% sem cavaleiros de afinidade aquática.",
-        ],
-    },
-    {
-        id: "marte",
-        name: "Fúria de Marte",
-        short: "Marte",
-        color: "#e74c3c",
-        lx: 78, ly: 72,
-        desc: "O deus da guerra de Omega. Caos e poder bruto — a nova geração domina.",
-        pros: [
-            "Pool restrito a cavaleiros Omega.",
-            "Cosmos de Omega aumentado em 20%.",
-        ],
-        cons: [
-            "Cavaleiros clássicos e Lost Canvas perdem 15% de cosmos.",
-        ],
-    },
-    {
-        id: "apolo",
-        name: "O calor de Apolo",
-        short: "Apolo",
-        color: "#e8a020",
-        lx: 50, ly: 82,
-        desc: "O deus do sol. Os Cavaleiros de Ouro, normalmente inacessíveis, surgem no draft.",
-        pros: [
-            "Cavaleiros de Ouro aparecem no pool de draft.",
-            "Cosmos de Gold aumentado em 15%.",
-        ],
-        cons: [
-            "Leve vantagem — a verdadeira dificuldade são as casas finais.",
-        ],
-    },
-    {
-        id: "chronos",
-        name: "O espírito de Chronos",
-        short: "Chronos",
-        color: "#8ea8b8",
-        lx: 22, ly: 72,
-        desc: "O deus do tempo. O cosmos dos cavaleiros se desgasta com o passar das casas.",
-        pros: [
-            "Cosmos inicial dos cavaleiros inalterado.",
-        ],
-        cons: [
-            "Cada cavaleiro perde 10 de cosmos por casa passada (desgaste temporal).",
-        ],
-    },
-    {
-        id: "artemis",
-        name: "Onda de Ártemis",
-        short: "Ártemis",
-        color: "#d4a820",
-        lx: 9, ly: 47,
-        desc: "A deusa da lua. Apenas cavaleiras femininas compõem este time.",
-        pros: [
-            "Cavaleiras têm cosmos aumentado em 30%.",
-            "Pool restrito a cavaleiras femininas.",
-        ],
-        cons: [
-            "Time composto exclusivamente por cavaleiras — pool limitado.",
-        ],
-    },
-    {
-        id: "odin",
-        name: "Lança de Odin",
-        short: "Odin",
-        color: "#78c4d8",
-        lx: 22, ly: 18,
-        desc: "O deus nórdico de Asgard. Os Guerreiros do Norte ingressam na travessia.",
-        pros: [
-            "Pool prioriza Guerreiros de Asgard (+20% cosmos).",
-            "Bônus de +20% nas sete primeiras casas.",
-        ],
-        cons: [
-            "Pouca vantagem nas casas finais.",
-        ],
-    },
-    {
-        id: "renegado",
-        name: "Sem Divindade",
-        short: "Sem Divindade",
-        color: "#8a6a4a",
-        lx: 50, ly: 95,
-        desc: "Sem deus, sem lealdade. Renegados traçam seu próprio caminho.",
-        pros: [
-            "Cavaleiros negros: +25% cosmos.",
-            "+5% global — imprevisíveis.",
-            "Pool prefere renegados.",
-        ],
-        cons: [
-            "Cavaleiros divinos: -8% a -20% cosmos.",
-        ],
-    },
-];
+const GOD_IDS = ["atena", "hades", "poseidon", "marte", "apolo", "chronos", "artemis", "odin", "renegado"];
 
-// SVG line endpoints — lx*10, ly*5 para viewBox 1000×500 c/ preserveAspectRatio="none"
-// Octógono comprimido (ly máx ≈82%) para caber "renegado" em ly:95% abaixo.
+const GOD_META = {
+    atena: { color: "#5a9de0", lx: 50, ly: 7 },
+    hades: { color: "#9b59b6", lx: 78, ly: 18 },
+    poseidon: { color: "#1abc9c", lx: 91, ly: 47 },
+    marte: { color: "#e74c3c", lx: 78, ly: 72 },
+    apolo: { color: "#e8a020", lx: 50, ly: 82 },
+    chronos: { color: "#8ea8b8", lx: 22, ly: 72 },
+    artemis: { color: "#d4a820", lx: 9, ly: 47 },
+    odin: { color: "#78c4d8", lx: 22, ly: 18 },
+    renegado: { color: "#8a6a4a", lx: 50, ly: 95 },
+};
+
 const SXY = {
     atena: [500, 35],
     hades: [780, 90],
@@ -184,13 +58,17 @@ const DIAG = [
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
-export default function GodSelect({ onSelect }) {
+export default function GodSelect({ onSelect, onBack }) {
     const [sel, setSel] = useState(null);
     const [hov, setHov] = useState(null);
 
-    const god = GODS.find(g => g.id === sel);
+    const { lang } = useLanguage();
+    const tg = T[lang].god;
+    const f = T[lang].footer;
 
-    // Build all line pairs
+    const godData = (id) => ({ ...GOD_META[id], ...tg.gods[id], id });
+    const god = sel ? godData(sel) : null;
+
     const lines = [
         ...RING.map((id, i) => [id, RING[(i + 1) % RING.length]]),
         ...DIAG,
@@ -201,15 +79,14 @@ export default function GodSelect({ onSelect }) {
 
             {/* ── Header ── */}
             <div style={S.header}>
-                <p style={S.sup}>Cavaleiros do Zodíaco — A Travessia</p>
-                <h1 style={S.title}>Escolha seu Deus</h1>
-                <p style={S.sub}>Cada deus muda as regras da travessia. Escolha com sabedoria.</p>
+                <p style={S.sup}>{tg.eyebrow}</p>
+                <h1 style={S.title}>{tg.title}</h1>
+                <p style={S.sub}>{tg.sub}</p>
             </div>
 
             {/* ── Constellation area ── */}
             <div style={S.area}>
 
-                {/* Stars + nebula + constellation lines */}
                 <svg style={S.bgSvg} viewBox="0 0 1000 500" preserveAspectRatio="none">
                     <defs>
                         <radialGradient id="gnb1" cx="50%" cy="50%">
@@ -233,8 +110,7 @@ export default function GodSelect({ onSelect }) {
                         const [x2, y2] = SXY[b];
                         const active = sel && (sel === a || sel === b);
                         return (
-                            <line
-                                key={i}
+                            <line key={i}
                                 x1={x1} y1={y1} x2={x2} y2={y2}
                                 stroke={active ? "#1a3a5a" : "#09151f"}
                                 strokeWidth={active ? 1.5 : 1}
@@ -248,7 +124,7 @@ export default function GodSelect({ onSelect }) {
                 {/* Floating center info */}
                 <div style={{ ...S.center, pointerEvents: sel ? "auto" : "none" }}>
                     {!god ? (
-                        <p style={S.hint}>Selecione<br />um deus</p>
+                        <p style={S.hint}>{tg.hint}</p>
                     ) : (
                         <>
                             <p style={{ ...S.godName, color: god.color }}>{god.name}</p>
@@ -257,33 +133,31 @@ export default function GodSelect({ onSelect }) {
                                 {god.pros.map((p, i) => <div key={i} style={S.pro}>+ {p}</div>)}
                                 {god.cons.map((c, i) => <div key={i} style={S.con}>− {c}</div>)}
                             </div>
-                            <button
-                                style={{ ...S.btn, background: god.color }}
-                                onClick={() => onSelect(sel)}
-                            >
-                                Confirmar →
+                            <button style={{ ...S.btn, background: god.color }} onClick={() => onSelect(sel)}>
+                                {tg.confirm}
                             </button>
                         </>
                     )}
                 </div>
 
                 {/* God nodes */}
-                {GODS.map(g => {
-                    const active = sel === g.id;
-                    const hovered = hov === g.id;
+                {GOD_IDS.map(id => {
+                    const g = godData(id);
+                    const active = sel === id;
+                    const hovered = hov === id;
                     const sz = active ? 22 : 15;
                     const coreSz = active ? 7 : 4;
                     return (
                         <div
-                            key={g.id}
+                            key={id}
                             style={{
                                 ...S.node,
                                 left: g.lx + "%",
                                 top: g.ly + "%",
                                 filter: hovered && !active ? "brightness(1.6)" : "none",
                             }}
-                            onClick={() => setSel(g.id === sel ? null : g.id)}
-                            onMouseEnter={() => setHov(g.id)}
+                            onClick={() => setSel(id === sel ? null : id)}
+                            onMouseEnter={() => setHov(id)}
                             onMouseLeave={() => setHov(null)}
                         >
                             <div style={{
@@ -294,7 +168,6 @@ export default function GodSelect({ onSelect }) {
                                 background: active ? g.color + "22" : "#06091a",
                             }}>
                                 <div style={{ ...S.dotCore, width: coreSz, height: coreSz, background: g.color }} />
-                                {/* satellite constellation dots */}
                                 <div style={{ ...S.sat, top: -7, left: 2, width: 3, height: 3, background: g.color, opacity: 0.40 }} />
                                 <div style={{ ...S.sat, bottom: -6, right: 0, width: 2, height: 2, background: g.color, opacity: 0.30 }} />
                                 <div style={{ ...S.sat, top: 1, right: -8, width: 2, height: 2, background: g.color, opacity: 0.28 }} />
@@ -307,11 +180,18 @@ export default function GodSelect({ onSelect }) {
                 })}
             </div>
 
+            {/* Botão voltar */}
+            {onBack && (
+                <div style={{ textAlign: "center", padding: "8px 0 4px" }}>
+                    <button style={S.backBtn} onClick={onBack}>{tg.back}</button>
+                </div>
+            )}
+
             {/* ── Footer ── */}
             <footer style={S.footer}>
-                <span style={S.footerText}>Criado por @kamonbr</span>
-                <span style={S.footerText}>A Travessia — fã-game não oficial</span>
-                <span style={S.footerText}>Cavaleiros do Zodíaco © Masami Kurumada · 2025</span>
+                <span style={S.footerText}>{f.creator}</span>
+                <span style={S.footerText}>{f.game}</span>
+                <span style={S.footerText}>{f.copyright}</span>
             </footer>
         </div>
     );
@@ -381,7 +261,6 @@ const S = {
         overflowY: "auto",
         textAlign: "center",
         zIndex: 5,
-        // scrollbar invisível
         msOverflowStyle: "none",
         scrollbarWidth: "none",
     },
@@ -419,6 +298,16 @@ const S = {
         fontWeight: "700",
         cursor: "pointer",
         letterSpacing: "2px",
+    },
+    backBtn: {
+        background: "none",
+        border: "none",
+        color: "#2a4a5a",
+        fontFamily: "'Cinzel', serif",
+        fontSize: "11px",
+        letterSpacing: "2px",
+        cursor: "pointer",
+        padding: "6px 12px",
     },
     node: {
         position: "absolute",

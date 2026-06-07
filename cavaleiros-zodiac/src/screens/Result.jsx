@@ -1,22 +1,41 @@
 // Result.jsx
 // Tela de resultado final da run.
-// Layout: header → constelação + mapa zodiacal → placar → histórico → botões
 
 import { useState } from "react";
 import { calcScore } from "../game/battleEngine";
+import { useLanguage } from "../i18n/LanguageContext";
+import { T } from "../i18n/translations";
 
-// Mapa local de deuses — não depende de godBonuses.js
-const GODS_MAP = {
-    atena: { name: "Báculo de Atena", color: "#5a9de0" },
-    hades: { name: "Espada de Hades", color: "#9b59b6" },
-    poseidon: { name: "Tridente de Poseidon", color: "#1abc9c" },
-    marte: { name: "Fúria de Marte", color: "#e74c3c" },
-    apolo: { name: "O calor de Apolo", color: "#e8a020" },
-    chronos: { name: "O espírito de Chronos", color: "#8ea8b8" },
-    artemis: { name: "Onda de Ártemis", color: "#d4a820" },
-    odin: { name: "Lança de Odin", color: "#78c4d8" },
-    renegado: { name: "Sem Divindade", color: "#8a6a4a" },
+// Cores dos deuses (estrutura visual local — nomes vêm das traduções)
+const GOD_COLORS = {
+    atena: "#5a9de0",
+    hades: "#9b59b6",
+    poseidon: "#1abc9c",
+    marte: "#e74c3c",
+    apolo: "#e8a020",
+    chronos: "#8ea8b8",
+    artemis: "#d4a820",
+    odin: "#78c4d8",
+    renegado: "#8a6a4a",
 };
+
+// Posições no mapa (viewBox 1100×500) — sem name, vem de T[lang].houses
+const HOUSE_POS = [
+    { cx: 1030, cy: 460 },
+    { cx: 880, cy: 392 },
+    { cx: 952, cy: 303 },
+    { cx: 778, cy: 262 },
+    { cx: 604, cy: 300 },
+    { cx: 682, cy: 212 },
+    { cx: 872, cy: 178 },
+    { cx: 802, cy: 108 },
+    { cx: 612, cy: 133 },
+    { cx: 428, cy: 97 },
+    { cx: 272, cy: 138 },
+    { cx: 115, cy: 88 },
+];
+
+const MAP_PATH = HOUSE_POS.map(p => `${p.cx},${p.cy}`).join(" ");
 
 // ─── Starfield ────────────────────────────────────────────────────────────────
 
@@ -42,28 +61,8 @@ const STARS_CONST = Array.from({ length: 60 }, () => ({
     op: +(_rngConst() * 0.20 + 0.06).toFixed(2),
 }));
 
-// ─── House map positions (viewBox 1100×500) ───────────────────────────────────
-
-const HOUSE_POS = [
-    { cx: 1030, cy: 460, name: "Áries" },
-    { cx: 880, cy: 392, name: "Touro" },
-    { cx: 952, cy: 303, name: "Gêmeos" },
-    { cx: 778, cy: 262, name: "Câncer" },
-    { cx: 604, cy: 300, name: "Leão" },
-    { cx: 682, cy: 212, name: "Virgem" },
-    { cx: 872, cy: 178, name: "Libra" },
-    { cx: 802, cy: 108, name: "Escorpião" },
-    { cx: 612, cy: 133, name: "Sagitário" },
-    { cx: 428, cy: 97, name: "Capricórnio" },
-    { cx: 272, cy: 138, name: "Aquário" },
-    { cx: 115, cy: 88, name: "Peixes" },
-];
-
-const MAP_PATH = HOUSE_POS.map(p => `${p.cx},${p.cy}`).join(" ");
-
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-// Posições em círculo para N cavaleiros (viewBox 200×200)
 function knightPositions(count) {
     if (count === 0) return [];
     const cx = 100, cy = 100, r = 62;
@@ -76,7 +75,6 @@ function knightPositions(count) {
     });
 }
 
-// Estilo visual de cada casa baseado no histórico
 function houseStyle(i, history) {
     if (i >= history.length) {
         return { stroke: "#1e3a50", fill: "#080e18", dot: "#1e3a50", r: 11, op: 0.45 };
@@ -95,18 +93,22 @@ function houseStyle(i, history) {
 
 export default function Result({ history, survivors, fallen, fallenHouses = {}, godId, onRestart, onRetry }) {
 
+    const { lang } = useLanguage();
+    const tr = T[lang].result;
+    const houseNames = T[lang].houses;   // 12 signos traduzidos
+    const f = T[lang].footer;
+
     const [hoveredHouse, setHoveredHouse] = useState(null);
 
     const easterEggsFound = history.filter(r => r.easterEggTriggered).length;
     const score = calcScore(history, survivors.length, easterEggsFound);
-    const god = GODS_MAP[godId] ?? GODS_MAP.atena;
 
-    // Full team na ordem: sobreviventes primeiro, depois caídos
+    const godColor = GOD_COLORS[godId] ?? GOD_COLORS.atena;
+    const godName = T[lang].god.gods[godId]?.name ?? T[lang].god.gods.atena.name;
+
     const allKnights = [...survivors, ...fallen];
     const positions = knightPositions(allKnights.length);
 
-    // fallenHouses vem do Run (knightId → houseIndex), cobre casos de retry.
-    // Como fallback, extrai do history para compatibilidade.
     const fallenInHouse = { ...fallenHouses };
     if (Object.keys(fallenInHouse).length === 0) {
         history.forEach((h, i) => {
@@ -114,7 +116,6 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
         });
     }
 
-    // Mapa inverso: houseIndex → [fallen knights]
     const fallenByHouse = {};
     fallen.forEach(k => {
         const idx = fallenInHouse[k.id];
@@ -127,17 +128,18 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
     function getFinalMessage() {
         const h = score.housesPassed;
         const completed = history.length === 12;
+        const m = tr.messages;
 
-        if (completed && h === 12) return "Travessia Perfeita. Atena sorri.";
-        if (completed && h >= 9) return "Travessia concluída. Poucos caíram no caminho.";
-        if (completed && h >= 6) return "Travessia concluída — à custa de muitas batalhas.";
-        if (completed) return "Chegaram ao fim, mas o preço foi alto.";
+        if (completed && h === 12) return m.perfect;
+        if (completed && h >= 9) return m.great;
+        if (completed && h >= 6) return m.good;
+        if (completed) return m.complete;
 
-        if (h >= 10) return "Quase lá. Os deuses reconhecem sua força.";
-        if (h >= 7) return "Além da metade — a batalha foi épica.";
-        if (h >= 4) return "Metade do caminho. A saga continua.";
-        if (h >= 1) return "A jornada foi curta, mas valente.";
-        return "Os guardiões foram implacáveis. Tente de novo.";
+        if (h >= 10) return m.almostThere;
+        if (h >= 7) return m.epic;
+        if (h >= 4) return m.halfway;
+        if (h >= 1) return m.brave;
+        return m.brutal;
     }
 
     return (
@@ -146,28 +148,26 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
 
                 {/* ── Cabeçalho ── */}
                 <div style={S.header}>
-                    <h1 style={S.title}>Fim da Travessia</h1>
+                    <h1 style={S.title}>{tr.title}</h1>
                     <p style={S.message}>{getFinalMessage()}</p>
                     <p style={S.godLabel}>
-                        Bênção: <span style={{ color: god?.color }}>{god?.name}</span>
+                        {tr.blessing} <span style={{ color: godColor }}>{godName}</span>
                     </p>
                 </div>
 
-                {/* ── Visual: constelação + mapa zodiacal ── */}
+                {/* ── Visual: constelação + mapa ── */}
                 <div style={S.visual}>
 
-                    {/* Constelação dos cavaleiros */}
+                    {/* Constelação */}
                     <div style={S.constCol}>
-                        <p style={S.secLabel}>Sua Constelação</p>
+                        <p style={S.secLabel}>{tr.constellation.title}</p>
                         <svg viewBox="0 0 200 200" style={{ width: "100%", maxWidth: "200px", display: "block", margin: "0 auto" }}>
                             <rect width="200" height="200" fill="#050b14" />
 
-                            {/* Estrelas de fundo */}
                             {STARS_CONST.map((s, i) => (
                                 <circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill="#fff" opacity={s.op} />
                             ))}
 
-                            {/* Linhas da constelação (anel) */}
                             {allKnights.map((k, i) => {
                                 const a = positions[i];
                                 const b = positions[(i + 1) % allKnights.length];
@@ -182,13 +182,12 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                                 );
                             })}
 
-                            {/* Nós dos cavaleiros */}
                             {allKnights.map((k, i) => {
                                 const pos = positions[i];
                                 const alive = survivors.some(s => s.id === k.id);
                                 const firstName = k.name.split(" ")[0];
                                 const houseIdx = fallenInHouse[k.id];
-                                const houseName = houseIdx !== undefined ? HOUSE_POS[houseIdx].name : null;
+                                const houseName = houseIdx !== undefined ? houseNames[houseIdx] : null;
                                 return (
                                     <g key={k.id} transform={`translate(${pos.x},${pos.y})`}>
                                         {alive ? (
@@ -206,18 +205,14 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                                                 <line x1="6" y1="-6" x2="-6" y2="6" stroke="#7a2020" strokeWidth="1.5" opacity="0.8" />
                                             </>
                                         )}
-                                        {/* Nome do cavaleiro */}
-                                        <text
-                                            y="20" textAnchor="middle"
+                                        <text y="20" textAnchor="middle"
                                             fill={alive ? "#2a5a30" : "#5a2020"}
                                             fontSize="10" fontFamily="Georgia, serif"
                                         >
                                             {firstName}
                                         </text>
-                                        {/* Casa onde caiu (apenas para caídos) */}
                                         {!alive && houseName && (
-                                            <text
-                                                y="31" textAnchor="middle"
+                                            <text y="31" textAnchor="middle"
                                                 fill="#3a1414"
                                                 fontSize="8" fontFamily="Georgia, serif"
                                             >
@@ -231,20 +226,19 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                             {/* Legenda */}
                             <circle cx="20" cy="193" r="5" fill="#08141a" stroke="#3a8040" strokeWidth="1.2" />
                             <circle cx="20" cy="193" r="2" fill="#4aaa50" opacity="0.8" />
-                            <text x="29" y="197" fill="#1a4a28" fontSize="9" fontFamily="Georgia, serif">vivo</text>
+                            <text x="29" y="197" fill="#1a4a28" fontSize="9" fontFamily="Georgia, serif">{tr.constellation.alive}</text>
                             <circle cx="65" cy="193" r="5" fill="#0e0808" stroke="#7a2020" strokeWidth="1.2" opacity="0.8" />
                             <line x1="61" y1="189" x2="69" y2="197" stroke="#7a2020" strokeWidth="1.2" opacity="0.8" />
                             <line x1="69" y1="189" x2="61" y2="197" stroke="#7a2020" strokeWidth="1.2" opacity="0.8" />
-                            <text x="74" y="197" fill="#4a1818" fontSize="9" fontFamily="Georgia, serif">caído</text>
+                            <text x="74" y="197" fill="#4a1818" fontSize="9" fontFamily="Georgia, serif">{tr.constellation.fallen}</text>
                         </svg>
 
-                        {/* Cavaleiros caídos */}
                         {fallen.length > 0 && (
                             <div style={S.fallenList}>
-                                <p style={S.fallenListTitle}>Cavaleiros caídos</p>
+                                <p style={S.fallenListTitle}>{tr.constellation.fallenList}</p>
                                 {fallen.map(k => {
                                     const houseIdx = fallenInHouse[k.id];
-                                    const houseName = houseIdx !== undefined ? HOUSE_POS[houseIdx].name : "—";
+                                    const houseName = houseIdx !== undefined ? houseNames[houseIdx] : "—";
                                     return (
                                         <div key={k.id} style={S.fallenRow}>
                                             <span style={S.fallenName}>{k.name.split(" ")[0]}</span>
@@ -291,7 +285,6 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                                 const isEgg = i < history.length && history[i].passed && history[i].easterEggTriggered;
                                 const isHover = hoveredHouse === i;
 
-                                // Posição do tooltip: acima se próximo ao fundo, abaixo caso contrário
                                 const tipAbove = pos.cy > 380;
                                 const tipOffset = hs.r + 10;
                                 const tipY = tipAbove ? -tipOffset - 18 : tipOffset;
@@ -306,16 +299,9 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                                         onMouseLeave={() => setHoveredHouse(null)}
                                         style={{ cursor: "pointer" }}
                                     >
-                                        {/* Glow de hover */}
                                         {isHover && (
-                                            <circle
-                                                r={hs.r + 8}
-                                                fill={hs.dot}
-                                                opacity="0.15"
-                                                filter="url(#glow)"
-                                            />
+                                            <circle r={hs.r + 8} fill={hs.dot} opacity="0.15" filter="url(#glow)" />
                                         )}
-
                                         <circle
                                             r={isHover ? hs.r + 2 : hs.r}
                                             fill={hs.fill}
@@ -327,7 +313,6 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                                             <text y={-hs.r - 4} textAnchor="middle" fill="#c8a800" fontSize="11" fontFamily="Georgia, serif">✦</text>
                                         )}
 
-                                        {/* Tooltip com nome do signo */}
                                         {isHover && (
                                             <g>
                                                 <rect
@@ -347,7 +332,7 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                                                     fontFamily="Georgia, serif"
                                                     fontStyle="italic"
                                                 >
-                                                    {pos.name}
+                                                    {houseNames[i]}
                                                 </text>
                                             </g>
                                         )}
@@ -355,27 +340,31 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                                 );
                             })}
 
-                            {/* Labels dos extremos */}
-                            <text x="1030" y="484" textAnchor="middle" fill="#2a5a30" fontSize="13" fontFamily="Georgia, serif">Áries</text>
-                            <text x="115" y="72" textAnchor="middle" fill="#1e3a5a" fontSize="13" fontFamily="Georgia, serif">Peixes</text>
+                            {/* Labels extremos */}
+                            <text x="1030" y="484" textAnchor="middle" fill="#2a5a30" fontSize="13" fontFamily="Georgia, serif">
+                                {houseNames[0]}
+                            </text>
+                            <text x="115" y="72" textAnchor="middle" fill="#1e3a5a" fontSize="13" fontFamily="Georgia, serif">
+                                {houseNames[11]}
+                            </text>
 
                             {/* Legenda */}
                             <g transform="translate(0,456)">
                                 <circle cx="20" cy="24" r="6" fill="#091a0e" stroke="#3a8040" strokeWidth="1.2" />
                                 <circle cx="20" cy="24" r="2.5" fill="#4aaa50" opacity="0.8" />
-                                <text x="30" y="28" fill="#1a5028" fontSize="10" fontFamily="Georgia, serif">passada</text>
+                                <text x="30" y="28" fill="#1a5028" fontSize="10" fontFamily="Georgia, serif">{tr.map.passed}</text>
 
                                 <circle cx="96" cy="24" r="6" fill="#1a0808" stroke="#7a2020" strokeWidth="1.2" />
                                 <circle cx="96" cy="24" r="2.5" fill="#cc3030" opacity="0.8" />
-                                <text x="106" y="28" fill="#5a1818" fontSize="10" fontFamily="Georgia, serif">falhou</text>
+                                <text x="106" y="28" fill="#5a1818" fontSize="10" fontFamily="Georgia, serif">{tr.map.failed}</text>
 
                                 <circle cx="162" cy="24" r="6" fill="#1a1400" stroke="#c8a800" strokeWidth="1.2" />
                                 <circle cx="162" cy="24" r="2.5" fill="#c8a800" opacity="0.9" />
-                                <text x="172" y="28" fill="#6a5010" fontSize="10" fontFamily="Georgia, serif">evento especial</text>
+                                <text x="172" y="28" fill="#6a5010" fontSize="10" fontFamily="Georgia, serif">{tr.map.special}</text>
 
                                 <circle cx="282" cy="24" r="6" fill="#080e18" stroke="#1e3a50" strokeWidth="1" opacity="0.5" />
                                 <circle cx="282" cy="24" r="2.5" fill="#1e3a50" opacity="0.4" />
-                                <text x="292" y="28" fill="#1a3040" fontSize="10" fontFamily="Georgia, serif">não alcançada</text>
+                                <text x="292" y="28" fill="#1a3040" fontSize="10" fontFamily="Georgia, serif">{tr.map.notReached}</text>
                             </g>
                         </svg>
                     </div>
@@ -384,26 +373,26 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                 {/* ── Placar ── */}
                 <div style={S.scoreWrap}>
                     <div style={S.scoreMain}>
-                        <p style={S.scoreLbl}>Pontuação Final</p>
-                        <p style={S.scoreNum}>{score.total} pts</p>
+                        <p style={S.scoreLbl}>{tr.score.title}</p>
+                        <p style={S.scoreNum}>{score.total} {tr.score.pts}</p>
                     </div>
                     <div style={S.breakdown}>
                         <div style={S.bRow}>
-                            <span style={S.bLabel}>Casas passadas</span>
-                            <span style={S.bVal}>{score.housesPassed} / 12 → {score.housePoints} pts</span>
+                            <span style={S.bLabel}>{tr.score.houses}</span>
+                            <span style={S.bVal}>{score.housesPassed} / 12 {tr.score.arrow} {score.housePoints} {tr.score.pts}</span>
                         </div>
                         <div style={S.bRow}>
-                            <span style={S.bLabel}>Sobreviventes</span>
-                            <span style={S.bVal}>{score.survivors} → {score.survivorPoints} pts</span>
+                            <span style={S.bLabel}>{tr.score.survivors}</span>
+                            <span style={S.bVal}>{score.survivors} {tr.score.arrow} {score.survivorPoints} {tr.score.pts}</span>
                         </div>
                         <div style={{ ...S.bRow, borderBottom: "none", paddingBottom: 0 }}>
-                            <span style={S.bLabel}>Eventos especiais</span>
-                            <span style={S.bVal}>{score.easterEggsFound} → {score.eggPoints} pts</span>
+                            <span style={S.bLabel}>{tr.score.special}</span>
+                            <span style={S.bVal}>{score.easterEggsFound} {tr.score.arrow} {score.eggPoints} {tr.score.pts}</span>
                         </div>
                     </div>
                 </div>
 
-                {/* ── Histórico das casas ── */}
+                {/* ── Histórico ── */}
                 <div style={S.hist}>
                     <div style={S.histGrid}>
                         {history.map((r, i) => (
@@ -414,10 +403,10 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
                                 <span style={{ color: r.passed ? "#4CAF50" : "#f44336", fontSize: "13px", flexShrink: 0 }}>
                                     {r.passed ? "✔" : "✖"}
                                 </span>
-                                <span style={S.hName}>{HOUSE_POS[i].name}</span>
+                                <span style={S.hName}>{houseNames[i]}</span>
                                 <span style={S.hChance}>{r.passChance}%</span>
                                 {r.easterEggTriggered && (
-                                    <span style={S.eggTag}>✦ especial</span>
+                                    <span style={S.eggTag}>{tr.history.egg}</span>
                                 )}
                                 {(fallenByHouse[i] ?? []).map(k => (
                                     <span key={k.id} style={S.fallenTag}>💀 {k.name}</span>
@@ -429,17 +418,17 @@ export default function Result({ history, survivors, fallen, fallenHouses = {}, 
 
                 {/* ── Botões ── */}
                 <div style={S.btnRow}>
-                    <button style={S.btnSec} onClick={onRetry}>Tentar Novamente</button>
-                    <button style={S.btnPri} onClick={onRestart}>Nova Travessia</button>
+                    <button style={S.btnSec} onClick={onRetry}>{tr.buttons.retry}</button>
+                    <button style={S.btnPri} onClick={onRestart}>{tr.buttons.restart}</button>
                 </div>
 
             </div>
 
             {/* ── Rodapé ── */}
             <footer style={S.footer}>
-                <span style={S.ftText}>Criado por @kamonbr</span>
-                <span style={S.ftText}>A Travessia — fã-game não oficial</span>
-                <span style={S.ftText}>Cavaleiros do Zodíaco © Masami Kurumada · 2025</span>
+                <span style={S.ftText}>{f.creator}</span>
+                <span style={S.ftText}>{f.game}</span>
+                <span style={S.ftText}>{f.copyright}</span>
             </footer>
         </div>
     );
@@ -500,10 +489,7 @@ const S = {
         flexDirection: "column",
         gap: "10px",
     },
-    mapCol: {
-        flex: 1,
-        minWidth: 0,
-    },
+    mapCol: { flex: 1, minWidth: 0 },
     secLabel: {
         fontSize: "12px",
         letterSpacing: "3px",
@@ -531,15 +517,8 @@ const S = {
         alignItems: "baseline",
         gap: "6px",
     },
-    fallenName: {
-        fontSize: "12px",
-        color: "#5a2a2a",
-        fontStyle: "italic",
-    },
-    fallenHouse: {
-        fontSize: "10px",
-        color: "#3a1818",
-    },
+    fallenName: { fontSize: "12px", color: "#5a2a2a", fontStyle: "italic" },
+    fallenHouse: { fontSize: "10px", color: "#3a1818" },
     scoreWrap: {
         display: "flex",
         borderBottom: "1px solid #1a2a3a",
@@ -581,12 +560,8 @@ const S = {
         borderBottom: "1px solid #0e1a26",
         padding: "9px 0",
     },
-    bLabel: {
-        color: "#7ab8d4",
-    },
-    bVal: {
-        color: "#7ab8d4",
-    },
+    bLabel: { color: "#7ab8d4" },
+    bVal: { color: "#7ab8d4" },
     hist: {
         padding: "14px 20px",
         borderBottom: "1px solid #1a2a3a",
@@ -604,24 +579,10 @@ const S = {
         fontSize: "13px",
         flexWrap: "wrap",
     },
-    hName: {
-        color: "#7ab8d4",
-        minWidth: "80px",
-        fontStyle: "italic",
-        fontSize: "17px",
-    },
-    hChance: {
-        color: "#7ab8d4",
-        fontSize: "15px",
-    },
-    eggTag: {
-        color: "#c8a800",
-        fontSize: "13px",
-    },
-    fallenTag: {
-        color: "#cc3030",
-        fontSize: "13px",
-    },
+    hName: { color: "#7ab8d4", minWidth: "80px", fontStyle: "italic", fontSize: "17px" },
+    hChance: { color: "#7ab8d4", fontSize: "15px" },
+    eggTag: { color: "#c8a800", fontSize: "13px" },
+    fallenTag: { color: "#cc3030", fontSize: "13px" },
     btnRow: {
         display: "flex",
         gap: "16px",
