@@ -85,9 +85,14 @@ export const GOD_RULES = {
         houseBonus: { aquarius: 0.15, pisces: 0.15 },
         housePenalty: { aquarius: -0.20, pisces: -0.20 },
         // Se algum destes estiver no time → aplica houseBonus; senão → housePenalty
+        // Inclui Generais Marinhos (pool de Poseidon) + Gold aquáticos + discípulos
         penaltyCondition: {
-            aquarius: ["camus", "aphrodite", "julian_solo", "myu", "charon"],
-            pisces: ["aphrodite", "camus", "julian_solo"],
+            aquarius: ["camus", "aphrodite", "myu", "charon",
+                "krishna", "isaak", "sorrento", "baian", "kasa", "scylla_io", "thetis",
+                "hyoga", "degel", "crystal"],
+            pisces: ["aphrodite", "camus",
+                "krishna", "isaak", "sorrento", "baian", "kasa", "scylla_io", "thetis",
+                "shun", "albafica"],
         },
         earlyHouseBonus: 0,
         earlyHouseCount: 0,
@@ -208,7 +213,7 @@ export const GOD_RULES = {
         earlyHouseCount: 0,
         cosmosMultiplierByRank: {},
         cosmosMultiplierBySeries: {
-            black: 1.25,  // cavaleiros negros: renegados puros +25%
+            black_saints: 1.25,  // cavaleiros negros: renegados puros +25%
             classic: 0.92,  // seguidores de Atena: leve queda
             lost_canvas: 0.92,  // ligados à Atena de outra era
             omega: 0.90,  // nova geração sob tutela de Marte -10%
@@ -220,7 +225,7 @@ export const GOD_RULES = {
         cosmosDecayPerHouse: 0,
         poolFemaleOnly: false,
         poolSeriesOnly: [],
-        poolPreferSeries: ["black"],  // prefere cavaleiros negros, mas não exclui outros
+        poolPreferSeries: ["black_saints"],  // prefere cavaleiros negros, mas não exclui outros
         poolAllowRanks: [],
         reviveOnFall: 0,
     },

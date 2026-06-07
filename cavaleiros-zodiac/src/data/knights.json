@@ -1291,6 +1291,91 @@
 			"type": "offense",
 			"affinities": [],
 			"lore": "Cavaleiro de Prata de Perseu. Usa o Escudo de Medusa para petrificar os oponentes — um dos poderes mais temidos entre os Cavaleiros de Prata."
+		},
+		{
+			"id": "shaina",
+			"name": "Shaina de Ofiúco",
+			"series": "classic",
+			"rank": "silver",
+			"constellation": "Ophiuchus",
+			"power": 78,
+			"defense": 65,
+			"speed": 78,
+			"cosmos": 74,
+			"type": "offense",
+			"affinities": [
+				"aries",
+				"virgo"
+			],
+			"lore": "Cavaleira de Prata de Ofiúco e uma das raras mulheres do Santuário. Feroz e orgulhosa, sua máscara esconde tanto rancor quanto admiração — especialmente por Seiya."
+		},
+		{
+			"id": "june",
+			"name": "June do Peixe-Anjo",
+			"series": "classic",
+			"rank": "silver",
+			"constellation": "Angelfish",
+			"power": 65,
+			"defense": 68,
+			"speed": 72,
+			"cosmos": 70,
+			"type": "balance",
+			"affinities": [
+				"pisces",
+				"cancer"
+			],
+			"lore": "Cavaleira de Prata do Peixe-Anjo e instrutora de Shun em Andromeda Island. Uma das poucas mulheres a treinar cavaleiros — respeitada por sua disciplina e lealdade."
+		},
+		{
+			"id": "seika",
+			"name": "Seika",
+			"series": "classic",
+			"rank": "bronze",
+			"constellation": "Pegasus",
+			"power": 52,
+			"defense": 48,
+			"speed": 58,
+			"cosmos": 62,
+			"type": "balance",
+			"affinities": [
+				"aries",
+				"sagittarius"
+			],
+			"lore": "Irmã de Seiya, perdida na Grécia por anos. Sem treinamento formal, seu cosmo despertou através do elo espiritual com o irmão — um vínculo que nenhuma distância ou golpe pôde apagar."
+		},
+		{
+			"id": "freya",
+			"name": "Freya de Asgard",
+			"series": "asgard",
+			"rank": "silver",
+			"constellation": "Freya",
+			"power": 70,
+			"defense": 72,
+			"speed": 75,
+			"cosmos": 76,
+			"type": "support",
+			"affinities": [
+				"libra",
+				"taurus"
+			],
+			"lore": "Assistente pessoal de Hilda e guerreira das terras geladas de Asgard. Seu cosmo puro e lealdade inabalável a tornam formidável mesmo entre os Guerreiros Deuses."
+		},
+		{
+			"id": "hilda",
+			"name": "Hilda de Polaris",
+			"series": "asgard",
+			"rank": "god_warrior",
+			"constellation": "Polaris",
+			"power": 88,
+			"defense": 82,
+			"speed": 80,
+			"cosmos": 90,
+			"type": "offense",
+			"affinities": [
+				"sagittarius",
+				"capricorn"
+			],
+			"lore": "Representante de Odin na Terra e governante de Asgard. Controlada pelo Anel de Nibelungo de Poseidon, seu cosmo foi levado ao extremo — destruidora e protetora ao mesmo tempo."
 		}
 	]
 }
