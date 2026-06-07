@@ -275,8 +275,15 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
         if (!outcome.passed && outcome.fallenKnight) {
             const reviveChance = getReviveChance(godId);
             const revived = reviveChance > 0 && Math.random() < reviveChance;
-            if (!revived) {
-                setAliveTeam(prev => prev.filter(k => k.id !== outcome.fallenKnight.id));
+
+            // Knight cai primeiro, independente de revival
+            const afterFall = aliveTeam.filter(k => k.id !== outcome.fallenKnight.id);
+
+            if (revived) {
+                // Hades traz de volta: re-adiciona ao time vivo, NÃO registra como caído
+                setAliveTeam([...afterFall, outcome.fallenKnight]);
+            } else {
+                setAliveTeam(afterFall);
                 setFallen(prev => [...prev, outcome.fallenKnight]);
                 setFallenHouses(prev => ({ ...prev, [outcome.fallenKnight.id]: houseIndex }));
             }
@@ -471,15 +478,15 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
                                                 </div>
                                             )}
 
-                                            {!result.passed && result.fallenKnight && (
+                                            {!result.passed && result.fallenKnight && !result.reviveGranted && (
                                                 <div style={{ color: "#9a3030", fontSize: "14px", marginTop: "8px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
                                                     {tr.battle.knightFell(result.fallenKnight.name)}
                                                 </div>
                                             )}
 
-                                            {result.reviveGranted && (
-                                                <div style={{ color: "#4aaa50", fontSize: "14px", marginTop: "8px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
-                                                    {tr.battle.revived}
+                                            {result.reviveGranted && result.fallenKnight && (
+                                                <div style={{ color: "#b060e0", fontSize: "14px", marginTop: "8px", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic" }}>
+                                                    {tr.battle.knightRevived(result.fallenKnight.name)}
                                                 </div>
                                             )}
 

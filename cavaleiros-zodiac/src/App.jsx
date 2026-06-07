@@ -2,6 +2,7 @@
 // Fluxo: title → location_select → god_select → knight_select → run → result → (reinicia)
 
 import { useState } from "react";
+import { LanguageProvider } from "./i18n/LanguageContext";
 import TitleScreen from "./screens/TitleScreen";
 import LocationSelect from "./screens/LocationSelect";
 import GodSelect from "./screens/GodSelect";
@@ -72,52 +73,58 @@ export default function App() {
     }
 
     return (
-        <div>
-            {screen === "title" && (
-                <TitleScreen onStart={handleStart} />
-            )}
+        <LanguageProvider>
+            <div>
+                {screen === "title" && (
+                    <TitleScreen onStart={handleStart} />
+                )}
 
-            {screen === "location_select" && (
-                <LocationSelect
-                    onSelect={handleLocationSelect}
-                    onBack={() => setScreen("title")}
-                />
-            )}
+                {screen === "location_select" && (
+                    <LocationSelect
+                        onSelect={handleLocationSelect}
+                        onBack={() => setScreen("title")}
+                    />
+                )}
 
-            {screen === "god_select" && (
-                <GodSelect
-                    onSelect={handleGodSelect}
-                    onBack={() => setScreen("location_select")}
-                />
-            )}
+                {screen === "god_select" && (
+                    <GodSelect
+                        onSelect={handleGodSelect}
+                        onBack={() => setScreen("location_select")}
+                    />
+                )}
 
-            {screen === "knight_select" && (
-                <KnightSelect godId={selectedGod} onConfirm={handleTeamConfirm} />
-            )}
+                {screen === "knight_select" && (
+                    <KnightSelect
+                        godId={selectedGod}
+                        onConfirm={handleTeamConfirm}
+                        onBack={() => setScreen("god_select")}
+                    />
+                )}
 
-            {screen === "run" && (
-                <Run
-                    team={selectedTeam}
-                    godId={selectedGod}
-                    locationId={selectedLoc}
-                    layout={runLayout}
-                    teamSize={runTeamSize}
-                    onFinish={handleRunFinish}
-                    onMenu={handleMenu}
-                />
-            )}
+                {screen === "run" && (
+                    <Run
+                        team={selectedTeam}
+                        godId={selectedGod}
+                        locationId={selectedLoc}
+                        layout={runLayout}
+                        teamSize={runTeamSize}
+                        onFinish={handleRunFinish}
+                        onMenu={handleMenu}
+                    />
+                )}
 
-            {screen === "result" && (
-                <Result
-                    history={runData.history}
-                    survivors={runData.survivors}
-                    fallen={runData.fallen}
-                    fallenHouses={runData.fallenHouses}
-                    godId={selectedGod}
-                    onRestart={handleRestart}
-                    onRetry={handleRetry}
-                />
-            )}
-        </div>
+                {screen === "result" && (
+                    <Result
+                        history={runData.history}
+                        survivors={runData.survivors}
+                        fallen={runData.fallen}
+                        fallenHouses={runData.fallenHouses}
+                        godId={selectedGod}
+                        onRestart={handleRestart}
+                        onRetry={handleRetry}
+                    />
+                )}
+            </div>
+        </LanguageProvider>
     );
 }

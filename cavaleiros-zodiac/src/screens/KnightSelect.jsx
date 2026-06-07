@@ -132,7 +132,7 @@ const SIZE_PREVIEWS = {
 
 // ─── Tela de escolha do tamanho ──────────────────────────────────────────────
 
-function SizeSelectionScreen({ onChoose }) {
+function SizeSelectionScreen({ onChoose, onBack }) {
     const [hovered, setHovered] = useState(null);
     const { lang } = useLanguage();
     const ts = T[lang].size;
@@ -160,6 +160,11 @@ function SizeSelectionScreen({ onChoose }) {
             </svg>
 
             <div style={sS.header}>
+                {onBack && (
+                    <button style={sS.backBtn} onClick={onBack}>
+                        {T[lang].god.back}
+                    </button>
+                )}
                 <p style={sS.sup}>{ts.eyebrow}</p>
                 <h1 style={sS.title}>{ts.title}</h1>
                 <p style={sS.sub}>{ts.sub}</p>
@@ -322,7 +327,7 @@ function ConstellationBoard({ team, teamSize, layout }) {
 
 // ─── Componente principal ─────────────────────────────────────────────────────
 
-export default function KnightSelect({ godId, onConfirm }) {
+export default function KnightSelect({ godId, onConfirm, onBack }) {
     const allKnights = knightsData.knights;
     const { lang } = useLanguage();
     const td = T[lang].draft;
@@ -338,6 +343,13 @@ export default function KnightSelect({ godId, onConfirm }) {
         setPool(generatePool(allKnights, [], godId));
     }
 
+    function handleBackToSize() {
+        setTeamSize(null);
+        setLayout(null);
+        setTeam([]);
+        setPool([]);
+    }
+
     function handlePick(knight) {
         const newTeam = [...team, knight];
         setTeam(newTeam);
@@ -351,7 +363,7 @@ export default function KnightSelect({ godId, onConfirm }) {
     }
 
     if (!teamSize) {
-        return <SizeSelectionScreen onChoose={handleSizeChoice} />;
+        return <SizeSelectionScreen onChoose={handleSizeChoice} onBack={onBack} />;
     }
 
     const pickCount = team.length;
@@ -374,6 +386,11 @@ export default function KnightSelect({ godId, onConfirm }) {
             </svg>
 
             <div style={{ position: "relative", zIndex: 1 }}>
+                {team.length === 0 && (
+                    <button style={styles.draftBackBtn} onClick={handleBackToSize}>
+                        {T[lang].god.back}
+                    </button>
+                )}
                 <h1 style={styles.title}>{td.title}</h1>
                 {!isComplete && (
                     <p style={styles.subtitle}>{td.pickLabel(pickCount + 1, teamSize)}</p>
@@ -540,6 +557,21 @@ const sS = {
         color: "#0e1a26",
         letterSpacing: "0.5px",
     },
+    backBtn: {
+        position: "absolute",
+        top: "40px",
+        left: "24px",
+        background: "none",
+        border: "1px solid #1a2a3a",
+        borderRadius: "4px",
+        color: "#4a8aaa",
+        fontFamily: "'Cinzel', serif",
+        fontSize: "11px",
+        letterSpacing: "2px",
+        cursor: "pointer",
+        padding: "6px 14px",
+        transition: "color 0.2s, border-color 0.2s",
+    },
 };
 
 const board = {
@@ -556,6 +588,21 @@ const board = {
 };
 
 const styles = {
+    draftBackBtn: {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        background: "none",
+        border: "1px solid #1a2a3a",
+        borderRadius: "4px",
+        color: "#4a8aaa",
+        fontFamily: "'Cinzel', serif",
+        fontSize: "11px",
+        letterSpacing: "2px",
+        cursor: "pointer",
+        padding: "6px 14px",
+        transition: "color 0.2s, border-color 0.2s",
+    },
     page: {
         minHeight: "100vh",
         background: "#06091a",
