@@ -1,5 +1,8 @@
 // TitleScreen.jsx
-// Layout: título → mapa SVG 1100×500 full-width → regras → botão → rodapé
+// Layout: toggle idioma + título → mapa SVG 1100×500 → regras → botão → rodapé
+
+import { useLanguage } from "../i18n/LanguageContext";
+import { T } from "../i18n/translations";
 
 // ─── Starfield (1100×500 viewBox) ────────────────────────────────────────────
 
@@ -19,55 +22,53 @@ const MAP_STARS = Array.from({ length: 260 }, () => ({
 // ─── House positions (viewBox 1100×500) ──────────────────────────────────────
 
 const HOUSE_POSITIONS = [
-    { cx: 1030, cy: 460 }, // 1  Áries
-    { cx: 880, cy: 392 }, // 2  Touro
-    { cx: 952, cy: 303 }, // 3  Gêmeos
-    { cx: 778, cy: 262 }, // 4  Câncer
-    { cx: 604, cy: 300 }, // 5  Leão
-    { cx: 682, cy: 212 }, // 6  Virgem
-    { cx: 872, cy: 178 }, // 7  Libra
-    { cx: 802, cy: 108 }, // 8  Escorpião
-    { cx: 612, cy: 133 }, // 9  Sagitário
-    { cx: 428, cy: 97 }, // 10 Capricórnio
-    { cx: 272, cy: 138 }, // 11 Aquário
-    { cx: 115, cy: 88 }, // 12 Peixes
+    { cx: 1030, cy: 460 },
+    { cx: 880, cy: 392 },
+    { cx: 952, cy: 303 },
+    { cx: 778, cy: 262 },
+    { cx: 604, cy: 300 },
+    { cx: 682, cy: 212 },
+    { cx: 872, cy: 178 },
+    { cx: 802, cy: 108 },
+    { cx: 612, cy: 133 },
+    { cx: 428, cy: 97 },
+    { cx: 272, cy: 138 },
+    { cx: 115, cy: 88 },
 ];
 
 const PATH_POINTS = HOUSE_POSITIONS.map(p => `${p.cx},${p.cy}`).join(" ");
 
-// ─── Rules ───────────────────────────────────────────────────────────────────
-
-const RULES = [
-    {
-        icon: "⚔",
-        text: "Em cada casa, seu time enfrenta o guardião. A chance de passar depende dos stats dos cavaleiros, das afinidades e do deus escolhido.",
-    },
-    {
-        icon: "💀",
-        text: "Se a casa não for superada, um cavaleiro cai. A run termina quando todos forem derrotados.",
-    },
-    {
-        icon: "✨",
-        text: "Certos times ativam easter eggs do lore. Descubra as combinações certas para ganhar vantagens — e até reviver cavaleiros caídos.",
-    },
-    {
-        icon: "🏆",
-        text: "Sua pontuação final depende das casas passadas, dos sobreviventes e dos eventos especiais descobertos. Bata seu recorde.",
-    },
-];
-
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function TitleScreen({ onStart }) {
+    const { lang, setLang } = useLanguage();
+    const t = T[lang].title;
+    const f = T[lang].footer;
+    const houses = T[lang].houses;
+
     return (
         <div style={S.outer}>
             <div style={S.page}>
 
                 {/* ── Cabeçalho ── */}
                 <div style={S.header}>
-                    <p style={S.sup}>Cavaleiros do Zodíaco</p>
-                    <h1 style={S.title}>A TRAVESSIA</h1>
-                    <p style={S.tagline}>Doze casas. Cinco cavaleiros. Um destino.</p>
+
+                    {/* Toggle de idioma */}
+                    <div style={S.langRow}>
+                        <button
+                            style={{ ...S.langBtn, ...(lang === "pt" ? S.langBtnActive : {}) }}
+                            onClick={() => setLang("pt")}
+                        >PT</button>
+                        <span style={S.langSep}>|</span>
+                        <button
+                            style={{ ...S.langBtn, ...(lang === "en" ? S.langBtnActive : {}) }}
+                            onClick={() => setLang("en")}
+                        >EN</button>
+                    </div>
+
+                    <p style={S.sup}>{t.eyebrow}</p>
+                    <h1 style={S.title}>{t.game}</h1>
+                    <p style={S.tagline}>{t.tagline}</p>
                 </div>
 
                 {/* ── Mapa das 12 casas (full-width) ── */}
@@ -75,7 +76,6 @@ export default function TitleScreen({ onStart }) {
                     <svg viewBox="0 0 1100 500" style={{ width: "100%", display: "block" }}>
                         <rect width="1100" height="500" fill="#050b14" />
 
-                        {/* Nebula + filtros */}
                         <defs>
                             <radialGradient id="tnb1" cx="50%" cy="50%">
                                 <stop offset="0%" stopColor="#2010a0" stopOpacity="0.09" />
@@ -93,22 +93,12 @@ export default function TitleScreen({ onStart }) {
                         <ellipse cx="600" cy="250" rx="500" ry="230" fill="url(#tnb1)" />
                         <ellipse cx="200" cy="380" rx="260" ry="160" fill="url(#tnb2)" />
 
-                        {/* Starfield */}
                         {MAP_STARS.map((s, i) => (
                             <circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill="#fff" opacity={s.op} />
                         ))}
 
-                        {/* Caminho tracejado */}
-                        <polyline
-                            points={PATH_POINTS}
-                            fill="none"
-                            stroke="#1a3248"
-                            strokeWidth="2"
-                            strokeDasharray="6 5"
-                            opacity="0.65"
-                        />
+                        <polyline points={PATH_POINTS} fill="none" stroke="#1a3248" strokeWidth="2" strokeDasharray="6 5" opacity="0.65" />
 
-                        {/* Nós das 12 casas — brilho dourado */}
                         {HOUSE_POSITIONS.map((pos, i) => (
                             <g key={i} transform={`translate(${pos.cx},${pos.cy})`}>
                                 <circle r="18" fill="#c8a800" opacity="0.07" filter="url(#houseGlow)" />
@@ -118,20 +108,19 @@ export default function TitleScreen({ onStart }) {
                             </g>
                         ))}
 
-                        {/* Labels primeira e última casa */}
+                        {/* Labels primeira e última casa no idioma atual */}
                         <text x="1030" y="484" textAnchor="middle" fill="#c8a800" opacity="0.5" fontSize="13" fontFamily="'Cormorant Garamond', Georgia, serif">
-                            Áries
+                            {houses[0]}
                         </text>
                         <text x="115" y="72" textAnchor="middle" fill="#c8a800" opacity="0.5" fontSize="13" fontFamily="'Cormorant Garamond', Georgia, serif">
-                            Peixes
+                            {houses[11]}
                         </text>
-
                     </svg>
                 </div>
 
                 {/* ── Regras ── */}
                 <div style={S.rules}>
-                    {RULES.map((rule, i) => (
+                    {t.rules.map((rule, i) => (
                         <div key={i} style={{ ...S.rule, borderRight: i < 3 ? "1px solid #1a2a3a" : "none" }}>
                             <span style={S.ruleIcon}>{rule.icon}</span>
                             <p style={S.ruleText}>{rule.text}</p>
@@ -142,7 +131,7 @@ export default function TitleScreen({ onStart }) {
                 {/* ── Botão Iniciar ── */}
                 <div style={S.btnRow}>
                     <button style={S.btn} onClick={onStart}>
-                        Iniciar
+                        {t.start}
                     </button>
                 </div>
 
@@ -150,9 +139,9 @@ export default function TitleScreen({ onStart }) {
 
             {/* ── Rodapé ── */}
             <footer style={S.footer}>
-                <span style={S.footerText}>Criado por @kamonbr</span>
-                <span style={S.footerText}>A Travessia — fã-game não oficial</span>
-                <span style={S.footerText}>Cavaleiros do Zodíaco © Masami Kurumada · 2025</span>
+                <span style={S.footerText}>{f.creator}</span>
+                <span style={S.footerText}>{f.game}</span>
+                <span style={S.footerText}>{f.copyright}</span>
             </footer>
         </div>
     );
@@ -179,7 +168,36 @@ const S = {
     },
     header: {
         textAlign: "center",
-        padding: "32px 20px 20px",
+        padding: "24px 20px 20px",
+        position: "relative",
+    },
+    langRow: {
+        position: "absolute",
+        top: "24px",
+        right: "20px",
+        display: "flex",
+        alignItems: "center",
+        gap: "4px",
+    },
+    langBtn: {
+        background: "none",
+        border: "1px solid #2a4a6a",
+        borderRadius: "3px",
+        color: "#4a8aaa",
+        fontFamily: "'Cinzel', serif",
+        fontSize: "11px",
+        letterSpacing: "2px",
+        cursor: "pointer",
+        padding: "4px 10px",
+        transition: "color 0.2s, border-color 0.2s",
+    },
+    langBtnActive: {
+        color: "#c8a800",
+        borderColor: "#c8a800",
+    },
+    langSep: {
+        color: "#2a4a6a",
+        fontSize: "11px",
     },
     sup: {
         fontSize: "13px",
