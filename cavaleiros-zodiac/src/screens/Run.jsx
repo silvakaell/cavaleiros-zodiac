@@ -5,7 +5,7 @@
 import { useState, useRef, useEffect } from "react";
 import housesData from "../data/houses.json";
 import { resolveHouse } from "../game/battleEngine";
-import { GODS, applyGodCosmosModifiers, getGodHouseBonus, getCosmosDecay } from "../game/godBonuses";
+import { GODS, applyGodCosmosModifiers, getGodHouseBonus, getCosmosDecay, getReviveChance } from "../game/godBonuses";
 import { getBattleDescription } from "../game/battleDescriptions";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
@@ -183,10 +183,17 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
     function handleResolve() {
         const outcome = resolveHouse(aliveTeam, currentHouse, godId, houseIndex);
         if (!outcome.passed && outcome.fallenKnight) {
-            setAliveTeam(prev => prev.filter(k => k.id !== outcome.fallenKnight.id));
-            setFallen(prev => [...prev, outcome.fallenKnight]);
+            // Verifica revival (ex: Hades tem 35% de reviver o cavaleiro caído)
+            const reviveChance = getReviveChance(godId);
+            const revived = reviveChance > 0 && Math.random() < reviveChance;
+            if (!revived) {
+                setAliveTeam(prev => prev.filter(k => k.id !== outcome.fallenKnight.id));
+                setFallen(prev => [...prev, outcome.fallenKnight]);
+            }
+            setResult({ ...outcome, reviveGranted: revived });
+        } else {
+            setResult(outcome);
         }
-        setResult(outcome);
     }
 
     function handleNext() {

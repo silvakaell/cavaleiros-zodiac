@@ -5,9 +5,10 @@
 import { useState } from "react";
 import knightsData from "../data/knights.json";
 import { calcOverall, overallColor } from "../game/utils";
+import { getPoolConfig } from "../game/godBonuses";
 
 const POOL_SIZE = 4;
-const EXCLUDED_RANKS = ["gold"];
+const BASE_EXCLUDED_RANKS = ["gold"]; // ranks excluídos por padrão (alguns deuses liberam)
 
 const RANK_COLORS = {
     bronze: "#CD7F32",
@@ -194,12 +195,36 @@ function randomLayout(teamSize) {
     return layouts[Math.floor(Math.random() * layouts.length)];
 }
 
-function generatePool(allKnights, alreadyPicked) {
+function generatePool(allKnights, alreadyPicked, godId) {
+    const cfg = getPoolConfig(godId);
     const pickedIds = alreadyPicked.map(k => k.id);
-    const eligible = allKnights.filter(k =>
-        !EXCLUDED_RANKS.includes(k.rank) && !pickedIds.includes(k.id)
+
+    // Ranks excluídos: base menos os que o deus libera (ex: Apolo libera gold)
+    const excludedRanks = BASE_EXCLUDED_RANKS.filter(r => !cfg.allowRanks.includes(r));
+
+    let eligible = allKnights.filter(k =>
+        !excludedRanks.includes(k.rank) && !pickedIds.includes(k.id)
     );
-    return [...eligible].sort(() => Math.random() - 0.5).slice(0, POOL_SIZE);
+
+    // Filtro estrito: só cavaleiras femininas (Ártemis)
+    if (cfg.femaleOnly) {
+        eligible = eligible.filter(k => cfg.femaleIds.includes(k.id));
+    }
+    // Filtro estrito: só estas séries (Marte → omega)
+    else if (cfg.seriesOnly.length > 0) {
+        eligible = eligible.filter(k => cfg.seriesOnly.includes(k.series));
+    }
+
+    const shuffled = [...eligible].sort(() => Math.random() - 0.5);
+
+    // Preferência suave: preenche com série preferida primeiro (Odin, Poseidon)
+    if (cfg.preferSeries.length > 0) {
+        const preferred = shuffled.filter(k => cfg.preferSeries.includes(k.series));
+        const others = shuffled.filter(k => !cfg.preferSeries.includes(k.series));
+        return [...preferred, ...others].slice(0, POOL_SIZE);
+    }
+
+    return shuffled.slice(0, POOL_SIZE);
 }
 
 // ─── Tela de escolha do tamanho ──────────────────────────────────────────
@@ -546,14 +571,14 @@ export default function KnightSelect({ godId, onConfirm }) {
     function handleSizeChoice(size) {
         setTeamSize(size);
         setLayout(randomLayout(size));
-        setPool(generatePool(allKnights, []));
+        setPool(generatePool(allKnights, [], godId));
     }
 
     function handlePick(knight) {
         const newTeam = [...team, knight];
         setTeam(newTeam);
         if (newTeam.length < teamSize) {
-            setPool(generatePool(allKnights, newTeam));
+            setPool(generatePool(allKnights, newTeam, godId));
         }
     }
 
