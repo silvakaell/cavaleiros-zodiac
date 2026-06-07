@@ -1,8 +1,9 @@
 // App.jsx
-// Fluxo: title → god_select → knight_select → run → result → (reinicia)
+// Fluxo: title → location_select → god_select → knight_select → run → result → (reinicia)
 
 import { useState } from "react";
 import TitleScreen from "./screens/TitleScreen";
+import LocationSelect from "./screens/LocationSelect";
 import GodSelect from "./screens/GodSelect";
 import KnightSelect from "./screens/KnightSelect";
 import Run from "./screens/Run";
@@ -11,6 +12,7 @@ import Result from "./screens/Result";
 export default function App() {
 
     const [screen, setScreen] = useState("title");
+    const [selectedLoc, setSelectedLoc] = useState("sanctuary");
     const [selectedGod, setSelectedGod] = useState(null);
     const [selectedTeam, setSelectedTeam] = useState([]);
     const [runLayout, setRunLayout] = useState(null);
@@ -18,6 +20,11 @@ export default function App() {
     const [runData, setRunData] = useState(null);
 
     function handleStart() {
+        setScreen("location_select");
+    }
+
+    function handleLocationSelect(locationId) {
+        setSelectedLoc(locationId);
         setScreen("god_select");
     }
 
@@ -40,6 +47,7 @@ export default function App() {
 
     function handleRestart() {
         setScreen("title");
+        setSelectedLoc("sanctuary");
         setSelectedGod(null);
         setSelectedTeam([]);
         setRunData(null);
@@ -55,6 +63,7 @@ export default function App() {
     // Volta ao menu principal resetando tudo
     function handleMenu() {
         setScreen("title");
+        setSelectedLoc("sanctuary");
         setSelectedGod(null);
         setSelectedTeam([]);
         setRunLayout(null);
@@ -68,8 +77,18 @@ export default function App() {
                 <TitleScreen onStart={handleStart} />
             )}
 
+            {screen === "location_select" && (
+                <LocationSelect
+                    onSelect={handleLocationSelect}
+                    onBack={() => setScreen("title")}
+                />
+            )}
+
             {screen === "god_select" && (
-                <GodSelect onSelect={handleGodSelect} />
+                <GodSelect
+                    onSelect={handleGodSelect}
+                    onBack={() => setScreen("location_select")}
+                />
             )}
 
             {screen === "knight_select" && (
@@ -80,6 +99,7 @@ export default function App() {
                 <Run
                     team={selectedTeam}
                     godId={selectedGod}
+                    locationId={selectedLoc}
                     layout={runLayout}
                     teamSize={runTeamSize}
                     onFinish={handleRunFinish}

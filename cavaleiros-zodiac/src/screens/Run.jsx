@@ -7,6 +7,7 @@ import housesData from "../data/houses.json";
 import { resolveHouse } from "../game/battleEngine";
 import { GODS, applyGodCosmosModifiers, getGodHouseBonus, getCosmosDecay, getReviveChance } from "../game/godBonuses";
 import { getBattleDescription } from "../game/battleDescriptions";
+import { getLocation } from "../data/locations";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 
@@ -111,33 +112,147 @@ function getCalcBreakdown(team, house, godId, houseIndex) {
 // ─── Mini constelação ─────────────────────────────────────────────────────────
 
 function ConstellationMini({ layout, team, aliveTeam }) {
+    const [hoveredStar, setHoveredStar] = useState(null);
+
     if (!layout) return null;
     const { stars, lines } = layout;
+
+    // Cor de cada estrela — mortos ficam apagados
+    const starColor = (i) => {
+        const knight = team[i];
+        if (!knight) return "#2a3a4a";
+        const alive = aliveTeam.some(k => k.id === knight.id);
+        return alive ? (RANK_COLORS[knight.rank] || "#CD7F32") : "#1a1010";
+    };
+
     return (
         <svg viewBox="0 0 760 320" style={{ width: "100%", display: "block" }}>
             <rect width="760" height="320" fill="#060d17" rx="8" />
-            {lines.map(([a, b], i) => (
-                <line
-                    key={i}
-                    x1={stars[a].x} y1={stars[a].y}
-                    x2={stars[b].x} y2={stars[b].y}
-                    stroke="#4a7fa5" strokeWidth="3" opacity="0.7"
-                />
-            ))}
+
+            <defs>
+                {/* Filtro de glow para o hover */}
+                <filter id="cnst-glow" x="-80%" y="-80%" width="260%" height="260%">
+                    <feGaussianBlur stdDeviation="10" result="blur" />
+                    <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+
+                {/* Gradiente de cada linha: cor do nó A → cor do nó B */}
+                {lines.map(([a, b], i) => (
+                    <linearGradient
+                        key={i} id={`lg-${i}`}
+                        x1={stars[a].x} y1={stars[a].y}
+                        x2={stars[b].x} y2={stars[b].y}
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop offset="0%" stopColor={starColor(a)} stopOpacity="0.75" />
+                        <stop offset="100%" stopColor={starColor(b)} stopOpacity="0.75" />
+                    </linearGradient>
+                ))}
+
+                {/* Halo radial por cavaleiro */}
+                {stars.map((s, i) => (
+                    <radialGradient key={i} id={`halo-${i}`} cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor={starColor(i)} stopOpacity="0.55" />
+                        <stop offset="100%" stopColor={starColor(i)} stopOpacity="0" />
+                    </radialGradient>
+                ))}
+            </defs>
+
+            {/* Linhas com gradiente de cosmos */}
+            {lines.map(([a, b], i) => {
+                const aAlive = team[a] && aliveTeam.some(k => k.id === team[a].id);
+                const bAlive = team[b] && aliveTeam.some(k => k.id === team[b].id);
+                const lit = aAlive || bAlive;
+                const active = hoveredStar === a || hoveredStar === b;
+                return (
+                    <line key={i}
+                        x1={stars[a].x} y1={stars[a].y}
+                        x2={stars[b].x} y2={stars[b].y}
+                        stroke={lit ? `url(#lg-${i})` : "#1a2030"}
+                        strokeWidth={active ? 5 : 3}
+                        opacity={lit ? (active ? 1 : 0.72) : 0.18}
+                        style={{ transition: "stroke-width 0.2s, opacity 0.2s" }}
+                    />
+                );
+            })}
+
+            {/* Nós dos cavaleiros */}
             {stars.map((s, i) => {
                 const knight = team[i];
                 if (!knight) return null;
                 const alive = aliveTeam.some(k => k.id === knight.id);
-                const color = RANK_COLORS[knight.rank] || "#CD7F32";
+                const color = alive ? (RANK_COLORS[knight.rank] || "#CD7F32") : "#2a1010";
+                const hovered = hoveredStar === i;
+                const aliveK = aliveTeam.find(k => k.id === knight.id);
+                const cosmos = aliveK?.cosmos ?? 0;
+
                 return (
-                    <g key={i}>
-                        <circle cx={s.x} cy={s.y} r={18} fill={color} opacity={alive ? 0.9 : 0.15} />
+                    <g key={i}
+                        onMouseEnter={() => alive && setHoveredStar(i)}
+                        onMouseLeave={() => setHoveredStar(null)}
+                        style={{ cursor: alive ? "pointer" : "default" }}
+                    >
+                        {/* Halo de cosmos */}
+                        {alive && (
+                            <circle cx={s.x} cy={s.y}
+                                r={hovered ? 58 : 34}
+                                fill={`url(#halo-${i})`}
+                                opacity={hovered ? 1 : 0.45}
+                                style={{ transition: "r 0.25s, opacity 0.25s" }}
+                            />
+                        )}
+
+                        {/* Anel de pulso no hover */}
+                        {alive && hovered && (
+                            <circle cx={s.x} cy={s.y} r={30}
+                                fill="none" stroke={color} strokeWidth="1.5"
+                                opacity="0.45" strokeDasharray="5 5"
+                            />
+                        )}
+
+                        {/* Corpo do nó */}
+                        <circle cx={s.x} cy={s.y}
+                            r={hovered ? 23 : 18}
+                            fill={color}
+                            opacity={alive ? (hovered ? 1 : 0.88) : 0.12}
+                            filter={alive && hovered ? "url(#cnst-glow)" : undefined}
+                            style={{ transition: "r 0.2s" }}
+                        />
+
+                        {/* X para cavaleiros caídos */}
                         {!alive && (
                             <>
                                 <line x1={s.x - 12} y1={s.y - 12} x2={s.x + 12} y2={s.y + 12}
                                     stroke="#cc3030" strokeWidth="5" strokeLinecap="round" />
                                 <line x1={s.x + 12} y1={s.y - 12} x2={s.x - 12} y2={s.y + 12}
                                     stroke="#cc3030" strokeWidth="5" strokeLinecap="round" />
+                            </>
+                        )}
+
+                        {/* Nome + cosmos no hover */}
+                        {alive && hovered && (
+                            <>
+                                <text x={s.x} y={s.y + 40}
+                                    textAnchor="middle"
+                                    fill={color}
+                                    fontSize="15"
+                                    fontFamily="Georgia, serif"
+                                    fontStyle="italic"
+                                >
+                                    {knight.name.split(" ")[0]}
+                                </text>
+                                <text x={s.x} y={s.y + 56}
+                                    textAnchor="middle"
+                                    fill={color}
+                                    fontSize="12"
+                                    fontFamily="Georgia, serif"
+                                    opacity="0.7"
+                                >
+                                    cosmos {cosmos}
+                                </text>
                             </>
                         )}
                     </g>
@@ -149,7 +264,8 @@ function ConstellationMini({ layout, team, aliveTeam }) {
 
 // ─── Componente principal ─────────────────────────────────────────────────────
 
-export default function Run({ team, godId, layout, teamSize, onFinish, onMenu }) {
+export default function Run({ team, godId, locationId = "sanctuary", layout, teamSize, onFinish, onMenu }) {
+    const location = getLocation(locationId);
 
     const [houseIndex, setHouseIndex] = useState(0);
     // Cosmos modificado pelo deus desde o início — nunca muda o prop `team` original
@@ -223,6 +339,7 @@ export default function Run({ team, godId, layout, teamSize, onFinish, onMenu })
                 {/* ── Topbar ── */}
                 <div style={S.topbar}>
                     <span style={S.topbarLeft}>Casa {houseIndex + 1} / {houses.length}</span>
+                    <span style={S.topbarCenter}>{location.name}</span>
                     <span style={S.topbarRight}>Vivos: {aliveTeam.length} &nbsp;|&nbsp; Caídos: {fallen.length}</span>
                 </div>
 
@@ -535,8 +652,10 @@ const S = {
         padding: "12px 18px",
         borderBottom: "1px solid #1a2a3a",
         flexShrink: 0,
+        position: "relative",
     },
     topbarLeft: { color: "#c8a800", fontSize: "17px", letterSpacing: "2px", fontFamily: "'Cinzel', serif" },
+    topbarCenter: { color: "#4a7a9a", fontSize: "13px", letterSpacing: "3px", fontFamily: "'Cinzel', serif", textTransform: "uppercase", position: "absolute", left: "50%", transform: "translateX(-50%)" },
     topbarRight: { color: "#7ab8d4", fontSize: "17px" },
     bottom: {
         display: "flex",
