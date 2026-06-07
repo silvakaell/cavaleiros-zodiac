@@ -10,6 +10,9 @@ import KnightSelect from "./screens/KnightSelect";
 import Run from "./screens/Run";
 import Result from "./screens/Result";
 import PrivacyScreen from "./screens/PrivacyScreen";
+import { inject } from "@vercel/analytics"
+
+inject()
 
 export default function App() {
 
