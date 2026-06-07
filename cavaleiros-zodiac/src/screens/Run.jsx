@@ -3,7 +3,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import housesData from "../data/houses.json";
-import { resolveHouse } from "../game/battleEngine";
+import { resolveHouse, getTeamSizeBonus } from "../game/battleEngine";
 import { GODS, applyGodCosmosModifiers, getGodHouseBonus, getCosmosDecay, getReviveChance } from "../game/godBonuses";
 import { getBattleDescription } from "../game/battleDescriptions";
 import { getLocation } from "../data/locations";
@@ -88,13 +88,14 @@ function getAffinities(house) {
     return [];
 }
 
-function getCalcBreakdown(team, house, godId, houseIndex) {
+function getCalcBreakdown(team, house, godId, houseIndex, teamSize) {
     const avgCosmos = team.reduce((sum, k) => sum + k.cosmos, 0) / team.length;
     const cosmosBonus = ((avgCosmos - 50) / 100) * 0.40;
     const affinities = getAffinities(house)
         .map(ab => ({ ...ab, matches: team.filter(k => ab.knights.includes(k.id)) }))
         .filter(ab => ab.matches.length > 0);
     const godBonus = getGodHouseBonus(godId, house.id, team, houseIndex);
+    const sizeBonus = getTeamSizeBonus(teamSize ?? team.length);
     return {
         avgCosmos: Math.round(avgCosmos),
         guardianCosmos: house.cosmos,
@@ -102,6 +103,7 @@ function getCalcBreakdown(team, house, godId, houseIndex) {
         cosmosBonus: Math.round(cosmosBonus * 100),
         affinities,
         godBonusPct: Math.round(godBonus * 100),
+        sizeBonusPct: Math.round(sizeBonus * 100),
     };
 }
 
@@ -275,7 +277,7 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
     const runOver = aliveTeam.length === 0;
 
     function handleResolve() {
-        const outcome = resolveHouse(aliveTeam, currentHouse, godId, houseIndex);
+        const outcome = resolveHouse(aliveTeam, currentHouse, godId, houseIndex, teamSize);
         if (!outcome.passed && outcome.fallenKnight) {
             const reviveChance = getReviveChance(godId);
             const revived = reviveChance > 0 && Math.random() < reviveChance;
@@ -501,7 +503,7 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
 
                                         {/* Painel de cálculo */}
                                         {(() => {
-                                            const bd = getCalcBreakdown(aliveTeam.length > 0 ? aliveTeam : team, currentHouse, godId, houseIndex);
+                                            const bd = getCalcBreakdown(aliveTeam.length > 0 ? aliveTeam : team, currentHouse, godId, houseIndex, teamSize);
                                             const teamPct = Math.min(100, Math.round((bd.avgCosmos / 100) * 100));
                                             const guardPct = Math.min(100, Math.round((bd.guardianCosmos / 100) * 100));
                                             const tc = tr.calc;
@@ -562,6 +564,12 @@ export default function Run({ team, godId, locationId = "sanctuary", layout, tea
                                                                 {bd.godBonusPct >= 0 ? "+" : ""}{bd.godBonusPct}%
                                                             </span>
                                                         </div>
+                                                        {bd.sizeBonusPct > 0 && (
+                                                            <div style={SC.calcRow}>
+                                                                <span style={SC.rowLabel}>{tc.sizeBonus(teamSize)}</span>
+                                                                <span style={SC.rowPos}>+{bd.sizeBonusPct}%</span>
+                                                            </div>
+                                                        )}
                                                     </div>
 
                                                     <div style={SC.totalRow}>

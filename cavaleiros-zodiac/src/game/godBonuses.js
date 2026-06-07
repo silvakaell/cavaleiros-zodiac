@@ -240,13 +240,13 @@ export const GOD_RULES = {
         earlyHouseBonus: 0.20,  // +20% nas primeiras 7 casas
         earlyHouseCount: 7,
         cosmosMultiplierByRank: {},
-        cosmosMultiplierBySeries: { asgard: 1.20 },  // Guerreiros de Asgard +20% cosmos
+        cosmosMultiplierBySeries: { asgard: 1.20, movie_odin: 1.20 },  // Guerreiros de Asgard e filmes +20% cosmos
         femaleKnights: [],
         femaleCosmosBonus: 0,
         cosmosDecayPerHouse: 0,
         poolFemaleOnly: false,
         poolSeriesOnly: [],
-        poolPreferSeries: ["asgard"],  // prioriza Asgard, completa com outros
+        poolPreferSeries: ["asgard", "movie_odin"],  // prioriza Asgard + guerreiros de filme, completa com outros
         poolAllowRanks: [],
         reviveOnFall: 0,
     },

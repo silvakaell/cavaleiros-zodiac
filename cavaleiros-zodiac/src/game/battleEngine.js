@@ -25,10 +25,24 @@ function getEasterEggs(house) {
 }
 
 
+// ─── BÔNUS POR TAMANHO DE TIME ───────────────────────────────────────────────
+
+// Times menores são mais arriscados → recebem bônus de chance por casa.
+//   3 cavaleiros → +20%
+//   4 cavaleiros → +5%
+//   5 cavaleiros → sem bônus
+export function getTeamSizeBonus(teamSize) {
+    if (teamSize === 3) return 0.20;
+    if (teamSize === 4) return 0.05;
+    return 0;
+}
+
+
 // ─── CALCULA A CHANCE DE PASSAR UMA CASA ─────────────────────────────────────
 
 // godId e houseIndex são usados para aplicar os bônus do deus corretos.
-export function calcPassChance(team, house, godId = "atena", houseIndex = 0) {
+// teamSize é o tamanho ORIGINAL do time (3, 4 ou 5) — não o atual após quedas.
+export function calcPassChance(team, house, godId = "atena", houseIndex = 0, teamSize = null) {
 
     let chance = house.basePassChance;
 
@@ -47,6 +61,10 @@ export function calcPassChance(team, house, godId = "atena", houseIndex = 0) {
 
     // Bônus do deus (passBonus global + bônus/penalidade por casa)
     chance += getGodHouseBonus(godId, house.id, team, houseIndex);
+
+    // Bônus por tamanho de time (times menores recebem bônus de risco)
+    const actualSize = teamSize ?? team.length;
+    chance += getTeamSizeBonus(actualSize);
 
     chance = Math.max(0.05, Math.min(0.95, chance));
 
@@ -93,7 +111,8 @@ export function checkEasterEgg(team, house) {
 
 // godId: ID do deus selecionado (ex: "atena", "hades")
 // houseIndex: índice 0-based da casa na run (para bônus de casas iniciais)
-export function resolveHouse(team, house, godId = "atena", houseIndex = 0) {
+// teamSize: tamanho ORIGINAL do time (3/4/5) — preservado mesmo após quedas
+export function resolveHouse(team, house, godId = "atena", houseIndex = 0, teamSize = null) {
 
     // ── Easter eggs têm precedência: se disparar, a casa é resolvida
     //    antes de qualquer batalha — nenhum cavaleiro cai.
@@ -114,7 +133,7 @@ export function resolveHouse(team, house, godId = "atena", houseIndex = 0) {
     }
 
     // ── Sem easter egg: batalha normal ───────────────────────────────
-    const passChance = calcPassChance(team, house, godId, houseIndex);
+    const passChance = calcPassChance(team, house, godId, houseIndex, teamSize);
     const roll = Math.random();
     const passed = roll < passChance;
 

@@ -1467,6 +1467,58 @@
 			],
 			"lore": "Representante de Odin na Terra e governante de Asgard. Controlada pelo Anel de Nibelungo de Poseidon, seu cosmo foi levado ao extremo — destruidora e protetora ao mesmo tempo.",
 			"nameEn": "Polaris Hilda"
+		},
+		{
+			"id": "kiki",
+			"name": "Kiki de Áries",
+			"nameEn": "Aries Kiki",
+			"constellation": "Aries",
+			"rank": "bronze",
+			"series": "classic",
+			"power": 55,
+			"defense": 55,
+			"speed": 62,
+			"cosmos": 60,
+			"lore": "Aprendiz de Mu. Cresceu na Casa de Áries e conhece cada segredo de seu mestre."
+		},
+		{
+			"id": "crystal",
+			"name": "Crystal de Aquário",
+			"nameEn": "Aquarius Crystal",
+			"constellation": "Aquarius",
+			"rank": "bronze",
+			"series": "omega",
+			"power": 74,
+			"defense": 72,
+			"speed": 80,
+			"cosmos": 79,
+			"lore": "Cavaleiro de Aquário da era Omega. Herdeiro do gelo eterno — discípulo distante de Camus."
+		},
+		{
+			"id": "hasgard",
+			"name": "Hasgard de Touro",
+			"nameEn": "Taurus Hasgard",
+			"constellation": "Taurus",
+			"rank": "gold",
+			"series": "lost_canvas",
+			"power": 94,
+			"defense": 96,
+			"speed": 60,
+			"cosmos": 86,
+			"lore": "Cavaleiro de Ouro de Touro do século XVIII. Predecessor de Aldebaran — força implacável."
+		},
+		{
+			"id": "shion",
+			"name": "Shion de Áries",
+			"nameEn": "Aries Shion",
+			"constellation": "Aries",
+			"rank": "gold",
+			"series": "lost_canvas",
+			"power": 88,
+			"defense": 86,
+			"speed": 84,
+			"cosmos": 93,
+			"lore": "Cavaleiro de Ouro de Áries do século XVIII, futuro Grande Sacerdote. Sobrevivente de 243 anos ao lado de Dohko."
 		}
 	]
 }
